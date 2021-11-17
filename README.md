@@ -11,6 +11,8 @@ DELETE THIS COMMENT
 ![GitHub](https://img.shields.io/github/license/Avanade/avanade-template)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Avanade/avanade-template?style=social)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://avanade.github.io/code-of-conduct/)
+[![Incubating InnerSource](https://img.shields.io/badge/Incubating-Ava--Maturity-%23FF5800?labelColor=yellow)](https://avanade.github.io/code-of-conduct/)
+
 
 ```
 Update the repo URL addresses for the shield templates.
