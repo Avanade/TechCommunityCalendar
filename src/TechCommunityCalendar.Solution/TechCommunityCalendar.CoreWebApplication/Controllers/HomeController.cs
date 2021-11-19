@@ -29,7 +29,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var events = await _techEventRepository.GetAll();
 
             var model = new HomeViewModel();
-            model.UpcomingEvents = events.Where(x => x.StartDate.Date > DateTime.Now.Date && x.StartDate.Date < DateTime.Now.AddDays(14));
+            model.UpcomingEvents = 
+                events.Where(x => x.StartDate.Date > DateTime.Now.Date  // Future events
+                && x.StartDate.Date < DateTime.Now.AddDays(14));        // No more than 14 days in the future
+
             model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x=>x.StartDate);
 
             model.Events = events;
