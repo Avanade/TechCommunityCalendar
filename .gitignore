@@ -544,7 +544,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -593,11 +592,9 @@ dist
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
