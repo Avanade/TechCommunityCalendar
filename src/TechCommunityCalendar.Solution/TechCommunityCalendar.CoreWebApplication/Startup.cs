@@ -46,23 +46,24 @@ namespace TechCommunityCalendar.CoreWebApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            const string gbCultureCode = "en-GB";
+
             var supportedCultures = new[] {
-                new CultureInfo("en-GB")
+                new CultureInfo(gbCultureCode)
             };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("en-GB"),
+                DefaultRequestCulture = new RequestCulture(gbCultureCode),
                 SupportedCultures = supportedCultures,
                 FallBackToParentCultures = false
             });
 
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CreateSpecificCulture(gbCultureCode);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
             else
             {
@@ -83,8 +84,6 @@ namespace TechCommunityCalendar.CoreWebApplication
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-           
         }
     }
 }
