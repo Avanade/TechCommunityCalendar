@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,14 +36,29 @@ namespace TechCommunityCalendar.CoreWebApplication
 
             services.AddControllersWithViews();
             //services.AddScoped<ITechEventQueryRepository, FakeTechEventRepository>();
-            services.AddScoped<ITechEventQueryRepository>(x=> new CsvTechEventRepository(csvPath));
+            services.AddScoped<ITechEventQueryRepository>(x => new CsvTechEventRepository(csvPath));
             //services.AddScoped<ITechEventQueryRepository>(x => new AzureTechEventRepository(azureConnectionString));
+
+            services.AddLocalization();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var supportedCultures = new[] {
+                new CultureInfo("en-GB")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-GB"),
+                SupportedCultures = supportedCultures,
+                FallBackToParentCultures = false
+            });
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,11 +84,7 @@ namespace TechCommunityCalendar.CoreWebApplication
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-GB")
-            });
-
+           
         }
     }
 }
