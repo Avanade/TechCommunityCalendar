@@ -1,0 +1,45 @@
+﻿@model TechCommunityCalendar.CoreWebApplication.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Tech Community Calendar";
+
+    var lastMonth = DateTime.Now.AddMonths(-1);
+    var thisMonth = DateTime.Now.AddMonths(0);
+    var nextMonth = DateTime.Now.AddMonths(1);
+
+    var lastMonthName = lastMonth.ToString("MMMM yyyy");
+    var thisMonthName = thisMonth.ToString("MMMM yyyy");
+    var nextMonthName = nextMonth.ToString("MMMM yyyy");
+
+    var lastMonthNumber = lastMonth.Date.Month;
+    var thisMonthNumber = thisMonth.Date.Month;
+    var nextMonthNumber = nextMonth.Date.Month;
+
+    var lastMonthYear = lastMonth.Date.Year;
+    var thisMonthYear = thisMonth.Date.Year;
+    var nextMonthYear = nextMonth.Date.Year;
+}
+ 
+<div class="text-center">
+    <h1 class="display-4">Tech Community Calendar</h1>
+    <h2>Conferences - Meetups - Hackathons</h2>
+
+    <div>
+        <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName</a></span> -
+        <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName</a></span> -
+        <span><a href="/@nextMonthNumber/@nextMonthYear">@nextMonthName</a></span>
+    </div>
+
+    <br />
+
+    <h3>Upcoming Events</h3>
+
+    @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
+
+    <br />
+
+    <h3>Recent Events</h3>
+
+    @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+
+
+</div>

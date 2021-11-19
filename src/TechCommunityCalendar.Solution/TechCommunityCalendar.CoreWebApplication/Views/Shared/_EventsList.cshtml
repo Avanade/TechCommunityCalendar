@@ -1,0 +1,15 @@
+﻿@model IEnumerable<TechCommunityCalendar.Interfaces.ITechEvent>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            @item.StartDate.ToString("dd/MM/yyyy") - <a href="@item.Url">@item.Name </a > -
+                @if (!string.IsNullOrEmpty(item.City))
+                {
+                    @item.City<text>,</text>
+                }
+                @item.Country
+        </div>
+    }
+</div>

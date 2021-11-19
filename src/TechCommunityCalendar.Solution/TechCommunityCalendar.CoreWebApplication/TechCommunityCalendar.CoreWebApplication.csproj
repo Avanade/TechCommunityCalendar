@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>31f466e3-f870-43f2-b155-d48515219d39</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="wwwroot\Data\TechEvents.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TechCommunityCalendar.Concretions\TechCommunityCalendar.Concretions.csproj" />
+    <ProjectReference Include="..\TechCommunityCalendar.Interfaces\TechCommunityCalendar.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Data\TechEvents.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

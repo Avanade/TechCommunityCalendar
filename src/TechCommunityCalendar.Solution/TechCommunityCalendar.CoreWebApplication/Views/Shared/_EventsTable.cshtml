@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TechCommunityCalendar.Interfaces.ITechEvent>
+
+<table class="table table-bordered">
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.StartDate.ToString("dd/MM/yyyy")<br/>@item.Duration</td>
+        <td><a href="@item.Url">@item.Name</a></td>
+        <td>@item.EventType</td>
+        <td>@item.EventFormat</td>
+        <td>
+            @if (!string.IsNullOrEmpty(item.City))
+            {
+                @item.City<text>,</text>
+            }
+            @item.Country
+        </td>
+    </tr>
+    }
+
+</table>
+
+@*<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            @item.StartDate.ToString("dd/MM/yyyy") - <a href="@item.Url">@item.Name </a> -
+            @if (!string.IsNullOrEmpty(item.City))
+            {
+                @item.City<text>,</text>
+            }
+            @item.Country
+        </div>
+    }
+</div>*@
