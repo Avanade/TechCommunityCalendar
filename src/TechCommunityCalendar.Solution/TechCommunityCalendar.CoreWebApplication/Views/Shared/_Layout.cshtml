@@ -4,8 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
+    <meta name="description" content="@ViewData["Description"]" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="canonical" href="@ViewData["Canonical"]" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:url" content="@ViewData["Canonical"]" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+    <meta name="twitter:description" content="@ViewData["Description"]" />
+    <meta name="twitter:title" content="@ViewData["Title"]" />
+    <meta property="og:type" content="webpage" />
 </head>
 <body>
     <header>

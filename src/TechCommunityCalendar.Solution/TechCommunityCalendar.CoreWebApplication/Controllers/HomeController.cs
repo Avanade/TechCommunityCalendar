@@ -22,19 +22,18 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // View tech events from this month
-            var month = DateTime.Now.Month;
-            var year = DateTime.Now.Year;
+            ViewData["Canonical"] = "https://TechCommunityCalendar.com";
+            ViewData["Title"] = "Tech Community Calendar";
+            ViewData["Description"] = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
             var events = await _techEventRepository.GetAll();
 
             var model = new HomeViewModel();
-            model.UpcomingEvents = 
+            model.UpcomingEvents =
                 events.Where(x => x.StartDate.Date > DateTime.Now.Date  // Future events
                 && x.StartDate.Date < DateTime.Now.AddDays(14));        // No more than 14 days in the future
 
-            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x=>x.StartDate);
-
+            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
             model.Events = events;
 
             return View(model);
@@ -43,16 +42,14 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         [Route("{month}/{year}")]
         public async Task<IActionResult> Month(int year, int month)
         {
-            var model = new MonthViewModel();
-
             var monthDate = new DateTime(year, month, 1);
+
+            var model = new MonthViewModel();
             model.MonthName = monthDate.ToString("MMMM");
             model.Year = year;
 
             var events = await _techEventRepository.GetByMonth(year, month);
-
             model.Events = events;
-            
 
             return View(model);
         }
