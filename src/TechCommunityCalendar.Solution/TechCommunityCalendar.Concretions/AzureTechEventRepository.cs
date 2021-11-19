@@ -54,5 +54,10 @@ namespace TechCommunityCalendar.Concretions
         {
             throw new NotImplementedException();
         }
+
+        public Task<ITechEvent[]> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

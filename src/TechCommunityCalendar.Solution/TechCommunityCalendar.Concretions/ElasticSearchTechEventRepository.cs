@@ -14,6 +14,11 @@ namespace TechCommunityCalendar.Concretions
             throw new NotImplementedException();
         }
 
+        public Task<ITechEvent[]> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ITechEvent[]> GetByCountry(int year, int month, EventType eventType, string country)
         {
             throw new NotImplementedException();

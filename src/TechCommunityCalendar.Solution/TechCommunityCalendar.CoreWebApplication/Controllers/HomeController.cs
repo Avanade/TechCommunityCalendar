@@ -26,10 +26,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var month = DateTime.Now.Month;
             var year = DateTime.Now.Year;
 
-            var events = await _techEventRepository.GetByMonth(year, month);
+            var events = await _techEventRepository.GetAll();
 
             var model = new HomeViewModel();
-            model.UpcomingEvents = events.Where(x => x.StartDate.Date > DateTime.Now.Date);
+            model.UpcomingEvents = events.Where(x => x.StartDate.Date > DateTime.Now.Date && x.StartDate.Date < DateTime.Now.AddDays(14));
             model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x=>x.StartDate);
 
             model.Events = events;
