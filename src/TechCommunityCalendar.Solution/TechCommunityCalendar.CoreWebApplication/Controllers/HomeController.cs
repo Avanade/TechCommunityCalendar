@@ -22,16 +22,16 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ViewData["Canonical"] = "https://TechCommunityCalendar.com";
-            ViewData["Title"] = "Tech Community Calendar";
-            ViewData["Description"] = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
+            ViewBag.Canonical = "https://TechCommunityCalendar.com";
+            ViewBag.Title = "Tech Community Calendar";
+            ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
             var events = await _techEventRepository.GetAll();
 
             var model = new HomeViewModel();
             model.UpcomingEvents =
-                events.Where(x => x.StartDate.Date > DateTime.Now.Date  // Future events
-                && x.StartDate.Date < DateTime.Now.AddDays(14));        // No more than 14 days in the future
+                events.Where(x => x.StartDate.Date >= DateTime.Now.Date  // Future events
+                && x.StartDate.Date < DateTime.Now.AddDays(14)).OrderBy(x=>x.StartDate);        // No more than 14 days in the future
 
             model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
             model.Events = events;
@@ -52,6 +52,16 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.Events = events;
 
             return View(model);
+        }
+
+        [Route("/opensource/")]
+        public IActionResult OpenSource()
+        {
+            ViewBag.Title = "Tech Community Calendar is Open Source";
+            ViewBag.MetaDescription = "Tech Community Calendar is Open Source and encourages contributions";
+            ViewBag.Canonical = "https://techcommunitycalendar.com/opensource/";
+
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
