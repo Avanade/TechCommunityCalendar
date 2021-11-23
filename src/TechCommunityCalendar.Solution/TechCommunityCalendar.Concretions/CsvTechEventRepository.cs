@@ -32,9 +32,11 @@ namespace TechCommunityCalendar.Concretions
             throw new NotImplementedException();
         }
 
-        public Task<ITechEvent[]> GetByCountry(int year, int month, EventType eventType, string country)
+        public async Task<ITechEvent[]> GetByCountry(EventType eventType, string country)
         {
-            throw new NotImplementedException();
+            var events = await GetAll();
+
+            return events.Where(x => x.Country.Equals(country, StringComparison.InvariantCultureIgnoreCase)).ToArray();
         }
 
         public Task<ITechEvent[]> GetByEventType(int year, int month, EventType eventType)
@@ -86,7 +88,7 @@ namespace TechCommunityCalendar.Concretions
                         };
 
                         DateTime startDate;
-                        if(DateTime.TryParse(csv.GetField(2), out startDate))
+                        if (DateTime.TryParse(csv.GetField(2), out startDate))
                         {
                             record.StartDate = startDate;
                         }
@@ -102,18 +104,15 @@ namespace TechCommunityCalendar.Concretions
                         techEvents.Add(record);
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
 
                     }
-
-
-                    
                 }
             }
 
 
-            return techEvents.ToArray();
+            return await Task.FromResult(techEvents.ToArray());
         }
 
         private EventType GetEventType(string eventType)
@@ -130,7 +129,10 @@ namespace TechCommunityCalendar.Concretions
                     return EventType.Meetup;
 
                 case "CallForPaper":
-                    return EventType.CallForPaper;
+                    return EventType.Call_For_Paper;
+
+                case "Website":
+                    return EventType.Call_For_Paper;
 
                 default:
                     return EventType.Unknown;
@@ -142,7 +144,7 @@ namespace TechCommunityCalendar.Concretions
             switch (eventFormat)
             {
                 case "In Person":
-                    return EventFormat.InPerson;
+                    return EventFormat.In_Person;
 
                 case "Virtual":
                     return EventFormat.Virtual;
@@ -153,6 +155,13 @@ namespace TechCommunityCalendar.Concretions
                 default:
                     return EventFormat.Unknown;
             }
+        }
+
+        public async Task<string[]> GetAllCountries()
+        {
+            var events = await GetAll();
+
+            return events.Select(x => x.Country).Distinct().ToArray();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace TechCommunityCalendar.Concretions
             return techEvents;
         }
 
-        public Task<ITechEvent[]> GetByCountry(int year, int month, EventType eventType, string country)
+        public Task<ITechEvent[]> GetByCountry(EventType eventType, string country)
         {
             throw new NotImplementedException();
         }
@@ -56,6 +56,11 @@ namespace TechCommunityCalendar.Concretions
         }
 
         public Task<ITechEvent[]> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string[]> GetAllCountries()
         {
             throw new NotImplementedException();
         }

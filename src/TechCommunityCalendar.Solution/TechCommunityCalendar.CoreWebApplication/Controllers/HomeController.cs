@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.CoreWebApplication.Models;
+using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;
 
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
@@ -27,14 +28,17 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
             var events = await _techEventRepository.GetAll();
+            var countries = events.Select(x => x.Country).Distinct().OrderBy(x => x);
+
 
             var model = new HomeViewModel();
             model.UpcomingEvents =
                 events.Where(x => x.StartDate.Date >= DateTime.Now.Date  // Future events
-                && x.StartDate.Date < DateTime.Now.AddDays(14)).OrderBy(x=>x.StartDate);        // No more than 14 days in the future
+                && x.StartDate.Date < DateTime.Now.AddDays(14)).OrderBy(x => x.StartDate);        // No more than 14 days in the future
 
             model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
             model.Events = events;
+            model.Countries = countries.Select(x => new Tuple<string, string>(x, x.ToLower()));
 
             return View(model);
         }
@@ -53,6 +57,19 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             return View(model);
         }
+
+        [Route("country/{country}")]
+        public async Task<IActionResult> Country(string country)
+        {
+            var model = new CountryViewModel();
+            model.Country = country;
+
+            var events = await _techEventRepository.GetByCountry(EventType.Any, country);
+            model.Events = events;
+
+            return View(model);
+        }
+
 
         [Route("/opensource/")]
         public IActionResult OpenSource()

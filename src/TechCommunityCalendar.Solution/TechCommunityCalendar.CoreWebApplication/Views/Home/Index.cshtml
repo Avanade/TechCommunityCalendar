@@ -1,6 +1,6 @@
 ﻿@model TechCommunityCalendar.CoreWebApplication.Models.HomeViewModel
 @{
-    
+
     var lastMonth = DateTime.Now.AddMonths(-1);
     var thisMonth = DateTime.Now.AddMonths(0);
     var nextMonth = DateTime.Now.AddMonths(1);
@@ -17,7 +17,7 @@
     var thisMonthYear = thisMonth.Date.Year;
     var nextMonthYear = nextMonth.Date.Year;
 }
- 
+
 <div class="text-center">
     <h1 class="display-4">Tech Community Calendar</h1>
     <h2>Conferences - Meetups - Hackathons</h2>
@@ -40,5 +40,12 @@
 
     @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
 
+    <br />
+
+    <h3>Countries</h3>
+    //@foreach (var country in Model.Countries)
+    {
+        <a href="/country/@country.Item2">@country.Item1</a> <text>//</text>
+    }
 
 </div>
