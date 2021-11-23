@@ -9,6 +9,7 @@ namespace TechCommunityCalendar.Enums
         Conference = 2,
         Meetup = 3,
         Hackathon = 4,
-        CallForPaper = 5
+        Call_For_Paper = 5,
+        Website = 6,
     }
 }

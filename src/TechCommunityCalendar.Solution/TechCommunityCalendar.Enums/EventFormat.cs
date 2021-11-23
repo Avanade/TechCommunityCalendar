@@ -4,7 +4,7 @@
     {
         Unknown = 1,
         Virtual = 2,
-        InPerson = 3,
+        In_Person = 3,
         Hybrid = 4
     }
 }

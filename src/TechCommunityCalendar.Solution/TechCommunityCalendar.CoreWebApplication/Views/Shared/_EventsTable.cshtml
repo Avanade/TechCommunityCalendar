@@ -3,32 +3,19 @@
 <table class="table table-bordered">
     @foreach (var item in Model)
     {
-    <tr>
-        <td>@item.StartDate.ToString("dd/MM/yyyy")<br/>@item.Duration</td>
-        <td><a href="@item.Url">@item.Name</a></td>
-        <td>@item.EventType<br />@item.EventFormat</td>
-        <td>
-            @if (!string.IsNullOrEmpty(item.City))
-            {
-                @item.City<text>,</text>
-            }
-            @item.Country
-        </td>
-    </tr>
+        <tr>
+            <td style="text-align:left">
+                @item.StartDate.ToString("dd/MM/yyyy") - <a href="@item.Url" class="event-name">@item.Name</a>
+                - @if (!string.IsNullOrEmpty(item.City))
+                {
+                    @item.City<text>,</text>
+                }
+                @item.Country
+            </td>
+            <td>
+                @item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType
+            </td>
+        </tr>
     }
 
 </table>
-
-@*<div>
-    @foreach (var item in Model)
-    {
-        <div>
-            @item.StartDate.ToString("dd/MM/yyyy") - <a href="@item.Url">@item.Name </a> -
-            @if (!string.IsNullOrEmpty(item.City))
-            {
-                @item.City<text>,</text>
-            }
-            @item.Country
-        </div>
-    }
-</div>*@
