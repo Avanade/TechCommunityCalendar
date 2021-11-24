@@ -13,7 +13,7 @@
                 @item.Country
             </td>
             <td>
-                @item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType
+                @item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType.ToString().Replace("_", " ")
             </td>
         </tr>
     }

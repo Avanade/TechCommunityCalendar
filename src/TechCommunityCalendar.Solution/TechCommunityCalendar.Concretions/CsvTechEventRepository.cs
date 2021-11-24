@@ -39,7 +39,7 @@ namespace TechCommunityCalendar.Concretions
             return events.Where(x => x.Country.Equals(country, StringComparison.InvariantCultureIgnoreCase)).ToArray();
         }
 
-        public Task<ITechEvent[]> GetByEventType(int year, int month, EventType eventType)
+        public async Task<ITechEvent[]> GetByEventType(int year, int month, EventType eventType)
         {
             throw new NotImplementedException();
         }
@@ -67,10 +67,10 @@ namespace TechCommunityCalendar.Concretions
                     try
                     {
                         string name = csv.GetField(0);
-                        EventType eventType = GetEventType(csv.GetField(1));
+                        EventType eventType = EnumParser.ParseEventType(csv.GetField(1));
                         string duration = csv.GetField(3);
                         string url = csv.GetField(4);
-                        EventFormat eventFormat = GetEventFormat(csv.GetField(5));
+                        EventFormat eventFormat = EnumParser.ParseEventFormat(csv.GetField(5));
                         string city = csv.GetField(6);
                         string country = csv.GetField(7);
 
@@ -115,53 +115,20 @@ namespace TechCommunityCalendar.Concretions
             return await Task.FromResult(techEvents.ToArray());
         }
 
-        private EventType GetEventType(string eventType)
-        {
-            switch (eventType)
-            {
-                case "Conference":
-                    return EventType.Conference;
-
-                case "Hackathon":
-                    return EventType.Hackathon;
-
-                case "Meetup":
-                    return EventType.Meetup;
-
-                case "CallForPaper":
-                    return EventType.Call_For_Paper;
-
-                case "Website":
-                    return EventType.Call_For_Paper;
-
-                default:
-                    return EventType.Unknown;
-            }
-        }
-
-        private EventFormat GetEventFormat(string eventFormat)
-        {
-            switch (eventFormat)
-            {
-                case "In Person":
-                    return EventFormat.In_Person;
-
-                case "Virtual":
-                    return EventFormat.Virtual;
-
-                case "Hybrid":
-                    return EventFormat.Hybrid;
-
-                default:
-                    return EventFormat.Unknown;
-            }
-        }
+        
 
         public async Task<string[]> GetAllCountries()
         {
             var events = await GetAll();
 
             return events.Select(x => x.Country).Distinct().ToArray();
+        }
+
+        public async Task<ITechEvent[]> GetByEventType(EventType eventType)
+        {
+            var events = await GetAll();
+
+            return events.Where(x => x.EventType.Equals(eventType)).ToArray();
         }
     }
 }

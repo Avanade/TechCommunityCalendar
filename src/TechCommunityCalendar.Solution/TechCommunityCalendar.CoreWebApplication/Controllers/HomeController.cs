@@ -4,9 +4,11 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
 using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;
+
 
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
@@ -30,8 +32,12 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var events = await _techEventRepository.GetAll();
             var countries = events.Select(x => x.Country)
                 .Distinct()
-                .Where(x=>!String.IsNullOrWhiteSpace(x))
-                .OrderBy(x => x);            
+                .Where(x => !String.IsNullOrWhiteSpace(x))
+                .OrderBy(x => x);
+
+            var eventTypes = events.Select(x => x.EventType.ToString())
+                .Distinct()
+                .OrderBy(x => x);
 
 
             var model = new HomeViewModel();
@@ -42,6 +48,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
             model.Events = events;
             model.Countries = countries.Select(x => new Tuple<string, string>(x, x.ToLower()));
+            model.EventTypes = eventTypes.Select(x => new Tuple<string, string>(x.Replace("_", " "), x.ToLower().Replace("_", "")));
 
             return View(model);
         }
@@ -67,11 +74,27 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var model = new CountryViewModel();
             model.Country = country;
 
-            var events = await _techEventRepository.GetByCountry(EventType.Any, country);
+            var events = await _techEventRepository.GetByCountry(Enums.EventType.Any, country);
             model.Events = events;
 
             return View(model);
         }
+
+        [Route("eventtype/{eventType}")]
+        public async Task<IActionResult> EventType(string eventType)
+        {
+            var model = new EventTypeViewModel();
+            model.EventType = eventType;
+
+            Enums.EventType eventTypeEnum = EnumParser.ParseEventType(eventType);
+
+            var events = await _techEventRepository.GetByEventType(eventTypeEnum);
+            model.Events = events;
+
+            return View(model);
+        }
+
+        
 
 
         [Route("/opensource/")]
