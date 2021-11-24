@@ -22,11 +22,7 @@
     <h1 class="display-4">Tech Community Calendar</h1>
     <h2>Conferences - Meetups - Hackathons</h2>
 
-    <div>
-        <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName</a></span> -
-        <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName</a></span> -
-        <span><a href="/@nextMonthNumber/@nextMonthYear">@nextMonthName</a></span>
-    </div>
+    @await Html.PartialAsync("_TopMonths", Model.UpcomingEvents)
 
     <br />
 
@@ -47,5 +43,14 @@
     {
         <a href="/country/@country.Item2/">@country.Item1</a> <text>//</text>
     }
-   
+
+    <br />
+    <br />
+
+    <h3>Event Types</h3>
+    //@foreach (var eventType in Model.EventTypes)
+    {
+        <a href="/eventtype/@eventType.Item2/">@eventType.Item1</a> <text>//</text>
+    }
+
 </div>
