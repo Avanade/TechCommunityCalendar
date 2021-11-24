@@ -64,58 +64,52 @@ namespace TechCommunityCalendar.Concretions
                 csv.ReadHeader();
                 while (csv.Read())
                 {
-                    try
+
+                    string name = csv.GetField(0);
+                    EventType eventType = EnumParser.ParseEventType(csv.GetField(1));
+                    string duration = csv.GetField(3);
+                    string url = csv.GetField(4);
+                    EventFormat eventFormat = EnumParser.ParseEventFormat(csv.GetField(5));
+                    string city = csv.GetField(6);
+                    string country = csv.GetField(7);
+
+                    ITechEvent record = new TechEvent
                     {
-                        string name = csv.GetField(0);
-                        EventType eventType = EnumParser.ParseEventType(csv.GetField(1));
-                        string duration = csv.GetField(3);
-                        string url = csv.GetField(4);
-                        EventFormat eventFormat = EnumParser.ParseEventFormat(csv.GetField(5));
-                        string city = csv.GetField(6);
-                        string country = csv.GetField(7);
+                        Name = name,
+                        EventType = eventType,
+                        Duration = duration,
+                        Url = url,
+                        EventFormat = eventFormat,
+                        City = city,
+                        Country = country
 
+                    };
 
-                        ITechEvent record = new TechEvent
-                        {
-                            Name = name,
-                            EventType = eventType,
-                            Duration = duration,
-                            Url = url,
-                            EventFormat = eventFormat,
-                            City = city,
-                            Country = country
-
-                        };
-
-                        DateTime startDate;
-                        if (DateTime.TryParse(csv.GetField(2), out startDate))
-                        {
-                            record.StartDate = startDate;
-                        }
-                        else
-                        {
-
-                        }
-
-                        //TimeSpan duration;
-                        //if (TimeSpan.TryParse(csv.GetField(3), out duration))
-                        //    record.Duration = duration;
-
-                        techEvents.Add(record);
-
+                    DateTime startDate;
+                    if (DateTime.TryParse(csv.GetField(2), out startDate))
+                    {
+                        record.StartDate = startDate;
                     }
-                    catch (Exception)
+                    else
                     {
 
                     }
+
+                    //TimeSpan duration;
+                    //if (TimeSpan.TryParse(csv.GetField(3), out duration))
+                    //    record.Duration = duration;
+
+                    techEvents.Add(record);
+
+
+
                 }
             }
-
 
             return await Task.FromResult(techEvents.ToArray());
         }
 
-        
+
 
         public async Task<string[]> GetAllCountries()
         {
