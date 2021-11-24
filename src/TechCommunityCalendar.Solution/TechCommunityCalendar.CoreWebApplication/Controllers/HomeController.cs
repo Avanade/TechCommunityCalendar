@@ -28,7 +28,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
             var events = await _techEventRepository.GetAll();
-            var countries = events.Select(x => x.Country).Distinct().OrderBy(x => x);
+            var countries = events.Select(x => x.Country)
+                .Distinct()
+                .Where(x=>!String.IsNullOrWhiteSpace(x))
+                .OrderBy(x => x);            
 
 
             var model = new HomeViewModel();
