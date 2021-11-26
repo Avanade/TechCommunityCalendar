@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
-using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;
 
 
@@ -59,7 +59,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var monthDate = new DateTime(year, month, 1);
 
             var model = new MonthViewModel();
-            model.MonthName = monthDate.ToString("MMMM");
+            model.MonthName = ToTitleCase(monthDate.ToString("MMMM"));
             model.Year = year;
 
             var events = await _techEventRepository.GetByMonth(year, month);
@@ -72,7 +72,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public async Task<IActionResult> Country(string country)
         {
             var model = new CountryViewModel();
-            model.Country = country;
+            model.Country = ToTitleCase(country);
 
             var events = await _techEventRepository.GetByCountry(Enums.EventType.Any, country);
             model.Events = events;
@@ -84,7 +84,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public async Task<IActionResult> EventType(string eventType)
         {
             var model = new EventTypeViewModel();
-            model.EventType = eventType;
+            model.EventType = ToTitleCase(eventType);
 
             Enums.EventType eventTypeEnum = EnumParser.ParseEventType(eventType);
 
@@ -93,9 +93,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             return View(model);
         }
-
-        
-
 
         [Route("/opensource/")]
         public IActionResult OpenSource()
@@ -111,6 +108,21 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private string ToTitleCase(string originalText)
+        {
+            string[] acronyms = { "USA", "UK" };
+
+            if (acronyms.Contains(originalText.ToUpper()))
+                return originalText.ToUpper();
+
+            if (originalText == "callforpapers")
+                return "Call For Papers";
+
+
+            TextInfo englishTextInfo = new CultureInfo("en-GB", false).TextInfo;
+            return englishTextInfo.ToTitleCase(originalText);
         }
     }
 }
