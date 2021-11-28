@@ -21,8 +21,6 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Tech Community Calendar</h1>
-    <h2>Conferences - Meetups - Hackathons</h2>
     <div>
         <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName</a></span> -
         <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName</a></span> -
@@ -37,14 +35,17 @@
     <br />
     <br />
 
-
     <h4>Upcoming Events</h4>
-
+    @if (Model.Events.Any(x => x.StartDate.Date >= DateTime.Now.Date))
+    {
+    }
+    else
+    {
+        <p>No upcoming events</p>
+    }
     @await Html.PartialAsync("_EventsTable", Model.Events.Where(x => x.StartDate.Date >= DateTime.Now.Date))
 
     <br />
-
-
 
     <h4>Recent Events</h4>
 

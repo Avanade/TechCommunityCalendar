@@ -19,38 +19,33 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Tech Community Calendar</h1>
-    <h2>Conferences - Meetups - Hackathons</h2>
+    
 
     @await Html.PartialAsync("_TopMonths", Model.UpcomingEvents)
 
     <br />
 
-    <h3>Upcoming Events</h3>
+    @if (Model.UpcomingEvents.Any())
+    {
+        <h3>Upcoming Events</h3>
 
-    @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
+        @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
 
-    <br />
+        <br />
+    }
 
-    <h3>Recent Events</h3>
+    @if (Model.RecentEvents.Any())
+    {
+        <h3>Recent Events</h3>
 
-    @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+        @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
 
-    <br />
+        <br />
+    }
 
-    <h3>Countries</h3>
+    <h3>Country</h3>
     //@foreach (var country in Model.Countries)
     {
         <a href="/country/@country.Item2/">@country.Item1</a> <text>//</text>
     }
-
-    <br />
-    <br />
-
-    <h3>Event Types</h3>
-    //@foreach (var eventType in Model.EventTypes)
-    {
-        <a href="/eventtype/@eventType.Item2/">@eventType.Item1</a> <text>//</text>
-    }
-
 </div>

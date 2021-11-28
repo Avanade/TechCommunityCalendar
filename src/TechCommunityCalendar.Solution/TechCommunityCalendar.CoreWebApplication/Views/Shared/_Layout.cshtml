@@ -19,7 +19,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBDPEW68ZT"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-XBDPEW68ZT');
     </script>
@@ -38,8 +38,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
-                        </li>*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
@@ -47,7 +47,13 @@
     </header>
     <div class="container">
         <main class="pb-3">
+            <div class="text-center">
+                <h1 class="display-4">Tech Community Calendar</h1>
+                <h2>Conferences - Meetups - Hackathons</h2>
+            </div>
+            <br /><br />
             @RenderBody()
+
             <div class="text-center">
 
                 <br /><br />

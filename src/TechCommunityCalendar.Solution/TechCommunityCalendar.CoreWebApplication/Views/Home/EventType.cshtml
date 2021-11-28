@@ -1,31 +1,24 @@
 ﻿@model TechCommunityCalendar.CoreWebApplication.Models.EventTypeViewModel
 @{
-
-
     ViewData["Title"] = $"{Model.EventType} Tech Community Events";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Tech Community Calendar</h1>
-    <h2>Conferences - Meetups - Hackathons</h2>
-    @*<div>
-        <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName</a></span> -
-        <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName</a></span> -
-        <span><a href="/@nextMonthNumber/@nextMonthYear">@nextMonthName</a></span>
-    </div>*@
-
-    <br />
-    <br />
-
     <h3>@Model.EventType Tech Events</h3>
 
     <br />
     <br />
 
     <h4>Upcoming Events</h4>
+    @if (Model.Events.Any(x => x.StartDate.Date >= DateTime.Now.Date))
+    {
+        @await Html.PartialAsync("_EventsTable", Model.Events.Where(x => x.StartDate.Date >= DateTime.Now.Date))
 
-    @await Html.PartialAsync("_EventsTable", Model.Events.Where(x => x.StartDate.Date >= DateTime.Now.Date))
-
+    }
+    else
+    {
+        <p>No upcoming events</p>
+    }
     <br />
 
     <h4>Recent Events</h4>

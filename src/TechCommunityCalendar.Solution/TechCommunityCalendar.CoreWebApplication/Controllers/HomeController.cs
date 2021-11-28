@@ -9,7 +9,6 @@ using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
 using TechCommunityCalendar.Interfaces;
 
-
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class HomeController : Controller
@@ -117,9 +116,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             if (acronyms.Contains(originalText.ToUpper()))
                 return originalText.ToUpper();
 
-            if (originalText == "callforpapers")
-                return "Call For Papers";
-
+            if (originalText == "callforpaper")
+                return "Call For Paper";
 
             TextInfo englishTextInfo = new CultureInfo("en-GB", false).TextInfo;
             return englishTextInfo.ToTitleCase(originalText);

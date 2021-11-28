@@ -46,6 +46,7 @@ namespace TechCommunityCalendar.Concretions
                 case "Hybrid":
                     return EventFormat.Hybrid;
 
+
                 default:
                     return EventFormat.Unknown;
             }
