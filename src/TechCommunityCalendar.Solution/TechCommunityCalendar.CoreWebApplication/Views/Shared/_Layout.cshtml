@@ -48,6 +48,11 @@
     <div class="container">
         <main class="pb-3">
             @RenderBody()
+            <div class="text-center">
+
+                <br /><br />
+                @await Html.PartialAsync("_EventTypesLinks")
+            </div>
         </main>
     </div>
 

@@ -37,11 +37,14 @@
     <br />
     <br />
 
+
     <h4>Upcoming Events</h4>
 
     @await Html.PartialAsync("_EventsTable", Model.Events.Where(x => x.StartDate.Date >= DateTime.Now.Date))
 
     <br />
+
+
 
     <h4>Recent Events</h4>
 
