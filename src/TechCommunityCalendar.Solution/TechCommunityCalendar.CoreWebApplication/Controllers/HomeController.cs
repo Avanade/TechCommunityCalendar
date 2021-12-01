@@ -58,13 +58,15 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public async Task<IActionResult> Month(int year, int month)
         {
             var monthDate = new DateTime(year, month, 1);
+            var events = await _techEventRepository.GetByMonth(year, month);
 
             var model = new MonthViewModel();
             model.MonthName = ToTitleCase(monthDate.ToString("MMMM"));
             model.Year = year;
-
-            var events = await _techEventRepository.GetByMonth(year, month);
             model.Events = events;
+            model.UpcomingEvents = events.Where(x => x.StartDate.Date >= DateTime.Now.Date);
+            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date);
+
 
             return View(model);
         }

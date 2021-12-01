@@ -5,9 +5,9 @@
     var thisMonth = DateTime.Now.AddMonths(0);
     var nextMonth = DateTime.Now.AddMonths(1);
 
-    var lastMonthName = lastMonth.ToString("MMMM yyyy");
-    var thisMonthName = thisMonth.ToString("MMMM yyyy");
-    var nextMonthName = nextMonth.ToString("MMMM yyyy");
+    var lastMonthName = lastMonth.ToString("MMMM");
+    var thisMonthName = thisMonth.ToString("MMMM");
+    var nextMonthName = nextMonth.ToString("MMMM");
 
     var lastMonthNumber = lastMonth.Date.Month;
     var thisMonthNumber = thisMonth.Date.Month;
@@ -22,9 +22,9 @@
 
 <div class="text-center">
     <div>
-        <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName</a></span> -
-        <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName</a></span> -
-        <span><a href="/@nextMonthNumber/@nextMonthYear">@nextMonthName</a></span>
+        <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName @thisMonthYear</a></span> -
+        <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName @thisMonthYear</a></span> -
+        <span><a href="/@nextMonthNumber/@nextMonthYear">@nextMonthName @thisMonthYear</a></span>
     </div>
 
     <br />
@@ -36,7 +36,7 @@
     <br />
 
     <h4>@Model.UpcomingEventsCount Upcoming Events</h4>
-    @if (Model.Events.Any(x => x.StartDate.Date >= DateTime.Now.Date))
+    @if (Model.UpcomingEvents.Any())
     {
         @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
     }
@@ -44,13 +44,18 @@
     {
         <p>No upcoming events</p>
     }
-    @*@await Html.PartialAsync("_EventsTable", Model.Events.Where(x => x.StartDate.Date >= DateTime.Now.Date))*@
+
 
     <br />
 
     <h4>@Model.RecentEventsCount Recent Events</h4>
-
-    @await Html.PartialAsync("_EventsTable", Model.Events.Where(x => x.StartDate.Date < DateTime.Now.Date))
-
+    @if (Model.RecentEvents.Any())
+    {
+        @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+    }
+    else
+    {
+        <p>No recent events</p>
+    }
 
 </div>
