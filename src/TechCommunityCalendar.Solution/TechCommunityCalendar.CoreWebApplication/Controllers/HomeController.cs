@@ -29,6 +29,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
             var events = await _techEventRepository.GetAll();
+
             var countries = events.Select(x => x.Country)
                 .Distinct()
                 .Where(x => !String.IsNullOrWhiteSpace(x))
@@ -40,14 +41,15 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
 
             var model = new HomeViewModel();
-            model.UpcomingEvents =
-                events.Where(x => x.StartDate.Date >= DateTime.Now.Date  // Future events
-                && x.StartDate.Date < DateTime.Now.AddDays(14)).OrderBy(x => x.StartDate);        // No more than 14 days in the future
-
-            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
             model.Events = events;
             model.Countries = countries.Select(x => new Tuple<string, string>(x, x.ToLower()));
             model.EventTypes = eventTypes.Select(x => new Tuple<string, string>(x.Replace("_", " "), x.ToLower().Replace("_", "")));
+
+            model.UpcomingEvents =
+                events.Where(x => x.StartDate.Date >= DateTime.Now.Date  // Future events
+                && x.StartDate.Date < DateTime.Now.AddDays(14)).OrderBy(x => x.StartDate);        // No more than 14 days in the future            
+
+            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
 
             return View(model);
         }
@@ -70,11 +72,13 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         [Route("country/{country}")]
         public async Task<IActionResult> Country(string country)
         {
+            var events = await _techEventRepository.GetByCountry(Enums.EventType.Any, country);
+
             var model = new CountryViewModel();
             model.Country = ToTitleCase(country);
-
-            var events = await _techEventRepository.GetByCountry(Enums.EventType.Any, country);
             model.Events = events;
+            model.UpcomingEvents = events.Where(x => x.StartDate.Date >= DateTime.Now.Date);
+            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date);
 
             return View(model);
         }
@@ -89,6 +93,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             var events = await _techEventRepository.GetByEventType(eventTypeEnum);
             model.Events = events;
+            model.UpcomingEvents = events.Where(x => x.StartDate.Date >= DateTime.Now.Date);
+            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date);
 
             return View(model);
         }

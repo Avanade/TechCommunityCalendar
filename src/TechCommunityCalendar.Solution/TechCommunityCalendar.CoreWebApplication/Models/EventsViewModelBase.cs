@@ -10,8 +10,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
         public IEnumerable<ITechEvent> UpcomingEvents { get; set; } = new List<ITechEvent>();
         public IEnumerable<ITechEvent> RecentEvents { get; set; } = new List<ITechEvent>();
 
-        public int EventsCount { get { return UpcomingEvents.Count(); } }
+        public int EventsCount { get { return Events.Count(); } }
         public int UpcomingEventsCount { get { return UpcomingEvents.Count(); } }
-        public int RecentEventsCount { get { return UpcomingEvents.Count(); } }
+        public int RecentEventsCount { get { return RecentEvents.Count(); } }
     }
 }
