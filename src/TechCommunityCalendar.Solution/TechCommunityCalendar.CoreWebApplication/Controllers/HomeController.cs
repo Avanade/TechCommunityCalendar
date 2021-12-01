@@ -45,11 +45,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.Countries = countries.Select(x => new Tuple<string, string>(x, x.ToLower()));
             model.EventTypes = eventTypes.Select(x => new Tuple<string, string>(x.Replace("_", " "), x.ToLower().Replace("_", "")));
 
-            model.UpcomingEvents =
-                events.Where(x => x.StartDate.Date >= DateTime.Now.Date  // Future events
-                && x.StartDate.Date < DateTime.Now.AddDays(14)).OrderBy(x => x.StartDate);        // No more than 14 days in the future            
-
-            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date).OrderByDescending(x => x.StartDate);
+            model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
+            model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
             return View(model);
         }
@@ -64,8 +61,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.MonthName = ToTitleCase(monthDate.ToString("MMMM"));
             model.Year = year;
             model.Events = events;
-            model.UpcomingEvents = events.Where(x => x.StartDate.Date >= DateTime.Now.Date);
-            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date);
+            model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
+            model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
 
             return View(model);
@@ -79,8 +76,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var model = new CountryViewModel();
             model.Country = ToTitleCase(country);
             model.Events = events;
-            model.UpcomingEvents = events.Where(x => x.StartDate.Date >= DateTime.Now.Date);
-            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date);
+            model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
+            model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
             return View(model);
         }
@@ -95,8 +92,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             var events = await _techEventRepository.GetByEventType(eventTypeEnum);
             model.Events = events;
-            model.UpcomingEvents = events.Where(x => x.StartDate.Date >= DateTime.Now.Date);
-            model.RecentEvents = events.Where(x => x.StartDate.Date < DateTime.Now.Date);
+            model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
+            model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
             return View(model);
         }
