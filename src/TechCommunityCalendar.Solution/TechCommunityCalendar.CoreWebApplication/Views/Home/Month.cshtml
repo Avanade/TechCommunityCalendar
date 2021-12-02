@@ -21,18 +21,24 @@
 }
 
 <div class="text-center">
-    <div>
-        <span><a href="/@lastMonthNumber/@lastMonthYear">@lastMonthName @thisMonthYear</a></span> -
-        <span><a href="/@thisMonthNumber/@thisMonthYear">@thisMonthName @thisMonthYear</a></span> -
-        <span><a href="/@nextMonthNumber/@nextMonthYear">@nextMonthName @thisMonthYear</a></span>
-    </div>
 
-    <br />
+    @await Html.PartialAsync("_TopMonths", Model.Events)
     <br />
 
     <h3>Tech Events in @Model.MonthName @Model.Year</h3>
 
     <br />
+    <br />
+
+    <h4>@Model.CurrentEventsCount Current Events</h4>
+    @if (Model.CurrentEvents.Any())
+    {
+        @await Html.PartialAsync("_EventsTable", Model.CurrentEvents)
+    }
+    else
+    {
+        <p>No current events</p>
+    }
     <br />
 
     <h4>@Model.UpcomingEventsCount Upcoming Events</h4>
@@ -44,8 +50,6 @@
     {
         <p>No upcoming events</p>
     }
-
-
     <br />
 
     <h4>@Model.RecentEventsCount Recent Events</h4>

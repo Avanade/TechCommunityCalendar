@@ -39,12 +39,12 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 .Distinct()
                 .OrderBy(x => x);
 
-
             var model = new HomeViewModel();
             model.Events = events;
             model.Countries = countries.Select(x => new Tuple<string, string>(x, x.ToLower()));
             model.EventTypes = eventTypes.Select(x => new Tuple<string, string>(x.Replace("_", " "), x.ToLower().Replace("_", "")));
 
+            model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
@@ -61,6 +61,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.MonthName = ToTitleCase(monthDate.ToString("MMMM"));
             model.Year = year;
             model.Events = events;
+            model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
@@ -76,6 +77,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var model = new CountryViewModel();
             model.Country = ToTitleCase(country);
             model.Events = events;
+            model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
@@ -92,6 +94,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             var events = await _techEventRepository.GetByEventType(eventTypeEnum);
             model.Events = events;
+            model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 

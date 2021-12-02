@@ -64,7 +64,6 @@ namespace TechCommunityCalendar.Concretions
                 csv.ReadHeader();
                 while (csv.Read())
                 {
-
                     string name = csv.GetField(0);
                     EventType eventType = EnumParser.ParseEventType(csv.GetField(1));
                     string duration = csv.GetField(3);
@@ -90,23 +89,36 @@ namespace TechCommunityCalendar.Concretions
                     {
                         record.StartDate = startDate;
                     }
-                    else
-                    {
 
-                    }
-
-                    //TimeSpan duration;
-                    //if (TimeSpan.TryParse(csv.GetField(3), out duration))
-                    //    record.Duration = duration;
+                    record.EndDate = record.StartDate.Add(TryParseTimeSpan(duration));
 
                     techEvents.Add(record);
-
-
-
                 }
             }
 
             return await Task.FromResult(techEvents.ToArray());
+        }
+
+        private TimeSpan TryParseTimeSpan(string duration)
+        {
+            // Formats could be
+            // 3 days
+            // 1 day
+            // 30 days
+            // 2 hours
+            // 12 hours
+            // 1 hour
+            // etc
+
+            var parts = duration.Split(" ");
+
+            if (duration.Contains("day"))
+                return TimeSpan.FromDays(int.Parse(parts[0]));
+
+            if (duration.Contains("hour"))
+                return TimeSpan.FromHours(int.Parse(parts[0]));
+
+            return TimeSpan.Zero;
         }
 
 

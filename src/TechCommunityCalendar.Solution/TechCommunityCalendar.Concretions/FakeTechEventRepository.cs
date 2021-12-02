@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Enums;
@@ -12,7 +11,6 @@ namespace TechCommunityCalendar.Concretions
         public async Task<ITechEvent> Get(int yeat, int month, Guid id)
         {
             var events = await GetAll();
-
             return events.FirstOrDefault(x => x.Id == id);
         }
 

@@ -9,8 +9,19 @@
     <br />
     <br />
 
+    <h4>@Model.CurrentEventsCount Current Events</h4>
+    @if (Model.CurrentEvents.Any())
+    {
+        @await Html.PartialAsync("_EventsTable", Model.CurrentEvents)
+    }
+    else
+    {
+        <p>No current events</p>
+    }
+    <br />
+
     <h4>@Model.UpcomingEventsCount Upcoming Events</h4>
-    @if (Model.Events.Any(x => x.StartDate.Date >= DateTime.Now.Date))
+    @if (Model.UpcomingEvents.Any())
     {
         @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
     }
@@ -21,7 +32,7 @@
     <br />
 
     <h4>@Model.RecentEventsCount Recent Events</h4>
-    @if (Model.Events.Any(x => x.StartDate.Date < DateTime.Now.Date))
+    @if (Model.RecentEvents.Any())
     {
         @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
     }
