@@ -65,6 +65,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
+            if(new DateTime(year,month, 1).Date > DateTime.Now.Date)
+            {
+                model.UpcomingEvents = events;
+            }
+
 
             return View(model);
         }
