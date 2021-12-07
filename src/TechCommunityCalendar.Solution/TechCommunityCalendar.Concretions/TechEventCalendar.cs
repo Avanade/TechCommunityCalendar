@@ -11,9 +11,10 @@ namespace TechCommunityCalendar.Concretions
         public static IEnumerable<ITechEvent> GetCurrentEvents(IEnumerable<ITechEvent> events)
         {
             return events.Where(x => 
-                DateTime.Now.Date >= x.StartDate
-                && DateTime.Now <= x.EndDate)
-                    .OrderBy(x => x.StartDate);
+                DateTime.Now.Date >= x.StartDate // It is or after the start date
+                && DateTime.Now <= x.EndDate // And it is or before the end date
+                || DateTime.Now.Date == x.StartDate) // To catch short events today
+                    .OrderByDescending(x => x.StartDate);
         }
 
         public static IEnumerable<ITechEvent> GetUpcomingEvents(IEnumerable<ITechEvent> events)
