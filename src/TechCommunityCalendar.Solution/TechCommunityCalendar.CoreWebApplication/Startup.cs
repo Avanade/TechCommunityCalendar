@@ -32,7 +32,7 @@ namespace TechCommunityCalendar.CoreWebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             string csvPath = Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv");
-            string azureConnectionString = "";
+            //string azureConnectionString = "";
 
             services.AddControllersWithViews();
             //services.AddScoped<ITechEventQueryRepository, FakeTechEventRepository>();

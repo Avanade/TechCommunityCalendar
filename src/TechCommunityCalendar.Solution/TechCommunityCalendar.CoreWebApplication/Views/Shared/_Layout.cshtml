@@ -18,6 +18,8 @@
     <meta name="twitter:title" content="@ViewData["Title"]" />
     <meta name="twitter:image" content="https://techcommunitycalendar.com/images/tech-community-calendar.png" />
 
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBDPEW68ZT"></script>
     <script>
@@ -25,6 +27,7 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-XBDPEW68ZT');
+
     </script>
 </head>
 <body>
@@ -40,9 +43,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event</a>
+                        </li>
                         @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
-                            </li>*@
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
+        </li>*@
                     </ul>
                 </div>
             </div>
