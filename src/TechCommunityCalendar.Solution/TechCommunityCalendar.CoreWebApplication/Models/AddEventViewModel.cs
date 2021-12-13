@@ -28,7 +28,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
 
         public string City { get; set; }
 
-        // Make this drop down list
+        [Required]
         public string Country { get; set; }
         
     }

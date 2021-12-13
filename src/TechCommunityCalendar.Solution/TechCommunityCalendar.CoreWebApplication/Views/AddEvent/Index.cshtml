@@ -16,13 +16,13 @@
 
         <div class="row">
             <div class="col">
-                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name", aria_label = "Name" })
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Event Name", aria_label = "Name" })
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                @Html.TextBoxFor(x => x.Url, new { @class = "form-control", placeholder = "Url", aria_label = "Url" })
+                @Html.TextBoxFor(x => x.Url, new { @class = "form-control", placeholder = "Event Url", aria_label = "Url" })
             </div>
         </div>
 
@@ -63,11 +63,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                @Html.TextBoxFor(x => x.City, new { @class = "form-control", placeholder = "City", aria_label = "City" })
-            </div>
-        </div>
+
 
         <div class="row">
             <div class="col">
@@ -271,6 +267,12 @@
                     <option>Zambia</option>
                     <option>Zimbabwe</option>
                 </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                @Html.TextBoxFor(x => x.City, new { @class = "form-control", placeholder = "City", aria_label = "City" })
             </div>
         </div>
 
