@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Octokit;
 using System;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using TechCommunityCalendar.CoreWebApplication.Models;
 
@@ -8,6 +11,13 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class AddEventController : Controller
     {
+        IWebHostEnvironment currentEnvironment;
+
+        public AddEventController(IWebHostEnvironment env)
+        {
+            currentEnvironment = env;
+        }
+
         public IActionResult Index()
         {
             var model = new AddEventViewModel();
@@ -38,15 +48,26 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             // Create new branch
             var branchName = $"NewEvents_{Guid.NewGuid()}";
             var master = await gitHubClient.Git.Reference.Get(ownerName, repositoryName, "heads/main");
-
             await gitHubClient.Git.Reference.Create(ownerName, repositoryName, new NewReference($"refs/heads/{branchName}", master.Object.Sha));
 
-            // Create commit to new branch
-            var fileName = $"{Guid.NewGuid()}.csv";
-            var (owner, repoName, filePath, branch) = (ownerName, repositoryName, $"src/TechCommunityCalendar.Solution/TechCommunityCalendar.CoreWebApplication/wwwroot/Data/{fileName}", branchName);
+            // Append line to existing file
+            var targetFilePath = $"src/TechCommunityCalendar.Solution/TechCommunityCalendar.CoreWebApplication/wwwroot/Data/TechEvents.csv";
+            var currentFileText = await System.IO.File.ReadAllTextAsync(Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv"));
+            var contents = await gitHubClient.Repository.Content.GetAllContentsByRef(ownerName, repositoryName, targetFilePath, branchName);
+            var targetFile = contents[0];
 
-            await gitHubClient.Repository.Content.CreateFile(owner, repoName, filePath,
-                 new CreateFileRequest($"Adding event file {filePath}", content: row, branch));
+            if (targetFile.EncodedContent != null)
+            {
+                currentFileText = Encoding.UTF8.GetString(Convert.FromBase64String(targetFile.EncodedContent));
+            }
+            else
+            {
+                currentFileText = targetFile.Content;
+            }
+
+            var newFileText = string.Format("{0}\n{1}", currentFileText, row);
+            var updateRequest = new UpdateFileRequest("Updating TechEvents.csv", newFileText, targetFile.Sha, branchName);
+            var updatefile = await gitHubClient.Repository.Content.UpdateFile(ownerName, repositoryName, targetFilePath, updateRequest);
 
             // Create pull request
             var headRef = $"{ownerName}:{branchName}";
