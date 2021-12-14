@@ -30,6 +30,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
 
         [Required]
         public string Country { get; set; }
-        
+
+        public string NewPullRequestUrl { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model TechCommunityCalendar.CoreWebApplication.Models.AddEventViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="alert alert-success">
+
+    <p>New Pull Request successfully created for:</p>
+    <ul>
+        <li>Name: @Model.Name</li>
+        <li>Url: @Model.Url</li>
+        <li>Event Type: @Model.EventType</li>
+        <li>Event Format: @Model.EventFormat</li>
+        <li>Start Date: @Model.StartDate</li>
+        <li>Duration: @Model.Duration</li>
+        <li>Country: @Model.Country</li>
+        @if (Model.Country != "Virtual")
+        {
+            <li>City: @Model.City</li>
+        }
+    </ul>
+
+</div>
+
+<p>You can see this Pull Request at <a href="@Model.NewPullRequestUrl">@Model.NewPullRequestUrl</a></p>
