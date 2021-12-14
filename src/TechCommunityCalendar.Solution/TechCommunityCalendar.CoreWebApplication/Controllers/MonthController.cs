@@ -16,7 +16,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             _techEventRepository = techEventRepository;
         }
 
-
         [Route("{month}/{year}")]
         public async Task<IActionResult> Month(int year, int month)
         {
@@ -36,6 +35,25 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 model.UpcomingEvents = events;
             }
 
+            return View(model);
+        }
+
+        [Route("year/{year}")]
+        public async Task<IActionResult> Year(int year)
+        {
+            var events = await _techEventRepository.GetByYear(year);
+
+            var model = new YearViewModel();
+            model.Year = year;
+            model.Events = events;
+            model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
+            model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
+            model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
+
+            if (new DateTime(year, 1, 1).Date > DateTime.Now.Date)
+            {
+                model.UpcomingEvents = events;
+            }
 
             return View(model);
         }
