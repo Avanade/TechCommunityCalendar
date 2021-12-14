@@ -11,7 +11,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class AddEventController : Controller
     {
-        IWebHostEnvironment currentEnvironment;
+        readonly IWebHostEnvironment currentEnvironment;
 
         public AddEventController(IWebHostEnvironment env)
         {
@@ -21,6 +21,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public IActionResult Index()
         {
             var model = new AddEventViewModel();
+            model.StartDate = DateTime.Now.Date;
 
             return View(model);
         }
@@ -52,10 +53,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             // Append line to existing file
             var targetFilePath = $"src/TechCommunityCalendar.Solution/TechCommunityCalendar.CoreWebApplication/wwwroot/Data/TechEvents.csv";
-            var currentFileText = await System.IO.File.ReadAllTextAsync(Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv"));
             var contents = await gitHubClient.Repository.Content.GetAllContentsByRef(ownerName, repositoryName, targetFilePath, branchName);
             var targetFile = contents[0];
 
+            //var currentFileText = await System.IO.File.ReadAllTextAsync(Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv"));
+            string currentFileText;
             if (targetFile.EncodedContent != null)
             {
                 currentFileText = Encoding.UTF8.GetString(Convert.FromBase64String(targetFile.EncodedContent));
@@ -67,7 +69,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             var newFileText = string.Format("{0}\n{1}", currentFileText, row);
             var updateRequest = new UpdateFileRequest("Updating TechEvents.csv", newFileText, targetFile.Sha, branchName);
-            var updatefile = await gitHubClient.Repository.Content.UpdateFile(ownerName, repositoryName, targetFilePath, updateRequest);
+            await gitHubClient.Repository.Content.UpdateFile(ownerName, repositoryName, targetFilePath, updateRequest);
 
             // Create pull request
             var headRef = $"{ownerName}:{branchName}";
@@ -77,6 +79,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             await gitHubClient.Repository.PullRequest.Create(ownerName, repositoryName, pullRequest);
 
             // todo: Return a successful better view
+
+            // Return new model with the new pull request url??
+
             return View();
         }
     }
