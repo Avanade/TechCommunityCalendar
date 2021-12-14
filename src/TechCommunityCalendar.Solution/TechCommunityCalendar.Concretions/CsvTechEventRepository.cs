@@ -13,11 +13,11 @@ namespace TechCommunityCalendar.Concretions
     /// <summary>
     /// May store data in single Csv in the short term
     /// Pros: Can be updated easily by git commits
-    /// Cons: Whole list could be coppied easily and used elsewhere..?
+    /// Cons: Whole list could be copied easily and used elsewhere..?
     /// </summary>
     public class CsvTechEventRepository : ITechEventQueryRepository
     {
-        string csvPath;//
+        readonly string csvPath;
 
         public CsvTechEventRepository(string path)
         {
@@ -49,6 +49,13 @@ namespace TechCommunityCalendar.Concretions
             var results = await GetAll();
 
             return results.Where(x => x.StartDate.Year == year && x.StartDate.Month == month).ToArray();
+        }
+
+        public async Task<ITechEvent[]> GetByYear(int year)
+        {
+            var results = await GetAll();
+
+            return results.Where(x => x.StartDate.Year == year).OrderBy(x=>x.StartDate).ToArray();
         }
 
         public async Task<ITechEvent[]> GetAll()
