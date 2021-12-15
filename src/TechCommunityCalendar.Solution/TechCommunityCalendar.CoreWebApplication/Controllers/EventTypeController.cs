@@ -25,12 +25,15 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             Enums.EventType eventTypeEnum = EnumParser.ParseEventType(eventType);
 
             var allEvents = await GetEventsFromCache();
-            var events = allEvents.Where(x => x.EventType.Equals(eventType)).ToArray();
+            var events = allEvents.Where(x => x.EventType.Equals(eventTypeEnum)).ToArray();
 
             model.Events = events;
             model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
+
+            ViewBag.Title = $"{model.EventType} Tech Community Events";
+            ViewBag.Canonical = $"https://TechCommunityCalendar.com/eventtype/{model.EventType}/";
 
             return View(model);
         }

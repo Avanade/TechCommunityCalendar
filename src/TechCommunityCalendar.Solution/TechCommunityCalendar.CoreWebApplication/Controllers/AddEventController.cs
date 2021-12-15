@@ -20,6 +20,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Canonical = "https://TechCommunityCalendar.com/AddEvent/";
+            ViewBag.Title = "Tech Community Calendar : Add Event";
+            ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
+
+
             var model = new AddEventViewModel();
             model.StartDate = DateTime.Now.Date;
 

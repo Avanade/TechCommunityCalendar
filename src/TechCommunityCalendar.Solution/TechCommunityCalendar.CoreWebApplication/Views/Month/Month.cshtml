@@ -1,23 +1,7 @@
 ﻿@model TechCommunityCalendar.CoreWebApplication.Models.MonthViewModel
 @{
 
-    var lastMonth = DateTime.Now.AddMonths(-1);
-    var thisMonth = DateTime.Now.AddMonths(0);
-    var nextMonth = DateTime.Now.AddMonths(1);
-
-    var lastMonthName = lastMonth.ToString("MMMM");
-    var thisMonthName = thisMonth.ToString("MMMM");
-    var nextMonthName = nextMonth.ToString("MMMM");
-
-    var lastMonthNumber = lastMonth.Date.Month;
-    var thisMonthNumber = thisMonth.Date.Month;
-    var nextMonthNumber = nextMonth.Date.Month;
-
-    var lastMonthYear = lastMonth.Date.Year;
-    var thisMonthYear = thisMonth.Date.Year;
-    var nextMonthYear = nextMonth.Date.Year;
-
-    ViewData["Title"] = $"Tech Community Events in {thisMonthName} {thisMonthYear}";
+   
 }
 
 <div class="text-center">

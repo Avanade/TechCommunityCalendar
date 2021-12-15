@@ -29,6 +29,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
+            ViewBag.Title = $"Tech Community Events in {model.Country}";
+            ViewBag.Canonical = $"https://TechCommunityCalendar.com/country/{country}/";
+
             return View(model);
         }
     }

@@ -33,10 +33,27 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
-            if (new DateTime(year, month, 1).Date > DateTime.Now.Date)
-            {
+            if (new DateTime(year, month, 1).Date > DateTime.Now.Date) {
                 model.UpcomingEvents = events;
             }
+
+            var lastMonth = DateTime.Now.AddMonths(-1);
+            var thisMonth = DateTime.Now.AddMonths(0);
+            var nextMonth = DateTime.Now.AddMonths(1);
+
+            var lastMonthName = lastMonth.ToString("MMMM");
+            var thisMonthName = thisMonth.ToString("MMMM");
+            var nextMonthName = nextMonth.ToString("MMMM");
+
+            var lastMonthNumber = lastMonth.Date.Month;
+            var thisMonthNumber = thisMonth.Date.Month;
+            var nextMonthNumber = nextMonth.Date.Month;
+
+            var lastMonthYear = lastMonth.Date.Year;
+            var thisMonthYear = thisMonth.Date.Year;
+            var nextMonthYear = nextMonth.Date.Year;
+
+            ViewBag.Title = $"Tech Community Events in {thisMonthName} {thisMonthYear}";
 
             return View(model);
         }
@@ -58,6 +75,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             {
                 model.UpcomingEvents = events;
             }
+
+            ViewBag.Title = $"Tech Community Events in {model.Year}";
+
 
             return View(model);
         }

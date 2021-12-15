@@ -30,7 +30,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var countries = events.Select(x => x.Country)
                 .Distinct()
                 .Where(x => !String.IsNullOrWhiteSpace(x))
-                .OrderBy(x => x);
+                .OrderBy(x => x).ToArray();
 
             var eventTypes = events.Select(x => x.EventType.ToString())
                 .Distinct()
