@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
@@ -20,7 +21,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public async Task<IActionResult> Month(int year, int month)
         {
             var monthDate = new DateTime(year, month, 1);
-            var events = await _techEventRepository.GetByMonth(year, month);
+
+            var allEvents = await GetEventsFromCache();
+            var events = allEvents.Where(x => x.StartDate.Year == year && x.StartDate.Month == month).ToArray();
 
             var model = new MonthViewModel();
             model.MonthName = ToTitleCase(monthDate.ToString("MMMM"));
@@ -41,7 +44,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         [Route("year/{year}")]
         public async Task<IActionResult> Year(int year)
         {
-            var events = await _techEventRepository.GetByYear(year);
+            var allEvents = await GetEventsFromCache();
+            var events = allEvents.Where(x => x.StartDate.Year == year).OrderBy(x=>x.StartDate).ToArray();
 
             var model = new YearViewModel();
             model.Year = year;

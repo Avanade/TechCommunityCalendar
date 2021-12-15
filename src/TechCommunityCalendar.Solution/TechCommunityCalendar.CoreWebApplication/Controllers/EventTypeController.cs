@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
@@ -9,8 +10,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class EventTypeController : ControllerBase
     {
-        public EventTypeController(IMemoryCache memoryCache, 
-            ITechEventQueryRepository techEventRepository) 
+        public EventTypeController(IMemoryCache memoryCache,
+            ITechEventQueryRepository techEventRepository)
             : base(memoryCache, techEventRepository)
         {
         }
@@ -23,7 +24,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             Enums.EventType eventTypeEnum = EnumParser.ParseEventType(eventType);
 
-            var events = await _techEventRepository.GetByEventType(eventTypeEnum);
+            var allEvents = await GetEventsFromCache();
+            var events = allEvents.Where(x => x.EventType.Equals(eventType)).ToArray();
+
             model.Events = events;
             model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);

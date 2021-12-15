@@ -11,7 +11,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
     public class ControllerBase : Controller
     {
         private readonly IMemoryCache _memoryCache;
-        private readonly string CacheKey = "TechEvents";
+        private readonly string CacheKey_AllEvents = "TechEvents";
         public ITechEventQueryRepository _techEventRepository;
 
         public ControllerBase(IMemoryCache memoryCache, 
@@ -23,7 +23,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
         public async Task<ITechEvent[]> GetEventsFromCache()
         {
-            if (!_memoryCache.TryGetValue(CacheKey, out ITechEvent[] events))
+            if (!_memoryCache.TryGetValue(CacheKey_AllEvents, out ITechEvent[] events))
             {
                 events = await _techEventRepository.GetAll();
 
@@ -33,7 +33,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                     Priority = CacheItemPriority.High,
                     SlidingExpiration = TimeSpan.FromSeconds(20)
                 };
-                _memoryCache.Set(CacheKey, events, cacheExpiryOptions);
+                _memoryCache.Set(CacheKey_AllEvents, events, cacheExpiryOptions);
             }
 
             return events;
