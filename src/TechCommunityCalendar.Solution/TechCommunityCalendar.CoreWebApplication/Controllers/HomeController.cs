@@ -13,18 +13,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class HomeController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ITechEventQueryRepository _techEventRepository;
-        private readonly IMemoryCache _memoryCache;
-        readonly string CacheKey = "TechEvents";
-
-        public HomeController(ILogger<HomeController> logger, 
-            ITechEventQueryRepository techEventRepository,
-            IMemoryCache memoryCache)
+        public HomeController(IMemoryCache memoryCache, 
+            ITechEventQueryRepository techEventRepository) 
+            : base(memoryCache, techEventRepository)
         {
-            _logger = logger;
-            _techEventRepository = techEventRepository;
-            _memoryCache = memoryCache;
         }
 
         public async Task<IActionResult> Index()
@@ -33,18 +25,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Title = "Tech Community Calendar";
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
-            if (!_memoryCache.TryGetValue(CacheKey, out ITechEvent[] events))
-            {
-                events = await _techEventRepository.GetAll();
-
-                var cacheExpiryOptions = new MemoryCacheEntryOptions
-                {
-                    AbsoluteExpiration = DateTime.Now.AddSeconds(60),
-                    Priority = CacheItemPriority.High,
-                    SlidingExpiration = TimeSpan.FromSeconds(20)
-                };
-                _memoryCache.Set(CacheKey, events, cacheExpiryOptions);
-            }
+            var events = await GetEventsFromCache();
 
             var countries = events.Select(x => x.Country)
                 .Distinct()

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
@@ -8,11 +9,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class EventTypeController : ControllerBase
     {
-        private readonly ITechEventQueryRepository _techEventRepository;
-
-        public EventTypeController(ITechEventQueryRepository techEventRepository)
+        public EventTypeController(IMemoryCache memoryCache, 
+            ITechEventQueryRepository techEventRepository) 
+            : base(memoryCache, techEventRepository)
         {
-            _techEventRepository = techEventRepository;
         }
 
         [Route("eventtype/{eventType}")]

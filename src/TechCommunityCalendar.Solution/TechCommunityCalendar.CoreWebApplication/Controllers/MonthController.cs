@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
@@ -9,11 +10,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class MonthController : ControllerBase
     {
-        private readonly ITechEventQueryRepository _techEventRepository;
-
-        public MonthController(ITechEventQueryRepository techEventRepository)
+        public MonthController(IMemoryCache memoryCache, 
+            ITechEventQueryRepository techEventRepository) 
+            : base(memoryCache, techEventRepository)
         {
-            _techEventRepository = techEventRepository;
         }
 
         [Route("{month}/{year}")]
