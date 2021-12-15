@@ -4,6 +4,11 @@
 }
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div>
+
+    <div class="alert alert-info">
+        Please check the event is not already on the site before submitting. Thank you.
+    </div>
+
     @using (Html.BeginForm())
     {
         if (!ViewData.ModelState.IsValid)
@@ -30,8 +35,8 @@
         <div class="form-group row">
             <label for="StartDate" class="col-sm-2 col-form-label">Start Date</label>
             <div class="col">
-                
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "Start Date", aria_label = "Start Date", @type="date" })
+
+                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "Start Date", aria_label = "Start Date", @type = "date" })
             </div>
         </div>
 
@@ -47,9 +52,9 @@
             <div class="col">
                 <select name="EventType" class="form-control">
                     <option value="">Select Event Type</option>
+                    <option value="CallForPaper">Call For Paper</option>
                     <option value="Conference">Conference</option>
                     <option value="Hackathon">Hackathon</option>
-                    <option value="CallForPaper">Call For Paper</option>
                     <option value="Meetup">Meetup</option>
                     <option value="Website">Website</option>
                 </select>
@@ -61,9 +66,10 @@
             <div class="col">
                 <select name="EventFormat" class="form-control">
                     <option value="">Select Event Format</option>
+                    <option value="Hybrid">Hybrid</option>
                     <option value="In Person">In Person</option>
                     <option value="Virtual">Virtual</option>
-                    <option value="Hybrid">Hybrid</option>
+
                 </select>
             </div>
         </div>
@@ -71,7 +77,7 @@
         <div class="form-group row">
             <label for="Country" class="col-sm-2 col-form-label">Country</label>
             <div class="col">
-                <select id="Country" name="Country" class="form-control"  onchange="countryChange()">
+                <select id="Country" name="Country" class="form-control" onchange="countryChange()">
                     <option value="">Select Country or 'Online'</option>
                     <option>Online</option>
                     <option>Afghanistan</option>
@@ -291,7 +297,7 @@
 
 <script>
     function countryChange() {
-        if ($('#Country').val() === "Virtual") {
+        if ($('#Country').val() === "Online") {
             $('#rowCity').hide();
             $('#City').val('');
         }
