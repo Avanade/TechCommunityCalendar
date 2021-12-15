@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
@@ -12,13 +13,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class HomeController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ITechEventQueryRepository _techEventRepository;
-
-        public HomeController(ILogger<HomeController> logger, ITechEventQueryRepository techEventRepository)
+        public HomeController(IMemoryCache memoryCache, 
+            ITechEventQueryRepository techEventRepository) 
+            : base(memoryCache, techEventRepository)
         {
-            _logger = logger;
-            _techEventRepository = techEventRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -27,7 +25,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Title = "Tech Community Calendar";
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
-            var events = await _techEventRepository.GetAll();
+            var events = await GetEventsFromCache();
 
             var countries = events.Select(x => x.Country)
                 .Distinct()
@@ -65,7 +63,5 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
     }
 }

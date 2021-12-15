@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
@@ -8,17 +11,16 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class CountryController : ControllerBase
     {
-        private readonly ITechEventQueryRepository _techEventRepository;
-
-        public CountryController(ITechEventQueryRepository techEventRepository)
+        public CountryController(IMemoryCache memoryCache,
+            ITechEventQueryRepository techEventRepository) : base(memoryCache, techEventRepository)
         {
-            _techEventRepository = techEventRepository;
         }
 
         [Route("country/{country}")]
         public async Task<IActionResult> Country(string country)
         {
-            var events = await _techEventRepository.GetByCountry(Enums.EventType.Any, country);
+            var allEvents = await GetEventsFromCache();
+            var events = allEvents.Where(x => x.Country.Equals(country, StringComparison.InvariantCultureIgnoreCase)).ToArray();
 
             var model = new CountryViewModel();
             model.Country = ToTitleCase(country);

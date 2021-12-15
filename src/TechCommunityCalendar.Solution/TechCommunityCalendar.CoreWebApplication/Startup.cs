@@ -1,16 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.Interfaces;
 
@@ -32,15 +27,14 @@ namespace TechCommunityCalendar.CoreWebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             string csvPath = Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv");
-            //string azureConnectionString = "";
 
+            services.AddMemoryCache();
             services.AddControllersWithViews();
             //services.AddScoped<ITechEventQueryRepository, FakeTechEventRepository>();
             services.AddScoped<ITechEventQueryRepository>(x => new CsvTechEventRepository(csvPath));
             //services.AddScoped<ITechEventQueryRepository>(x => new AzureTechEventRepository(azureConnectionString));
 
             services.AddLocalization();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
