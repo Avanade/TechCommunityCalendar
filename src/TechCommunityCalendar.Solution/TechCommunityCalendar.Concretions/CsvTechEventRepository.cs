@@ -39,7 +39,7 @@ namespace TechCommunityCalendar.Concretions
             return events.Where(x => x.Country.Equals(country, StringComparison.InvariantCultureIgnoreCase)).ToArray();
         }
 
-        public async Task<ITechEvent[]> GetByEventType(int year, int month, EventType eventType)
+        public Task<ITechEvent[]> GetByEventType(int year, int month, EventType eventType)
         {
             throw new NotImplementedException();
         }
