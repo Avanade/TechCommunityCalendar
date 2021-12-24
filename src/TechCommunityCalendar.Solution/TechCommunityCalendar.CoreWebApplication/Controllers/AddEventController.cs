@@ -24,7 +24,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Title = "Tech Community Calendar : Add Event";
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
-
             var model = new AddEventViewModel();
             model.StartDate = DateTime.Now.Date;
 
@@ -42,29 +41,50 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(model.Duration))
+            //if (!string.IsNullOrWhiteSpace(model.Duration))
+            //{
+            //    var durationParts = model.Duration.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+            //    if (durationParts.Length != 2)
+            //    {
+            //        ModelState.AddModelError("Duration", "Event Duration format invalid");
+            //    }
+            //    else
+            //    {
+            //        if (!int.TryParse(durationParts[0], out _))
+            //            ModelState.AddModelError("Duration", "Event Duration format invalid");
+
+            //        if (durationParts[1] != "day" && durationParts[1] != "hour")
+            //            ModelState.AddModelError("Duration", "Event Duration format invalid");
+            //    }
+            //}
+
+            // Make sure End Date is after Start Date
+
+            if(model.EndDate < model.StartDate)
             {
-                var durationParts = model.Duration.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                ModelState.AddModelError("EndDate", "End Date cannot be before the start date");
+            }
 
-                if (durationParts.Length != 2)
-                {
-                    ModelState.AddModelError("Duration", "Event Duration format invalid");
-                }
-                else
-                {
-                    if (!int.TryParse(durationParts[0], out _))
-                        ModelState.AddModelError("Duration", "Event Duration format invalid");
-
-                    if (durationParts[1] != "day" && durationParts[1] != "hour")
-                        ModelState.AddModelError("Duration", "Event Duration format invalid");
-                }
+            // Calculate Duration
+            if(model.StartDate == model.EndDate)
+            {
+                model.Duration = "1 day";
+            }
+            else if(model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
+            {
+                model.Duration = model.EndDate.Subtract(model.StartDate).TotalHours + " hour";
+            }
+            else
+            {
+                model.Duration = model.EndDate.Subtract(model.StartDate).TotalDays + 1 + " day";
             }
 
             if (!ModelState.IsValid)
                 return View(model);
 
             // Create file with details..
-            var row = $"{model.Name},{model.EventType},{model.StartDate:dd/MM/yyyy},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country}";
+            var row = $"{model.Name},{model.EventType},{model.StartDate},{model.EndDate},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country}";
             var gitHubClient = new GitHubClient(new ProductHeaderValue("TechCommunityCalendarApp"));
             var personalAccessKey = Environment.GetEnvironmentVariable("GitHubPersonalAccessKey");
             gitHubClient.Credentials = new Credentials(personalAccessKey);

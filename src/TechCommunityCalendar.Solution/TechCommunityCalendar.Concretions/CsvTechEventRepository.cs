@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;
@@ -55,18 +56,78 @@ namespace TechCommunityCalendar.Concretions
         {
             var results = await GetAll();
 
-            return results.Where(x => x.StartDate.Year == year).OrderBy(x=>x.StartDate).ToArray();
+            return results.Where(x => x.StartDate.Year == year).OrderBy(x => x.StartDate).ToArray();
         }
 
         public async Task<ITechEvent[]> GetAll()
         {
             var techEvents = new List<ITechEvent>();
 
+            using (var reader = new StreamReader(csvPath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Read();
+                csv.ReadHeader();
+                while (csv.Read())
+                {
+                    //0 Developer Week 2022 Call For Papers,
+                    //1 Call_For_Paper,
+                    //2 01/11/2021 00:00:00,
+                    //3 12/01/2022 00:00:00,
+                    //4 72 day,
+                    //5 https://sessionize.com/developer-week-22,
+                    //6 Hybrid,
+                    //7 Nürnberg,
+                    //8 Germany
+
+                    string name = csv.GetField(0);
+                    EventType eventType = EnumParser.ParseEventType(csv.GetField(1));
+                    string duration = csv.GetField(4);
+                    string url = csv.GetField(5);
+                    EventFormat eventFormat = EnumParser.ParseEventFormat(csv.GetField(6));
+                    string city = csv.GetField(7);
+                    string country = csv.GetField(8);
+
+                    ITechEvent record = new TechEvent
+                    {
+                        Name = name,
+                        EventType = eventType,
+                        Duration = duration,
+                        Url = url,
+                        EventFormat = eventFormat,
+                        City = city,
+                        Country = country
+
+                    };
+
+                    DateTime startDate;
+                    if (DateTime.TryParse(csv.GetField(2), out startDate))
+                    {
+                        record.StartDate = startDate;
+                    }
+
+                    DateTime endDate;
+                    if (DateTime.TryParse(csv.GetField(3), out endDate))
+                    {
+                        record.EndDate = endDate;
+                    }
+
+                    //record.EndDate = record.StartDate.Add(TryParseTimeSpan(duration));
+
+                    techEvents.Add(record);
+                }
+            }
+
+            return await Task.FromResult(techEvents.ToArray());
+        }
+
+        public void ReplaceDurationWithEndDate()
+        {
+            var techEvents = new List<ITechEvent>();
 
             using (var reader = new StreamReader(csvPath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                //var records = new List<Foo>();
                 csv.Read();
                 csv.ReadHeader();
                 while (csv.Read())
@@ -99,11 +160,42 @@ namespace TechCommunityCalendar.Concretions
 
                     record.EndDate = record.StartDate.Add(TryParseTimeSpan(duration));
 
+                    //DateTime endDate;
+                    //if (DateTime.TryParse(csv.GetField(3), out endDate))
+                    //{
+                    //    record.EndDate = endDate;
+                    //}
+
+                    // Calculate Duration
+                    //var duration = record.EndDate.Subtract(record.StartDate);
+
+                    //if (duration < TimeSpan.FromHours(7))
+                    //{
+                    //    record.Duration = duration.Hours + " hour";
+                    //}
+                    //else if (duration <= TimeSpan.FromDays(1))
+                    //{
+                    //    record.Duration = "1 day";
+                    //}
+                    //else if (duration > TimeSpan.FromDays(1))
+                    //{
+                    //    record.Duration = duration.Days + " day";
+                    //}
+
                     techEvents.Add(record);
                 }
             }
 
-            return await Task.FromResult(techEvents.ToArray());
+            StringBuilder sb = new StringBuilder();
+
+            // NDC Sydney,Conference,03/11/2021,3 day,https://ndcsydney.com/,In Person,Sydney,Australia
+
+            foreach (var item in techEvents)
+            {
+                sb.AppendLine($"{item.Name},{item.EventType},{item.StartDate},{item.EndDate},{item.Duration},{item.Url},{item.EventFormat},{item.City},{item.Country}");
+            }
+
+            var all = sb.ToString();
         }
 
         private TimeSpan TryParseTimeSpan(string duration)
@@ -127,6 +219,8 @@ namespace TechCommunityCalendar.Concretions
 
             return TimeSpan.Zero;
         }
+
+
 
 
 
