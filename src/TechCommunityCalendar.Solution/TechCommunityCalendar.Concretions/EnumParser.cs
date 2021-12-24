@@ -1,31 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TechCommunityCalendar.Enums;
+﻿using TechCommunityCalendar.Enums;
 
 namespace TechCommunityCalendar.Concretions
 {
     public class EnumParser
     {
-        
-
         public static EventType ParseEventType(string eventType)
         {
-            switch (eventType.ToLower())
+            switch (eventType)
             {
-                case "conference":
+                case "Conference":
                     return EventType.Conference;
 
-                case "hackathon":
+                case "Hackathon":
                     return EventType.Hackathon;
 
-                case "meetup":
+                case "Meetup":
                     return EventType.Meetup;
 
-                case "callforpaper":
+                case "Call_For_Paper":
                     return EventType.Call_For_Paper;
 
-                case "website":
+                case "Website":
                     return EventType.Website;
 
                 default:
@@ -37,7 +32,7 @@ namespace TechCommunityCalendar.Concretions
         {
             switch (eventFormat)
             {
-                case "In Person":
+                case "In_Person":
                     return EventFormat.In_Person;
 
                 case "Virtual":
@@ -45,7 +40,6 @@ namespace TechCommunityCalendar.Concretions
 
                 case "Hybrid":
                     return EventFormat.Hybrid;
-
 
                 default:
                     return EventFormat.Unknown;

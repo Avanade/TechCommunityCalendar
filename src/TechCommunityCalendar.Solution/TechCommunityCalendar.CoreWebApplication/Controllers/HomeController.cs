@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -13,8 +12,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class HomeController : ControllerBase
     {
-        public HomeController(IMemoryCache memoryCache, 
-            ITechEventQueryRepository techEventRepository) 
+        public HomeController(IMemoryCache memoryCache,
+            ITechEventQueryRepository techEventRepository)
             : base(memoryCache, techEventRepository)
         {
         }
