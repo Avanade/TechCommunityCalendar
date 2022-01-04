@@ -17,8 +17,8 @@ namespace TechCommunityCalendar.Concretions
                 case "Meetup":
                     return EventType.Meetup;
 
-                case "Call_For_Paper":
-                    return EventType.Call_For_Paper;
+                case "Call_For_Papers":
+                    return EventType.Call_For_Papers;
 
                 case "Website":
                     return EventType.Website;

@@ -13,8 +13,8 @@
                 @item.Country
             </td>
             <td>
-                @if (item.EventType == TechCommunityCalendar.Enums.EventType.Call_For_Paper) {
-                    <text>Call For Paper</text>
+                @if (item.EventType == TechCommunityCalendar.Enums.EventType.Call_For_Papers) {
+                    <text>Call For Papers</text>
 
                     var daysRemaining = item.EndDate.Subtract(DateTime.Now.Date).Days;
                     if (daysRemaining > 0) {
