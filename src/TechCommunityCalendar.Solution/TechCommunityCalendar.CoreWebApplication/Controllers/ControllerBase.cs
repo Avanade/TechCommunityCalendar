@@ -73,6 +73,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             if (originalText == "callforpaper")
                 return "Call For Paper";
 
+            if (originalText == "callforpapers")
+                return "Call For Papers";
+
             TextInfo englishTextInfo = new CultureInfo("en-GB", false).TextInfo;
             return englishTextInfo.ToTitleCase(originalText);
         }
