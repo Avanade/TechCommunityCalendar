@@ -6,21 +6,21 @@ namespace TechCommunityCalendar.Concretions
     {
         public static EventType ParseEventType(string eventType)
         {
-            switch (eventType)
+            switch (eventType.ToLower())
             {
-                case "Conference":
+                case "conference":
                     return EventType.Conference;
 
-                case "Hackathon":
+                case "hackathon":
                     return EventType.Hackathon;
 
-                case "Meetup":
+                case "meetup":
                     return EventType.Meetup;
 
-                case "Call_For_Papers":
+                case "call_for_papers":
                     return EventType.Call_For_Papers;
 
-                case "Website":
+                case "website":
                     return EventType.Website;
 
                 default:
@@ -30,15 +30,15 @@ namespace TechCommunityCalendar.Concretions
 
         public static EventFormat ParseEventFormat(string eventFormat)
         {
-            switch (eventFormat)
+            switch (eventFormat.ToLower())
             {
-                case "In_Person":
+                case "in_person":
                     return EventFormat.In_Person;
 
-                case "Virtual":
+                case "virtual":
                     return EventFormat.Virtual;
 
-                case "Hybrid":
+                case "hybrid":
                     return EventFormat.Hybrid;
 
                 default:
