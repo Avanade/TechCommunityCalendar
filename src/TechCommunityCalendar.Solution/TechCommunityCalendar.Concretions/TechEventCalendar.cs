@@ -20,14 +20,15 @@ namespace TechCommunityCalendar.Concretions
         public static IEnumerable<ITechEvent> GetUpcomingEvents(IEnumerable<ITechEvent> events)
         {
             return events.Where(x => x.StartDate.Date > DateTime.Now.Date  // Future events
-                && x.StartDate.Date < DateTime.Now.AddDays(14)) // No more than 14 days in the future
+                && x.StartDate.Date <= DateTime.Now.AddDays(30)) // No more than 30 days in the future
                     .OrderBy(x => x.StartDate);
         }
 
         public static IEnumerable<ITechEvent> GetRecentEvents(IEnumerable<ITechEvent> events)
         {
-            return events.Where(x => DateTime.Now.Date > x.EndDate)
-                .OrderByDescending(x => x.StartDate);
+            return events.Where(x => DateTime.Now.Date > x.EndDate 
+                && DateTime.Now.Date.Subtract(x.EndDate).TotalDays <= 30)
+                    .OrderByDescending(x => x.StartDate);
         }
     }
 }
