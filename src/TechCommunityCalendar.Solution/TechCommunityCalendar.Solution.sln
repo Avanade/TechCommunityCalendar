@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechCommunityCalendar.CoreWebApplication", "TechCommunityCalendar.CoreWebApplication\TechCommunityCalendar.CoreWebApplication.csproj", "{3C53E222-7A4C-4BC5-AD89-BCDB838FEE8D}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechCommunityCalendar.Enums
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechCommunityCalendar.Data.Azure", "TechCommunityCalendar.Data.Azure\TechCommunityCalendar.Data.Azure.csproj", "{BD59C6C7-837E-4121-B249-1837A325BDF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechCommunityCalendar.Tests", "TechCommunityCalendar.Tests\TechCommunityCalendar.Tests.csproj", "{01234E1D-0264-4B9E-815F-4E979CB13539}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechCommunityCalendar.EventAggregator", "TechCommunityCalendar.EventAggregator\TechCommunityCalendar.EventAggregator.csproj", "{44BE8C0B-3552-4117-8A24-71CFF6B029AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechCommunityCalendar.UnitTests", "TechCommunityCalendar.UnitTests\TechCommunityCalendar.UnitTests.csproj", "{0EDFB9D2-8D55-4053-A503-5963D2D8C4F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,14 @@ Global
 		{BD59C6C7-837E-4121-B249-1837A325BDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD59C6C7-837E-4121-B249-1837A325BDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD59C6C7-837E-4121-B249-1837A325BDF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01234E1D-0264-4B9E-815F-4E979CB13539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01234E1D-0264-4B9E-815F-4E979CB13539}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01234E1D-0264-4B9E-815F-4E979CB13539}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01234E1D-0264-4B9E-815F-4E979CB13539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44BE8C0B-3552-4117-8A24-71CFF6B029AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BE8C0B-3552-4117-8A24-71CFF6B029AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BE8C0B-3552-4117-8A24-71CFF6B029AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BE8C0B-3552-4117-8A24-71CFF6B029AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDFB9D2-8D55-4053-A503-5963D2D8C4F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDFB9D2-8D55-4053-A503-5963D2D8C4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDFB9D2-8D55-4053-A503-5963D2D8C4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDFB9D2-8D55-4053-A503-5963D2D8C4F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

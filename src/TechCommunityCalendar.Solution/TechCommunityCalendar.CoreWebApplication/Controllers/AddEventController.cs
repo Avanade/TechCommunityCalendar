@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
 
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
@@ -41,27 +42,17 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 }
             }
 
-            //if (!string.IsNullOrWhiteSpace(model.Duration))
-            //{
-            //    var durationParts = model.Duration.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-
-            //    if (durationParts.Length != 2)
-            //    {
-            //        ModelState.AddModelError("Duration", "Event Duration format invalid");
-            //    }
-            //    else
-            //    {
-            //        if (!int.TryParse(durationParts[0], out _))
-            //            ModelState.AddModelError("Duration", "Event Duration format invalid");
-
-            //        if (durationParts[1] != "day" && durationParts[1] != "hour")
-            //            ModelState.AddModelError("Duration", "Event Duration format invalid");
-            //    }
-            //}
+            if (!string.IsNullOrWhiteSpace(model.City))
+            {
+                if (model.City.Contains(","))
+                {
+                    ModelState.AddModelError("City", "City cannot contain a comma (,)");
+                }
+            }
 
             // Make sure End Date is after Start Date
 
-            if(model.EndDate < model.StartDate)
+            if (model.EndDate < model.StartDate)
             {
                 ModelState.AddModelError("EndDate", "End Date cannot be before the start date");
             }
@@ -93,7 +84,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var ownerName = "Avanade";
 
             // Create new branch
-            var branchName = $"NewEvents_{Guid.NewGuid()}";
+            var branchName = TechEventCleaner.MakeFriendlyBranchName($"new-event-{model.Name}");
             var master = await gitHubClient.Git.Reference.Get(ownerName, repositoryName, "heads/main");
             await gitHubClient.Git.Reference.Create(ownerName, repositoryName, new NewReference($"refs/heads/{branchName}", master.Object.Sha));
 
@@ -126,5 +117,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             return View("Success", model);
         }
+
+        
     }
 }
