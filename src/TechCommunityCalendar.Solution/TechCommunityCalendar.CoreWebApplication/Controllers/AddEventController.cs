@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Octokit;
 using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
