@@ -40,7 +40,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 model.ShowCurrentEvents = false;
             }
 
-            if (new DateTime(year, month, 1).Date > DateTime.Now.Date)
+            if (new DateTime(year, month, 1).Date < DateTime.Now.Date)
             {
                 model.ShowUpcomingEvents = false;
             }
