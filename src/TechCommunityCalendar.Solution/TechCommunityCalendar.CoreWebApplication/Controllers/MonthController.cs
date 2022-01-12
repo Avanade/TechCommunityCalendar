@@ -11,8 +11,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
     public class MonthController : ControllerBase
     {
-        public MonthController(IMemoryCache memoryCache, 
-            ITechEventQueryRepository techEventRepository) 
+        public MonthController(IMemoryCache memoryCache,
+            ITechEventQueryRepository techEventRepository)
             : base(memoryCache, techEventRepository)
         {
         }
@@ -33,25 +33,21 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
-            if (new DateTime(year, month, 1).Date > DateTime.Now.Date) {
+            if (new DateTime(year, month, 1).Date > DateTime.Now.Date)
+            {
                 model.UpcomingEvents = events;
+                model.ShowRecentEvents = false;
+                model.ShowCurrentEvents = false;
             }
 
-            var lastMonth = DateTime.Now.AddMonths(-1);
+            if (new DateTime(year, month, 1).Date > DateTime.Now.Date)
+            {
+                model.ShowUpcomingEvents = false;
+            }
+
             var thisMonth = DateTime.Now.AddMonths(0);
-            var nextMonth = DateTime.Now.AddMonths(1);
-
-            var lastMonthName = lastMonth.ToString("MMMM");
             var thisMonthName = thisMonth.ToString("MMMM");
-            var nextMonthName = nextMonth.ToString("MMMM");
-
-            var lastMonthNumber = lastMonth.Date.Month;
-            var thisMonthNumber = thisMonth.Date.Month;
-            var nextMonthNumber = nextMonth.Date.Month;
-
-            var lastMonthYear = lastMonth.Date.Year;
             var thisMonthYear = thisMonth.Date.Year;
-            var nextMonthYear = nextMonth.Date.Year;
 
             ViewBag.Title = $"Tech Community Events in {thisMonthName} {thisMonthYear}";
 
@@ -62,7 +58,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public async Task<IActionResult> Year(int year)
         {
             var allEvents = await GetEventsFromCache();
-            var events = allEvents.Where(x => x.StartDate.Year == year).OrderBy(x=>x.StartDate).ToArray();
+            var events = allEvents.Where(x => x.StartDate.Year == year).OrderBy(x => x.StartDate).ToArray();
 
             var model = new YearViewModel();
             model.Year = year;
@@ -77,7 +73,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }
 
             ViewBag.Title = $"Tech Community Events in {model.Year}";
-
 
             return View(model);
         }

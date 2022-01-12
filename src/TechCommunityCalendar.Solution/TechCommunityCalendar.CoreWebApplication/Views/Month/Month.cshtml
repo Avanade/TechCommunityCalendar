@@ -1,7 +1,7 @@
 ﻿@model TechCommunityCalendar.CoreWebApplication.Models.MonthViewModel
 @{
 
-   
+
 }
 
 <div class="text-center">
@@ -12,38 +12,49 @@
     <h3>Tech Events in @Model.MonthName @Model.Year</h3>
 
     <br />
-    <br />
 
-    <h4>@Model.CurrentEventsCount Current Events</h4>
-    @if (Model.CurrentEvents.Any())
+    @if (Model.ShowCurrentEvents)
     {
-        @await Html.PartialAsync("_EventsTable", Model.CurrentEvents)
-    }
-    else
-    {
-        <p>No current events</p>
-    }
-    <br />
+        <br />
 
-    <h4>@Model.UpcomingEventsCount Upcoming Events</h4>
-    @if (Model.UpcomingEvents.Any())
-    {
-        @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
+        <h4>@Model.CurrentEventsCount Current Events</h4>
+        @if (Model.CurrentEvents.Any())
+        {
+            @await Html.PartialAsync("_EventsTable", Model.CurrentEvents)
+        }
+        else
+        {
+            <p>No current events</p>
+        }
     }
-    else
-    {
-        <p>No upcoming events</p>
-    }
-    <br />
 
-    <h4>@Model.RecentEventsCount Recent Events</h4>
-    @if (Model.RecentEvents.Any())
+    @if (Model.ShowUpcomingEvents)
     {
-        @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+        <br />
+
+        <h4>@Model.UpcomingEventsCount Upcoming Events</h4>
+        @if (Model.UpcomingEvents.Any())
+        {
+            @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
+        }
+        else
+        {
+            <p>No upcoming events</p>
+        }
+        <br />
     }
-    else
+
+    @if (Model.ShowRecentEvents)
     {
-        <p>No recent events</p>
+        <h4>@Model.RecentEventsCount Recent Events</h4>
+        @if (Model.RecentEvents.Any())
+        {
+            @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+        }
+        else
+        {
+            <p>No recent events</p>
+        }
     }
 
 </div>
