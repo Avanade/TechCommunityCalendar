@@ -16,15 +16,24 @@
                 @item.Country
             </td>
             <td>
-                @if (item.EventType == TechCommunityCalendar.Enums.EventType.Call_For_Papers) {
+                @{
+                    var onClickEvent = $"GenerateIcs('{item.Name}','{item.StartDate.ToString("yyyyMMddTHHmmssZ")}','{item.EndDate.ToString("yyyyMMddTHHmmssZ")}','{item.Country} {item.City}', '{item.Url}', '{Guid.NewGuid()}')";
+                }
+                <a href="javascript:return;" onclick="@onClickEvent" title="Add to calendar (.ics)">📅</a>
+            </td>
+            <td>
+                @if (item.EventType == TechCommunityCalendar.Enums.EventType.Call_For_Papers)
+                {
                     <text>Call For Papers</text>
 
                     var daysRemaining = item.EndDate.Subtract(DateTime.Now.Date).Days;
-                    if (daysRemaining > 0) {
+                    if (daysRemaining > 0)
+                    {
                         <text> (@daysRemaining days remaining)</text>
                     }
                 }
-                else {
+                else
+                {
                     <span>@item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType.ToString().Replace("_", " ")</span>
                 }
             </td>
@@ -32,3 +41,15 @@
     }
 
 </table>
+
+<script>
+
+    function GenerateIcs(name, start, end, location, url, uid) {
+
+        var description = "Event Url: " + url + "\\n\\nNote: Please check the event details with event organisers.\\n\\n" + "Make sure to check out other events at https://TechCommunityCalendar.com";
+        var icsMSG = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Avanade DevRel//NONSGML v1.0//EN\nBEGIN:VEVENT\nUID:" + uid + "\nDTSTAMP:20120315T170000Z\nDTSTART:" + start + "\nDTEND:" + end + "\nLOCATION:" + location + "\nSUMMARY:" + name + "\nDESCRIPTION:" + description + "\nEND:VEVENT\nEND:VCALENDAR";
+
+        window.open("data:text/calendar;charset=utf8," + escape(icsMSG));
+    }
+
+</script>
