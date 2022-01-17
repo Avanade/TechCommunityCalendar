@@ -23,7 +23,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var monthDate = new DateTime(year, month, 1);
 
             var allEvents = await GetEventsFromCache();
-            var events = allEvents.Where(x => x.StartDate.Year == year && x.StartDate.Month == month).ToArray();
+            var events = allEvents.Where(x => x.StartDate.Year == year && x.StartDate.Month == month)
+                .OrderBy(x => x.StartDate)
+                .ToArray();
 
             var model = new MonthViewModel();
             model.MonthName = ToTitleCase(monthDate.ToString("MMMM"));
