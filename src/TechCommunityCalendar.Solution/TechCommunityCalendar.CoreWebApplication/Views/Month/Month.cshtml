@@ -57,4 +57,17 @@
         }
     }
 
+    @if (Model.ShowMonthEvents)
+    {
+        <h4>@Model.MonthEventsCount Events</h4>
+        @if (Model.MonthEvents.Any())
+        {
+            @await Html.PartialAsync("_EventsTable", Model.MonthEvents)
+        }
+        else
+        {
+            <p>No recent events</p>
+        }
+    }
+
 </div>

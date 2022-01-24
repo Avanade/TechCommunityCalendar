@@ -5,22 +5,27 @@
     var lastMonth = DateTime.Now.AddMonths(-1);
     var thisMonth = DateTime.Now.AddMonths(0);
     var nextMonth = DateTime.Now.AddMonths(1);
+    var nextMonth2 = DateTime.Now.AddMonths(2);
 
     var lastMonthName = lastMonth.ToString("MMMM yyyy");
     var thisMonthName = thisMonth.ToString("MMMM yyyy");
     var nextMonthName = nextMonth.ToString("MMMM yyyy");
+    var nextMonth2Name = nextMonth2.ToString("MMMM yyyy");
 
     var lastMonthNumber = lastMonth.Date.Month;
     var thisMonthNumber = thisMonth.Date.Month;
     var nextMonthNumber = nextMonth.Date.Month;
+    var nextMonth2Number = nextMonth2.Date.Month;
 
     var lastMonthYear = lastMonth.Date.Year;
     var thisMonthYear = thisMonth.Date.Year;
     var nextMonthYear = nextMonth.Date.Year;
+    var nextMonth2Year = nextMonth2.Date.Year;
 }
 
 <div>
     <span><a href="/@lastMonthNumber/@lastMonthYear/">@lastMonthName</a></span> -
     <span><a href="/@thisMonthNumber/@thisMonthYear/">@thisMonthName</a></span> -
-    <span><a href="/@nextMonthNumber/@nextMonthYear/">@nextMonthName</a></span>
+    <span><a href="/@nextMonthNumber/@nextMonthYear/">@nextMonthName</a></span> -
+    <span><a href="/@nextMonth2Number/@nextMonth2Year/">@nextMonth2Name</a></span>
 </div>

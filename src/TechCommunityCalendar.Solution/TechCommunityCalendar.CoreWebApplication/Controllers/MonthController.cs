@@ -23,7 +23,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var monthDate = new DateTime(year, month, 1);
 
             var allEvents = await GetEventsFromCache();
-            var events = allEvents.Where(x => x.StartDate.Year == year && x.StartDate.Month == month)
+            //
+            var events = allEvents.Where(x =>
+            (x.StartDate.Year == year && x.StartDate.Month == month))
                 .OrderBy(x => x.StartDate)
                 .ToArray();
 
@@ -35,6 +37,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
+            // If requested month is in future
             if (new DateTime(year, month, 1).Date > DateTime.Now.Date)
             {
                 model.UpcomingEvents = events;
@@ -42,16 +45,20 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 model.ShowCurrentEvents = false;
             }
 
+            // If requested month is in past
             if (new DateTime(year, month, 1).Date < DateTime.Now.Date)
             {
                 model.ShowUpcomingEvents = false;
+                model.ShowRecentEvents = false;
+                model.ShowCurrentEvents = false;
+                model.ShowMonthEvents = true;
+                model.MonthEvents = events;
             }
 
-            var thisMonth = DateTime.Now.AddMonths(0);
-            var thisMonthName = thisMonth.ToString("MMMM");
-            var thisMonthYear = thisMonth.Date.Year;
+            var monthName = monthDate.ToString("MMMM");
+            var monthYear = monthDate.Date.Year;
 
-            ViewBag.Title = $"Tech Community Events in {thisMonthName} {thisMonthYear}";
+            ViewBag.Title = $"Tech Community Events in {monthName} {monthYear}";
 
             return View(model);
         }
