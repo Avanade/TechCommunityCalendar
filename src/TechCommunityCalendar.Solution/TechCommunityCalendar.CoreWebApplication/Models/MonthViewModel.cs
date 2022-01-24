@@ -9,5 +9,6 @@
         public bool ShowCurrentEvents { get; set; } = true;
         public bool ShowUpcomingEvents { get; set; } = true;
         public bool ShowRecentEvents { get; set; } = true;
+        public bool ShowMonthEvents { get; set; } = false;
     }
 }
