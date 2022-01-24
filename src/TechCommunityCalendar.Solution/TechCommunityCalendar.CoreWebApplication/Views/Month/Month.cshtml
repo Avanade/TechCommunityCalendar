@@ -6,6 +6,9 @@
 
 <div class="text-center">
 
+    @await Html.PartialAsync("_EventTypesIcons")
+    <br />
+
     @await Html.PartialAsync("_TopMonths", Model.Events)
     <br />
 

@@ -25,7 +25,7 @@ html {
 }
 
 h2 {
-    font-size:1.1em;
+    font-size: 1.1em;
 }
 
 @media (min-width: 768px) {
@@ -75,6 +75,17 @@ body {
 img#logo {
     max-width: 100%;
 }
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+    .flex-container > div.event-type {
+        margin: 0 15px 0px 15px;
+    }
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)

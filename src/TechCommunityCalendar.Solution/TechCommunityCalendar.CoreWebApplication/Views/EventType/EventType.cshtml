@@ -3,9 +3,15 @@
 }
 
 <div class="text-center">
+
+    @await Html.PartialAsync("_EventTypesIcons")
+    <br />
+
+    @await Html.PartialAsync("_TopMonths", Model.Events)
+    <br />
+
     <h3>@Model.EventType Tech Events</h3>
 
-    <br />
     <br />
 
     <h4>@Model.CurrentEventsCount Current Events</h4>
