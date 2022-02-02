@@ -14,7 +14,7 @@ namespace TechCommunityCalendar.Concretions
             return events.Where(x =>
                 DateTime.Now.Date >= x.StartDate // It is or after the start date
                 && DateTime.Now <= x.EndDate // And it is or before the end date
-                || DateTime.Now.Date == x.StartDate) // To catch short events today
+                || DateTime.Now.Date == x.StartDate.Date) // To catch short events today
                     .OrderByDescending(x => x.StartDate);
         }
 
