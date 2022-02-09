@@ -20,5 +20,23 @@ namespace TechCommunityCalendar.Concretions
         public EventType EventType { get; set; }
         public EventFormat EventFormat { get; set; }
         public bool Hidden { get; set; }
+
+        public bool HappeningOnDate(DateTime dateTime)
+        {
+            if (dateTime.Date >= StartDate.Date && dateTime.Date <= EndDate.Date)
+                return true;
+
+            return false;
+        }
+
+        public bool HapenningNextXDays(int days)
+        {
+            var periodEnd = DateTime.Now.AddDays(days);
+
+            if (StartDate <= periodEnd && DateTime.Now.Date <= EndDate.Date)
+                return true;
+
+            return false;
+        }
     }
 }
