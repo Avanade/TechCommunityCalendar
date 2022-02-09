@@ -50,6 +50,12 @@
                     <span class="badge badge-success">Next 7 days</span>
                 }
             </td>
+            <td>
+                @if (item.Country != "Online")
+                {
+                    <img src="/images/flags/@TechCommunityCalendar.Concretions.TechEventCalendar.GetFlag(item.Country)" alt="@item.Country" style="width:35px" />
+                }
+            </td>
         </tr>
     }
 

@@ -27,4 +27,8 @@
     <PackageReference Include="Octokit" Version="0.50.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\flags\" />
+  </ItemGroup>
+
 </Project>
