@@ -36,6 +36,19 @@
                 {
                     <span>@item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType.ToString().Replace("_", " ")</span>
                 }
+
+                @if (item.HappeningOnDate(DateTime.Now.Date))
+                {
+                    <span class="badge badge-danger">Today</span>
+                }
+                else if (item.HappeningOnDate(DateTime.Now.Date.AddDays(1)))
+                {
+                    <span class="badge badge-warning">Tomorrow</span>
+                }
+                else if (item.HapenningNextXDays(7))
+                {
+                    <span class="badge badge-success">Next 7 days</span>
+                }
             </td>
         </tr>
     }

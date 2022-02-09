@@ -17,5 +17,7 @@ namespace TechCommunityCalendar.Interfaces
         public EventType EventType { get; set; }
         public EventFormat EventFormat { get; set; }
         public bool Hidden { get; set; }
+        public bool HappeningOnDate(DateTime dateTime);
+        public bool HapenningNextXDays(int days);
     }
 }

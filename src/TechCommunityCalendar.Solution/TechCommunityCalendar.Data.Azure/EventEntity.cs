@@ -29,5 +29,15 @@ namespace TechCommunityCalendar.Data.Azure
         public EventType EventType { get; set; }
         public EventFormat EventFormat { get; set; }
         public bool Hidden { get; set; }
+
+        public bool HapenningNextXDays(int days)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HappeningOnDate(DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
