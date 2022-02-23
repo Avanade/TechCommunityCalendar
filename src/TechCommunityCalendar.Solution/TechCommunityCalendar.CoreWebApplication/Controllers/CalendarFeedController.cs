@@ -54,7 +54,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             iCal.AppendLine("VERSION:2.0");
             iCal.AppendLine("PRODID:-//Avanade DevRel//NONSGML v1.0//EN");
 
-            foreach(var item in events)
+            foreach(var item in events.Where(x => x.EndDate.Date >= DateTime.Now.Date))
             {
                 iCal.AppendLine("BEGIN:VEVENT");
                 iCal.AppendLine($"UID:{Guid.NewGuid()}");
@@ -65,8 +65,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 iCal.AppendLine($"SUMMARY:{item.Name}");
                 iCal.AppendLine($"DESCRIPTION:Event Url:{item.Url}\\nNote: Please check the event details with event organisers.\\n\\n" + "Make sure to check out other events at https://TechCommunityCalendar.com");
                 
-                //var description = "Event Url: " + url + "\\n\\nNote: Please check the event details with event organisers.\\n\\n" + "Make sure to check out other events at https://TechCommunityCalendar.com";
-                //UID: " + uid + "\nDTSTAMP: 20120315T170000Z\nDTSTART: " + start + "\nDTEND: " + end + "\nLOCATION: " + location + "\nSUMMARY: " + name + "\nDESCRIPTION: " + description + 
 
                 iCal.AppendLine("END:VEVENT");
             }
@@ -78,7 +76,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         }
 
 
-        // var icsMSG = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Avanade DevRel//NONSGML v1.0//EN\nBEGIN:VEVENT\nUID:" + uid + "\nDTSTAMP:20120315T170000Z\nDTSTART:" + start + "\nDTEND:" + end + "\nLOCATION:" + location + "\nSUMMARY:" + name + "\nDESCRIPTION:" + description + "\nEND:VEVENT\nEND:VCALENDAR";
 
     }
 }
