@@ -9,9 +9,9 @@ using TechCommunityCalendar.Interfaces;
 
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
-    public class RssController : ControllerBase
+    public class CalendarFeedController : ControllerBase
     {
-        public RssController(IMemoryCache memoryCache,
+        public CalendarFeedController(IMemoryCache memoryCache,
             ITechEventQueryRepository techEventRepository)
             : base(memoryCache, techEventRepository)
         {
@@ -30,7 +30,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             rssBuilder.AppendLine($"<description></description>");
             rssBuilder.AppendLine($"<link>https://techcommunitycalendar.com</link>");
 
-            foreach (var item in events)
+            foreach (var item in events.Where(x=>x.EndDate.Date >= DateTime.Now.Date))
             {
                 rssBuilder.AppendLine("<item>");
                 rssBuilder.AppendLine($"<title>{item.Name}</title>");
