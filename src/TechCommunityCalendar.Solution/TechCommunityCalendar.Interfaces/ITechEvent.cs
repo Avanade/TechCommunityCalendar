@@ -13,6 +13,7 @@ namespace TechCommunityCalendar.Interfaces
         public string TwitterHandle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public string TimeZone { get; set; }
         public string Duration { get; set; }
         public EventType EventType { get; set; }
         public EventFormat EventFormat { get; set; }

@@ -36,7 +36,6 @@ namespace TechCommunityCalendar.Concretions
         public async Task<ITechEvent[]> GetByCountry(EventType eventType, string country)
         {
             var events = await GetAll();
-
             return events.Where(x => x.Country.Equals(country, StringComparison.InvariantCultureIgnoreCase)).ToArray();
         }
 
@@ -48,14 +47,12 @@ namespace TechCommunityCalendar.Concretions
         public async Task<ITechEvent[]> GetByMonth(int year, int month)
         {
             var results = await GetAll();
-
             return results.Where(x => x.StartDate.Year == year && x.StartDate.Month == month).ToArray();
         }
 
         public async Task<ITechEvent[]> GetByYear(int year)
         {
             var results = await GetAll();
-
             return results.Where(x => x.StartDate.Year == year).OrderBy(x => x.StartDate).ToArray();
         }
 
@@ -80,6 +77,9 @@ namespace TechCommunityCalendar.Concretions
                     //7 Nürnberg,
                     //8 Germany
 
+                    //9 TimeZone
+                    //10 Tags
+
                     string name = csv.GetField(0);
                     EventType eventType = EnumParser.ParseEventType(csv.GetField(1));
                     string duration = csv.GetField(4);
@@ -97,7 +97,6 @@ namespace TechCommunityCalendar.Concretions
                         EventFormat = eventFormat,
                         City = city,
                         Country = country
-
                     };
 
                     DateTime startDate;
@@ -112,7 +111,11 @@ namespace TechCommunityCalendar.Concretions
                         record.EndDate = endDate;
                     }
 
-                    //record.EndDate = record.StartDate.Add(TryParseTimeSpan(duration));
+                    // TimeZone
+                    if (!string.IsNullOrWhiteSpace(csv.GetField(9)))
+                    {
+                        record.TimeZone = csv.GetField(9);
+                    }
 
                     techEvents.Add(record);
                 }
@@ -149,7 +152,6 @@ namespace TechCommunityCalendar.Concretions
                         EventFormat = eventFormat,
                         City = city,
                         Country = country
-
                     };
 
                     DateTime startDate;
@@ -159,28 +161,6 @@ namespace TechCommunityCalendar.Concretions
                     }
 
                     record.EndDate = record.StartDate.Add(TryParseTimeSpan(duration));
-
-                    //DateTime endDate;
-                    //if (DateTime.TryParse(csv.GetField(3), out endDate))
-                    //{
-                    //    record.EndDate = endDate;
-                    //}
-
-                    // Calculate Duration
-                    //var duration = record.EndDate.Subtract(record.StartDate);
-
-                    //if (duration < TimeSpan.FromHours(7))
-                    //{
-                    //    record.Duration = duration.Hours + " hour";
-                    //}
-                    //else if (duration <= TimeSpan.FromDays(1))
-                    //{
-                    //    record.Duration = "1 day";
-                    //}
-                    //else if (duration > TimeSpan.FromDays(1))
-                    //{
-                    //    record.Duration = duration.Days + " day";
-                    //}
 
                     techEvents.Add(record);
                 }
@@ -220,21 +200,15 @@ namespace TechCommunityCalendar.Concretions
             return TimeSpan.Zero;
         }
 
-
-
-
-
         public async Task<string[]> GetAllCountries()
         {
             var events = await GetAll();
-
             return events.Select(x => x.Country).Distinct().ToArray();
         }
 
         public async Task<ITechEvent[]> GetByEventType(EventType eventType)
         {
             var events = await GetAll();
-
             return events.Where(x => x.EventType.Equals(eventType)).ToArray();
         }
     }

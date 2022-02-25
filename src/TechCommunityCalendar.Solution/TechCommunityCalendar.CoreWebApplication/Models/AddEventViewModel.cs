@@ -23,10 +23,12 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Duration")]
-        //[Required]
         public string Duration { get; set; }
 
         public string City { get; set; }
+
+        [Required]
+        public string TimeZone { get; set; }
 
         [Required]
         public string Country { get; set; }

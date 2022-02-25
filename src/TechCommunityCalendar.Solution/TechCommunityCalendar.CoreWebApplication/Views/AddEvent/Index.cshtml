@@ -35,24 +35,35 @@
         <div class="form-group row">
             <label for="StartDate" class="col-sm-2 col-form-label">Start Date</label>
             <div class="col">
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "Start Date", aria_label = "Start Date", @type = "datetime-local", onchange= "dateTimeChange()" })
+                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "Start Date", aria_label = "Start Date", @type = "datetime-local", onchange = "dateTimeChange()" })
             </div>
         </div>
 
         <div class="form-group row">
             <label for="EndDate" class="col-sm-2 col-form-label">End Date</label>
             <div class="col">
-                @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", placeholder = "End Date", aria_label = "End Date", @type = "datetime-local", onchange= "dateTimeChange" })
+                @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", placeholder = "End Date", aria_label = "End Date", @type = "datetime-local", onchange = "dateTimeChange" })
             </div>
         </div>
 
-        @*<div class="form-group row">
-            <label for="Duration" class="col-sm-2 col-form-label">Event Duration</label>
+        <div class="form-group row">
+            <label for="Event Type" class="col-sm-2 col-form-label">Time Zone</label>
             <div class="col">
-                @Html.TextBoxFor(x => x.Duration, new { @class = "form-control", placeholder = "Duration", aria_label = "Duration", @readonly = "readonly" })
-                
+                <select name="TimeZone" class="form-control">
+                    <option value="">Select Time Zone</option>
+                    @foreach (var timeZone in TechCommunityCalendar.Concretions.TimeZone.All()) 
+                    {
+                        string notation = "";
+                        if (timeZone.RelativeToGMT > 0) {                        
+                            notation = "+";
+                        }
+                        string timeZoneDisplay = $"{timeZone.Code} {timeZone.Name} (GMT {notation}{timeZone.RelativeToGMT})";
+                        <option value="@timeZone.Code">@timeZoneDisplay</option>
+                    }
+                </select>
             </div>
-        </div>*@
+        </div>
+
 
         <div class="form-group row">
             <label for="Event Type" class="col-sm-2 col-form-label">Event Type</label>
@@ -322,7 +333,7 @@
         var startDateTimeString = $('#StartDate').val();
         var endDateTimeString = $('#EndDate').val();
 
-        var startYear = startDateTimeString.substr(0,4);
+        var startYear = startDateTimeString.substr(0, 4);
         var startMonth = startDateTimeString.substr(5, 2);;
         var startDay = startDateTimeString.substr(8, 2);;
         var startHour = startDateTimeString.substr(11, 2);;

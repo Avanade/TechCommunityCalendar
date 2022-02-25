@@ -29,6 +29,7 @@ namespace TechCommunityCalendar.Data.Azure
         public EventType EventType { get; set; }
         public EventFormat EventFormat { get; set; }
         public bool Hidden { get; set; }
+        public string TimeZone { get; set; }
 
         public bool HapenningNextXDays(int days)
         {

@@ -57,11 +57,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }
 
             // Calculate Duration
-            if(model.StartDate == model.EndDate)
+            if (model.StartDate == model.EndDate)
             {
                 model.Duration = "1 day";
             }
-            else if(model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
+            else if (model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
             {
                 model.Duration = model.EndDate.Subtract(model.StartDate).TotalHours + " hour";
             }
@@ -74,7 +74,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 return View(model);
 
             // Create file with details..
-            var row = $"{model.Name},{model.EventType},{model.StartDate},{model.EndDate},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country}";
+            var row = $"{model.Name},{model.EventType},{model.StartDate},{model.EndDate},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country},{model.TimeZone}";
             var gitHubClient = new GitHubClient(new ProductHeaderValue("TechCommunityCalendarApp"));
             var personalAccessKey = Environment.GetEnvironmentVariable("GitHubPersonalAccessKey");
             gitHubClient.Credentials = new Credentials(personalAccessKey);
@@ -116,7 +116,5 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             return View("Success", model);
         }
-
-        
     }
 }
