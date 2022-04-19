@@ -60,5 +60,10 @@ namespace TechCommunityCalendar.Concretions
         {
             throw new NotImplementedException();
         }
+
+        public void AppendTrailingComma()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

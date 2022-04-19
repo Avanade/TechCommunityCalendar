@@ -27,10 +27,13 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
         public string Duration { get; set; }
 
         public string City { get; set; }
-
+        
         [Required]
         public string Country { get; set; }
 
         public string NewPullRequestUrl { get; set; }
+
+        [Display(Name = "Twitter")]
+        public string TwitterHandle { get; set; }
     }
 }

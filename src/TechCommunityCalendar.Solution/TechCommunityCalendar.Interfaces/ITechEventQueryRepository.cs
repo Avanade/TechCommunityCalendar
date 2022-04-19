@@ -14,5 +14,6 @@ namespace TechCommunityCalendar.Interfaces
         Task<ITechEvent[]> GetByCountry(EventType eventType, string country);
         Task<ITechEvent> Get(int year, int month, Guid id);
         Task<string[]> GetAllCountries();
+        void AppendTrailingComma();
     }
 }
