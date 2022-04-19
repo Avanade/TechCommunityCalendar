@@ -70,11 +70,19 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 model.Duration = model.EndDate.Subtract(model.StartDate).TotalDays + 1 + " day";
             }
 
+            // Twitter Handle?
+            model.TwitterHandle = model.TwitterHandle.Trim();
+            if(model.TwitterHandle.StartsWith("@"))
+            {
+                ModelState.AddModelError("TwitterHandle", "Twitter Handles cannot start with @");
+            }
+
+
             if (!ModelState.IsValid)
                 return View(model);
 
             // Create file with details..
-            var row = $"{model.Name},{model.EventType},{model.StartDate},{model.EndDate},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country}";
+            var row = $"{model.Name},{model.EventType},{model.StartDate},{model.EndDate},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country},{model.TwitterHandle}";
             var gitHubClient = new GitHubClient(new ProductHeaderValue("TechCommunityCalendarApp"));
             var personalAccessKey = Environment.GetEnvironmentVariable("GitHubPersonalAccessKey");
             gitHubClient.Credentials = new Credentials(personalAccessKey);

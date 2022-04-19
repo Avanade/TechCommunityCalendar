@@ -1,7 +1,4 @@
 ﻿@model TechCommunityCalendar.CoreWebApplication.Models.AddEventViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
 
     ViewBag.Title = "Tech Community Calendar : Add Event Success";
@@ -13,6 +10,7 @@
     <ul>
         <li>Name: @Model.Name</li>
         <li>Url: @Model.Url</li>
+        <li>Twitter: @Model.TwitterHandle</li>
         <li>Event Type: @Model.EventType</li>
         <li>Event Format: @Model.EventFormat</li>
         <li>Start Date: @Model.StartDate</li>

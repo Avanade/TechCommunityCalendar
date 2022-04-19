@@ -33,26 +33,33 @@
         </div>
 
         <div class="form-group row">
+            <label for="Url" class="col-sm-2 col-form-label">Twitter</label>
+            <div class="col">
+                @Html.TextBoxFor(x => x.TwitterHandle, new { @class = "form-control", placeholder = "Twitter", aria_label = "Twitter" })
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="StartDate" class="col-sm-2 col-form-label">Start Date</label>
             <div class="col">
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "Start Date", aria_label = "Start Date", @type = "datetime-local", onchange= "dateTimeChange()" })
+                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "Start Date", aria_label = "Start Date", @type = "datetime-local", onchange = "dateTimeChange()" })
             </div>
         </div>
 
         <div class="form-group row">
             <label for="EndDate" class="col-sm-2 col-form-label">End Date</label>
             <div class="col">
-                @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", placeholder = "End Date", aria_label = "End Date", @type = "datetime-local", onchange= "dateTimeChange" })
+                @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", placeholder = "End Date", aria_label = "End Date", @type = "datetime-local", onchange = "dateTimeChange" })
             </div>
         </div>
 
         @*<div class="form-group row">
-            <label for="Duration" class="col-sm-2 col-form-label">Event Duration</label>
-            <div class="col">
-                @Html.TextBoxFor(x => x.Duration, new { @class = "form-control", placeholder = "Duration", aria_label = "Duration", @readonly = "readonly" })
-                
-            </div>
-        </div>*@
+                <label for="Duration" class="col-sm-2 col-form-label">Event Duration</label>
+                <div class="col">
+                    @Html.TextBoxFor(x => x.Duration, new { @class = "form-control", placeholder = "Duration", aria_label = "Duration", @readonly = "readonly" })
+
+                </div>
+            </div>*@
 
         <div class="form-group row">
             <label for="Event Type" class="col-sm-2 col-form-label">Event Type</label>
@@ -76,7 +83,6 @@
                     <option value="Hybrid">Hybrid</option>
                     <option value="In_Person">In Person</option>
                     <option value="Virtual">Virtual</option>
-
                 </select>
             </div>
         </div>
