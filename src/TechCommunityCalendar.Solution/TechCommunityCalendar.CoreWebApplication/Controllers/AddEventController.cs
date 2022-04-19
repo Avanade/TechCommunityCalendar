@@ -71,12 +71,14 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }
 
             // Twitter Handle?
-            model.TwitterHandle = model.TwitterHandle.Trim();
-            if(model.TwitterHandle.StartsWith("@"))
+            if (!string.IsNullOrWhiteSpace(model.TwitterHandle))
             {
-                ModelState.AddModelError("TwitterHandle", "Twitter Handles cannot start with @");
+                model.TwitterHandle = model.TwitterHandle.Trim();
+                if (model.TwitterHandle.StartsWith("@"))
+                {
+                    ModelState.AddModelError("TwitterHandle", "Twitter Handles cannot start with @");
+                }
             }
-
 
             if (!ModelState.IsValid)
                 return View(model);
