@@ -21,13 +21,21 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         [Route("/ThisWeek")]
         public async Task<IActionResult> IndexAsync()
         {
+            DateTime tempDate = DateTime.Now.Date;
+
+            while(tempDate.DayOfWeek != DayOfWeek.Monday)
+            {
+                tempDate = tempDate.AddDays(-1);
+            }
+
+
             StringBuilder message = new StringBuilder();
-            message.AppendLine("Some great #TechCommunityCalendar events w/c 14th February 2022");
+            message.AppendLine($"Some great #TechCommunityCalendar events w/c {tempDate.ToString("ddd dd MMMM yyyy")}");
             message.AppendLine();
 
             var allEvents = await GetEventsFromCache();
 
-            var thisWeekDateRange = ThisWeek(DateTime.Now);
+            var thisWeekDateRange = ThisWeek(tempDate);
 
             var thisWeeksEvents = allEvents.Where(x => x.StartDate >= thisWeekDateRange.Start
             && x.StartDate <= thisWeekDateRange.End);
