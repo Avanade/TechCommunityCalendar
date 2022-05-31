@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+﻿using Azure.Data.Tables;
+
 using System;
 using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;

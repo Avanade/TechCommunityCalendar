@@ -5,11 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AzureTechEventRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechCommunityCalendar.Data.Azure\TechCommunityCalendar.Data.Azure.csproj" />
     <ProjectReference Include="..\TechCommunityCalendar.Interfaces\TechCommunityCalendar.Interfaces.csproj" />
   </ItemGroup>
 
