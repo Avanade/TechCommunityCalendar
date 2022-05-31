@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-	<TargetFramework>net5.0</TargetFramework>
+	<TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>31f466e3-f870-43f2-b155-d48515219d39</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/59d64684-e7c9-4397-8982-6b775a473b74/resourceGroups/DevRel_TechCommunityCalendar/providers/microsoft.insights/components/TechCommunityCalendarAppInsights</ApplicationInsightsResourceId>
   </PropertyGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Octokit" Version="0.50.0" />
   </ItemGroup>
