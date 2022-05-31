@@ -7,6 +7,7 @@
     <meta name="description" content="@ViewData["Description"]" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="canonical" href="@ViewData["Canonical"]" />
     <meta property="og:title" content="@ViewData["Title"]" />
     <meta property="og:url" content="@ViewData["Canonical"]" />
@@ -29,25 +30,28 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-navy border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TechCommunityCalendar.com</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                </button>*@@*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>*@
+                <a class="nav-link text-dark btn-light btn-sm" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event <i class="bi bi-plus-circle-fill"></i></a>
+                @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event</a>
+                            @*<a class="nav-link text-dark btn-light btn-sm" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event <i class="bi bi-plus-circle-fill"></i></a>
                         </li>
-                        @*<li class="nav-item">
+                        <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
-                            </li>*@
+                            </li>
                     </ul>
-                </div>
+                </div>*@
             </div>
         </nav>
     </header>
