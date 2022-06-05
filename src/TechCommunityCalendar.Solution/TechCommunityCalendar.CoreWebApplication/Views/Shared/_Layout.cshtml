@@ -34,35 +34,70 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TechCommunityCalendar.com</a>
                 @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
                 </button>*@@*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
                 </button>*@
                 <a class="nav-link text-dark btn-light btn-sm" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event <i class="bi bi-plus-circle-fill"></i></a>
                 @*<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            @*<a class="nav-link text-dark btn-light btn-sm" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event <i class="bi bi-plus-circle-fill"></i></a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
-                            </li>
-                    </ul>
+                <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                @*<a class="nav-link text-dark btn-light btn-sm" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event <i class="bi bi-plus-circle-fill"></i></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="OpenSource">Open Source</a>
+                </li>
+                </ul>
                 </div>*@
             </div>
         </nav>
     </header>
+    <div style="background-image:url('https://images.unsplash.com/photo-1626125345510-4603468eedfb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'); min-height:365px;">
+        <h1 class="display-5" style="text-align:center; color:#fff;">Tech Community Calendar</h1>
+        <h2 style="text-align:center; color:#fff;">Conferences - Call For Papers - Meetups - Hackathons</h2>
+
+
+        <div class="container">
+            @*<div class="input-group">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary">search</button>
+            </div>*@
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+            </div>
+
+        </div>
+
+    </div>
+
     <div class="container">
         <main class="pb-3">
-            <div class="text-center">
-                <img id="logo" src="~/images/tech-community-calendar2.png" alt="Tech Community Calendar" width="280" />
-                <h1 class="display-5">Tech Community Calendar</h1>
-                <h2>Conferences - Call For Papers - Meetups - Hackathons</h2>
-                <p>Created by <a href="http://www.twitter.com/leeenglestone">@@LeeEnglestone</a>, Supported by <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar">Avanade</a></p>
-            </div>
+            @*<div class="text-center">
+            <img id="logo" src="~/images/tech-community-calendar2.png" alt="Tech Community Calendar" width="280" />
+            <h1 class="display-5">Tech Community Calendar</h1>
+            <h2>Conferences - Call For Papers - Meetups - Hackathons</h2>
+            <p>Created by <a href="http://www.twitter.com/leeenglestone">@@LeeEnglestone</a>, Supported by <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar">Avanade</a></p>
+            </div>*@
+
+
+            <ul class="nav nav-tabs" style="margin-top:20px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Current Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Upcoming Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Recent Events</a>
+                </li>
+                
+            </ul>
+
 
             @RenderBody()
 

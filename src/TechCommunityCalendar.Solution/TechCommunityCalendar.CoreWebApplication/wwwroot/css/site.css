@@ -5,6 +5,13 @@
     color:#fff !important;
 }
 
+.navbar {
+    border:none !important;
+    margin:0 !important;
+}
+
+
+
 a {
     color: #0366d6;
 }
@@ -38,6 +45,11 @@ h2 {
     html {
         font-size: 16px;
     }
+
+    h1 {
+        padding: 70px 0 10px 0;
+    }
+    h2 {padding:0px 0 30px 0;}
 }
 
 .border-top {
