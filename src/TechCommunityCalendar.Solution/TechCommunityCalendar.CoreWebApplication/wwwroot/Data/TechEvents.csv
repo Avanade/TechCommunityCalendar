@@ -316,11 +316,11 @@ IBM Think 2022,Conference,10/05/2022 00:00:00,11/05/2022 00:00:00,2 day,https://
 SnykWeek London,Conference,23/05/2022 00:00:00,26/05/2022 00:00:00,4 day,https://snyk.io/snykweek-london/?utm_campaign=Event-SnykWeek-London-2022,In_Person,London,UK,
 Develop Brighton 2022,Conference,12/07/2022 00:00:00,14/07/2022 00:00:00,3 day,https://www.developconference.com/,In_Person,Brighton,UK,developconf
 Ability Summit,Conference,10/05/2022 00:00:00,10/05/2022 00:00:00,1 day,https://abilitysummit.event.microsoft.com/,Virtual,,Online,
-AR VR Hackathon,Hackathon,06/06/2022 00:00:00,01/07/2022 00:00:00,26 day,https://arvrhackathon.com/,Virtual,,Online,
+AR VR Hackathon (Cancelled),Hackathon,06/06/2022 00:00:00,01/07/2022 00:00:00,26 day,https://arvrhackathon.com/,Virtual,,Online,
 Caribbean Developers Conference,Conference,03/11/2022 00:00:00,05/11/2022 00:00:00,3 day,https://cdc.dev/,In_Person,Punta Cana,Dominican Republic,caribbeandevcon
 Caribbean Developers Conference 2022 CFS,Call_For_Papers,07/03/2022 00:00:00,30/09/2022 00:00:00,208 day,https://sessionize.com/caribbean-developers-conference-2022,In_Person,Punta Cana,Dominica,caribbeandevcon
 Devconf Poland 2022 CFS,Call_For_Papers,11/02/2022 00:00:00,16/05/2022 00:00:00,95 day,https://sessionize.com/devconfpl-2022,In_Person,Wytwórnia,Poland,devconfpl
-Climate Hackathon 2022,Hackathon,07/06/2022 00:01:00,09/06/2022 23:59:00,3.998611111111111 day,http://msft.it/6016bDuvs,Virtual,,Online,
+Climate Hackathon 2022,Hackathon,07/06/2022 00:01:00,09/06/2022 23:59:00,4 day,http://msft.it/6016bDuvs,Virtual,,Online,
 DDD South West,Conference,25/06/2022 09:00:00,25/06/2022 17:00:00,1 day,https://dddsouthwest.com/,In_Person,Bristol,UK,https://twitter.com/dddsouthwest
 Build a Better Tomorrow,Hackathon,05/05/2022 00:00:00,29/05/2022 00:00:00,25 day,https://www.hackerearth.com/challenges/hackathon/Hack-for-Better-Tomorrow/,Virtual,,Online,
 DevOpsDays Ukraine,Conference,17/05/2022 00:00:00,18/05/2022 00:00:00,2 day,https://devopsdays.com.ua/,Virtual,,Online,devopsdays_kyiv
@@ -342,5 +342,30 @@ MX Hacks,Hackathon,23/09/2022 00:00:00,24/09/2022 00:00:00,2 day,https://www.men
 CloudBrew,Call_For_Papers,18/11/2022 08:00:00,19/11/2022 17:00:00,2.375 day,https://www.cloudbrew.be/,In_Person,Mechelen,Belgium,CloudBrewConf
 Code Europe 2022,Conference,30/05/2022 00:00:00,02/06/2022 00:00:00,4 day,https://www.codeeurope.pl/,In_Person,Krakow,Poland,code_europe
 AWE USA 2022,Conference,01/06/2022 00:00:00,03/06/2022 00:00:00,3 day,https://www.awexr.com/usa-2022/,Hybrid,Santa Clara,USA,ARealityEvent
-
 Devopsdays Birmingham UK,Conference,15/06/2022 00:00:00,16/06/2022 00:00:00,2 day,https://devopsdays.org/events/2023-birmingham-uk/welcome/,In_Person,Birmingham,UK,devopsdaysbrum
+Azure Machine Learning and Databricks Friends or Foe ,Meetup,01/06/2022 16:00:00,01/06/2022 17:00:00,1 hour,https://www.meetup.com/aifortytwoo/events/284150886/,Virtual,,Online,
+Perspektywy Women in Tech Summit 2022,Conference,07/06/2022 00:00:00,08/06/2022 00:00:00,2 day,https://womenintechsummit.pl/,Hybrid,Warsaw,Poland,
+Nordic Summit,Conference,24/09/2022 00:00:00,24/09/2022 00:00:00,1 day,https://nordicsummit.info/,In_Person,Stockholm,Sweden,
+Integrate 2022,Conference,13/06/2022 00:00:00,15/06/2022 00:00:00,3 day,https://www.kovai.co/integrate-2022/,Hybrid,London,UK,
+HashiConf Europe,Conference,20/06/2022 00:00:00,22/06/2022 00:00:00,3 day,https://hashiconf.com/europe/,Hybrid,Amsterdam,Netherlands,
+South Coast Summit,Conference,14/10/2022 00:00:00,15/10/2022 00:00:00,2 day,https://www.southcoastsummit.com/,In_Person,Southampton,UK,M365Summit
+DevTalks Romania,Conference,08/06/2022 00:00:00,09/06/2022 00:00:00,2 day,https://www.devtalks.ro/,Hybrid,Bucharest,Romania,DevTalksRo
+Storytelling with Data in Power BI Pragati Jain,Meetup,30/06/2022 17:00:00,30/06/2022 18:30:00,1.5 hour,https://www.meetup.com/romaniapug/events/285253967/,Virtual,,Online,
+GitHub Universe 2022,Conference,09/11/2022 00:00:00,10/11/2022 00:00:00,2 day,https://www.githubuniverse.com/,Hybrid,San Francisco,USA,
+Front-End Test Fest,Conference,23/06/2022 00:00:00,23/06/2022 00:00:00,1 day,https://applitools.com/front-endtestfest/,Virtual,,Online,
+Lego Con 2022,Conference,18/06/2022 00:00:00,18/06/2022 00:00:00,1 day,https://www.lego.com/en-gb/lego-con,Hybrid,,Online,
+Blazing Accessibility Basics and Distributed Tracing,Meetup,07/06/2022 18:30:00,07/06/2022 20:30:00,2 hour,https://www.meetup.com/dotnetsheff/events/285121788/,In_Person,Sheffield,UK,
+GSF Global Summit London hosted by Microsoft Accenture and Avanade,Meetup,07/06/2022 13:30:00,07/06/2022 18:00:00,4.5 hour,https://www.meetup.com/Microsoft-Reactor-London/events/286113622/,Virtual,,Online,
+Uno Platform 4 - Putting the Platform in Uno Platform,Meetup,07/06/2022 20:00:00,07/06/2022 21:00:00,1 hour,https://www.meetup.com/DotNetNorth/events/285818170/,Virtual,,Online,
+South Coast User Group Meetup June 2022,Meetup,07/06/2022 19:00:00,07/06/2022 21:00:00,2 hour,https://www.meetup.com/MCSCUG/events/282525866/,In_Person,Southampton,UK,
+.NET MAUI What How and Why,Meetup,07/06/2022 18:30:00,07/06/2022 20:30:00,2 hour,https://www.meetup.com/dotnetsouthwest/events/286011386/,In_Person,Bristol,UK,
+Security Day .NET Zurich,Meetup,09/06/2022 17:00:00,09/06/2022 19:00:00,2 hour,https://www.meetup.com/dotnet-zurich/events/283770654/,Virtual,,Online,
+Microsoft Inspire,Conference,19/07/2022 00:00:00,20/07/2022 00:00:00,2 day,https://inspire.microsoft.com/en-US/home,Virtual,,Online,
+Southampton Data Platform and Cloud,Meetup,08/06/2022 18:00:00,08/06/2022 21:00:00,3 hour,http://sotondatacloud.org,Hybrid,Southampton,UK,https://twitter.com/sotondatacloud
+Microsoft Identity for All Hackathon,Hackathon,24/05/2022 00:00:00,30/06/2022 00:00:00,38 day,https://id4all.devpost.com/,Virtual,,Online,
+Cog X Festival,Conference,13/06/2022 00:00:00,15/06/2022 00:00:00,3 day,https://www.cogxfestival.com/,Hybrid,London,UK,
+Think Digital Identity For Government,Conference,16/06/2022 00:00:00,16/06/2022 00:00:00,1 day,https://www.thinkdigitalidentityforgovernment.com/,In_Person,London,UK,
+MongoDB World 2022,Conference,07/06/2022 00:00:00,09/06/2022 00:00:00,3 day,https://www.mongodb.com/world-2022,Hybrid,New York City,USA,
+GenZTechies HackFest 2022 ,Hackathon,01/07/2022 00:00:00,03/07/2022 00:00:00,3 day,https://hackfest2022.genztechies.com/,Hybrid,Lagos,Nigeria,
+Web Summit,Conference,01/11/2022 07:00:00,04/11/2022 17:00:00,4 day,https://websummit.com/,In_Person,Lisbon,Portugal,websummit
+South Coast Summit CFS,Call_For_Papers,01/06/2022 00:00:00,31/07/2022 00:00:00,61 day,https://sessionize.com/south-coast-summit-2022,In_Person,Southampton,UK,M365Summit
