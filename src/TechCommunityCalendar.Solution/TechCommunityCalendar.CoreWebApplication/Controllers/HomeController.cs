@@ -44,6 +44,25 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
+            var eventList = new EventsListViewModel();
+
+            var tempDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
+            // Group by day in current month
+            for (int x = DateTime.Now.Day; x < DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); x++)
+            {
+
+                var day = new Day();
+                day.Date = tempDate;
+                day.Events = TechEventCalendar.GetEventsOnDate(events, tempDate).ToList();
+
+                eventList.Days.Add(day);
+
+                tempDate = tempDate.AddDays(1);
+            }
+
+            model.EventList = eventList;
+
             return View(model);
         }
 

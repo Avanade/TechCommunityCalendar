@@ -1,13 +1,90 @@
-﻿a.navbar-brand {
+﻿
+/* New list view */
+
+#tech-event-list {
+    margin-top:20px;
+    text-align: left;
+}
+
+    #tech-event-list .date-heading{
+        font-weight:bold;
+        font-size:1.1em;
+    }
+
+
+    #tech-event-list .event-heading {
+        color: #fff;
+    }
+
+    #tech-event-list .event {
+        margin-bottom: 20px;
+    }
+        #tech-event-list .event .event-heading {
+            padding: 5px;
+        }
+
+        #tech-event-list .event .event-body
+        {
+            padding:10px;
+        }
+
+        #tech-event-list .event .event-body .event-name {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+.event-share-icon
+{
+    float:right;
+}
+
+.calendar-add-icon {
+    float: right;
+}
+
+.event-type-cfs-heading {
+    background-color: #1A65B6;
+}
+
+.event-type-cfs-body {
+    background-color: #EDF3F9;
+}
+
+.event-type-meetup-heading {
+    background-color: #CD2629;
+}
+
+.event-type-meetup-body {
+    background-color: #F7EAEA;
+}
+
+.event-type-hackathon-heading {
+    background-color: #1F7236;
+}
+
+.event-type-hackathon-body {
+    background-color: #ECF3EE;
+}
+
+.event-type-conference-heading {
+    background-color: #84177B;
+}
+
+.event-type-conference-body {
+    background-color: #F6EDF6;
+}
+/* End new list view */
+
+a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
-    color:#fff !important;
+    color: #fff !important;
 }
 
 .navbar {
-    border:none !important;
-    margin:0 !important;
+    border: none !important;
+    margin: 0 !important;
 }
 
 
@@ -49,7 +126,10 @@ h2 {
     h1 {
         padding: 70px 0 10px 0;
     }
-    h2 {padding:0px 0 30px 0;}
+
+    h2 {
+        padding: 0px 0 30px 0;
+    }
 }
 
 .border-top {

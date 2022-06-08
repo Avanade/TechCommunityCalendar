@@ -19,5 +19,6 @@ namespace TechCommunityCalendar.Interfaces
         public bool Hidden { get; set; }
         public bool HappeningOnDate(DateTime dateTime);
         public bool HapenningNextXDays(int days);
+        public string[] Tags { get; set; }
     }
 }

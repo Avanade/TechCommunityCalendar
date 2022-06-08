@@ -9,6 +9,14 @@ namespace TechCommunityCalendar.Concretions
 {
     public class TechEventCalendar
     {
+        public static IEnumerable<ITechEvent> GetEventsOnDate(IEnumerable<ITechEvent> events, DateTime date)
+        {
+            return events.Where(x =>
+                date >= x.StartDate // It is or after the start date
+                && date <= x.EndDate // And it is or before the end date
+                || date == x.StartDate.Date); // To catch short events today                    
+        }
+
         public static IEnumerable<ITechEvent> GetCurrentEvents(IEnumerable<ITechEvent> events)
         {
             return events.Where(x =>

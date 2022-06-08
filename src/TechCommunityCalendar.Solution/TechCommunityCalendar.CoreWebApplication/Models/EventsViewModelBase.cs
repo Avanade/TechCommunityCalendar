@@ -17,5 +17,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
         public int UpcomingEventsCount { get { return UpcomingEvents.Count(); } }
         public int RecentEventsCount { get { return RecentEvents.Count(); } }
         public int MonthEventsCount { get { return MonthEvents.Count(); } }
+
+
+        public EventsListViewModel EventList { get; set; } = new EventsListViewModel();
     }
 }

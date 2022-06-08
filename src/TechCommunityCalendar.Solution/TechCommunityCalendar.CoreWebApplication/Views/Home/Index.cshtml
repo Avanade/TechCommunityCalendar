@@ -9,6 +9,7 @@
     @await Html.PartialAsync("_TopMonths", Model.Events)
     <br />*@
 
+    @*
     @if (Model.CurrentEvents.Any())
     {
         <h3>@Model.CurrentEventsCount Current Events</h3>
@@ -35,4 +36,9 @@
     {
         <a href="/country/@country.Item2/">@country.Item1</a> <text>//</text>
     }
+    *@
+
+    @await Html.PartialAsync("_EventsListV2", Model.EventList)
+
+
 </div>
