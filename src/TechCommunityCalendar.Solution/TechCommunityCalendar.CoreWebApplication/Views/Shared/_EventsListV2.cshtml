@@ -6,60 +6,62 @@
 }
 
 <div id="tech-event-list">
-     @foreach(var day in Model.Days)
-     {
-    <div class="day">
-
-        <div class="date-heading">@day.Date.ToString("MMMM dd")</div>
-            
-
-            
-
-        @foreach(var techEvent in day.Events)
+    @foreach (var day in Model.Days)
+    {
+        if(!day.Events.Any())
         {
-            string eventTypeHeadingCssClass = "";
-            string eventTypeBodyCssClass = "";
-
-            switch(techEvent.EventType)
-            {
-                case TechCommunityCalendar.Enums.EventType.Conference:
-                    eventTypeHeadingCssClass = "event-type-conference-heading";
-                    eventTypeBodyCssClass = "event-type-conference-body";
-                    break;
-
-                case TechCommunityCalendar.Enums.EventType.Meetup:
-                    eventTypeHeadingCssClass = "event-type-meetup-heading";
-                    eventTypeBodyCssClass = "event-type-meetup-body";
-                    break;
-
-                case TechCommunityCalendar.Enums.EventType.Call_For_Papers:
-                    eventTypeHeadingCssClass = "event-type-cfs-heading";
-                    eventTypeBodyCssClass = "event-type-cfs-body";
-                    break;
-
-                case TechCommunityCalendar.Enums.EventType.Hackathon:
-                    eventTypeHeadingCssClass = "event-type-hackathon-heading";
-                    eventTypeBodyCssClass = "event-type-hackathon-body";
-                    break;
-
-            }
-
-            <div class="event">
-                <div class="event-heading @eventTypeHeadingCssClass">
-                    <span>[@techEvent.EventType Icon]</span> <span>@techEvent.StartDate.ToString("HH:mm tt")</span> <span class="event-share-icon">[Share Icon]</span>
-                </div>
-
-                <div class="event-body @eventTypeBodyCssClass">
-                    <div class="calendar-add-icon">📅</div>
-                    <span class="event-name">@techEvent.Name</span> - @techEvent.City, @techEvent.Country (@techEvent.EventType)
-                    <div class="tags">
-                        <span class="badge badge-secondary">tag 1</span> <span class="badge badge-secondary">tag 2</span> <span  class="badge badge-secondary">tag 3</span>
-                    </div>
-                </div>
-
-            </div>
+            continue;
         }
-    </div>
-}
+
+        <div class="day">
+
+            <div class="date-heading">@day.Date.ToString("MMMM dd")</div>
+
+            @foreach (var techEvent in day.Events)
+            {
+                string eventTypeHeadingCssClass = "";
+                string eventTypeBodyCssClass = "";
+
+                switch (techEvent.EventType)
+                {
+                    case TechCommunityCalendar.Enums.EventType.Conference:
+                        eventTypeHeadingCssClass = "event-type-conference-heading";
+                        eventTypeBodyCssClass = "event-type-conference-body";
+                        break;
+
+                    case TechCommunityCalendar.Enums.EventType.Meetup:
+                        eventTypeHeadingCssClass = "event-type-meetup-heading";
+                        eventTypeBodyCssClass = "event-type-meetup-body";
+                        break;
+
+                    case TechCommunityCalendar.Enums.EventType.Call_For_Papers:
+                        eventTypeHeadingCssClass = "event-type-cfs-heading";
+                        eventTypeBodyCssClass = "event-type-cfs-body";
+                        break;
+
+                    case TechCommunityCalendar.Enums.EventType.Hackathon:
+                        eventTypeHeadingCssClass = "event-type-hackathon-heading";
+                        eventTypeBodyCssClass = "event-type-hackathon-body";
+                        break;
+
+                }
+
+                <div class="event">
+                    <div class="event-heading @eventTypeHeadingCssClass">
+                        <span>[@techEvent.EventType Icon]</span> <span>@techEvent.StartDate.ToString("HH:mm tt")</span> <span class="event-share-icon">[Share Icon]</span>
+                    </div>
+
+                    <div class="event-body @eventTypeBodyCssClass">
+                        <div class="calendar-add-icon">📅</div>
+                        <span class="event-name">@techEvent.Name</span> - @techEvent.City, @techEvent.Country (@techEvent.EventType)
+                        <div class="tags">
+                            <span class="badge badge-secondary">tag 1</span> <span class="badge badge-secondary">tag 2</span> <span class="badge badge-secondary">tag 3</span>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
 
 </div>

@@ -181,5 +181,12 @@ namespace TechCommunityCalendar.Concretions
 
             return events.Where(x => x.EventType.Equals(eventType)).ToArray();
         }
+
+        public async Task<ITechEvent[]> Search(string keyword)
+        {
+            var events = await GetAll();
+
+            return events.Where(x => x.Name.Contains(keyword, StringComparison.InvariantCultureIgnoreCase)).ToArray();
+        }
     }
 }

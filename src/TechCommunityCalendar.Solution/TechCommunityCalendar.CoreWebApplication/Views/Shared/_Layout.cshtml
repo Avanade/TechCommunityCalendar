@@ -67,8 +67,8 @@
             </div>*@
 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-success" type="button" id="button-addon2"><i class="fa fa-search">Go</i></button>
+                <input id="searchTerm" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                <button class="btn btn-success" type="button" id="button-addon2" onclick="search()"><i class="fa fa-search">Go</i></button>
             </div>
 
         </div>
@@ -104,6 +104,16 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function search()
+        {
+            var searchTerm = document.getElementById('searchTerm').value;
+
+            window.location = '/search/' + searchTerm;
+        }
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

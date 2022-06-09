@@ -44,6 +44,13 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
+            model.EventList = GetEventsModel(events);
+
+            return View(model);
+        }
+
+        private EventsListViewModel GetEventsModel(ITechEvent[] events)
+        {
             var eventList = new EventsListViewModel();
 
             var tempDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
@@ -51,7 +58,6 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             // Group by day in current month
             for (int x = DateTime.Now.Day; x < DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); x++)
             {
-
                 var day = new Day();
                 day.Date = tempDate;
                 day.Events = TechEventCalendar.GetEventsOnDate(events, tempDate).ToList();
@@ -61,9 +67,22 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 tempDate = tempDate.AddDays(1);
             }
 
-            model.EventList = eventList;
+            return eventList;
+        }
 
-            return View(model);
+        [Route("/search/{searchTerm}")]
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            var events = await GetEventsFromCache();
+
+            var matchingEvents = TechEventCalendar.Search(events, searchTerm);
+
+            var eventsListViewModel = GetEventsModel(matchingEvents);
+
+            var viewModel = new HomeViewModel();
+            viewModel.EventList = eventsListViewModel;
+
+            return View("Index",viewModel);
         }
 
         [Route("/opensource/")]
