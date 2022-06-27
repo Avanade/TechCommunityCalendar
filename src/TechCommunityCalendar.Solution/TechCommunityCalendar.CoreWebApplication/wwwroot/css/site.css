@@ -5,6 +5,11 @@
     color: #fff !important;
 }
 
+.navbar {
+    border: none !important;
+    margin: 0 !important;
+}
+
 a {
     color: #0366d6;
 }
