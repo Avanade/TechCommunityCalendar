@@ -35,6 +35,10 @@ html {
     font-size: 14px;
 }
 
+h1 {
+    padding: 70px 0 10px 0;
+}
+
 h2 {
     font-size: 1.1em;
 }
@@ -47,7 +51,6 @@ h2 {
     h1 {
         padding: 70px 0 10px 0;
     }
-
 }
 
 .border-top {
@@ -110,6 +113,7 @@ img#logo {
 @media (min-width: 320px) and (max-width: 480px) {
     h1 {
         font-size: 2em !important;
+        padding: 70px 0 10px 0;
     }
 
     h2 {
