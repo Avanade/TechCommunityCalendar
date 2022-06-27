@@ -2,6 +2,7 @@
     white-space: normal;
     text-align: center;
     word-break: break-all;
+    color: #fff !important;
 }
 
 a {
@@ -12,6 +13,11 @@ a {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
+}
+
+.bg-navy {
+    background-color: #1F2638;
+    color: #fff !important;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -32,6 +38,11 @@ h2 {
     html {
         font-size: 16px;
     }
+
+    h1 {
+        padding: 70px 0 10px 0;
+    }
+
 }
 
 .border-top {
