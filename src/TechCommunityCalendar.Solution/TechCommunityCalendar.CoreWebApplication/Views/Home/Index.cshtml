@@ -1,7 +1,21 @@
 ﻿@model TechCommunityCalendar.CoreWebApplication.Models.HomeViewModel
 @{
 }
-<div class="text-center">
+
+<div class="row">
+
+<div class="col-3">  
+
+    <h2>Events by Type</h2>
+
+    <a href="/eventtype/callforpapers/" class="btn btn-primary">Call for speakers</a>
+    <a href="/eventtype/conference/" class="btn btn-primary">Conferences</a>
+    <a href="/eventtype/hackathon/" class="btn btn-primary">Hackathons</a>
+    <a href="/eventtype/meetup/" class="btn btn-primary">Meetups</a>
+    <a href="/eventtype/website/" class="btn btn-primary">Websites</a>
+</div>
+
+<div class="col-9">
 
     @*@await Html.PartialAsync("_EventTypesIcons")
     <br/>
@@ -40,5 +54,7 @@
 
     @await Html.PartialAsync("_EventsListV2", Model.EventList)
 
+
+</div>
 
 </div>
