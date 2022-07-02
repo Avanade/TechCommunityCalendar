@@ -31,6 +31,16 @@ namespace TechCommunityCalendar.Concretions
                 && DateTime.Now.Date.Subtract(x.EndDate).TotalDays <= 30)
                     .OrderByDescending(x => x.StartDate);
         }
+
+        public static IEnumerable<ITechEvent> Search(string searchTerm, IEnumerable<ITechEvent> events)
+        {
+            return events.Where(x=>
+                x.Name.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase)
+                || x.Country.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase)
+                || x.City.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase)
+                ).OrderByDescending(x => x.StartDate);
+        }
+
         public static string GetEventTypeIcon(EventType eventType)
         {
             switch (eventType)

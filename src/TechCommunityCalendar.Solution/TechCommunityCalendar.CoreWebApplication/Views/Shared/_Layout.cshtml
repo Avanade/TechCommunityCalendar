@@ -38,21 +38,20 @@
         </nav>
     </header>
 
-    <div style="background-image:url('/images/header.jpeg'); background-position:right bottom; background-repeat: no-repeat; background-size: cover; height:248px;">
+    <div style="background-image:url('/images/header.jpeg'); background-position:right bottom; background-repeat: no-repeat; background-size: cover; height:248px; margin-bottom:20px">
         <h1 class="display-5" style="text-align:center; color:#fff;">Tech Community Calendar</h1>
         <h2 style="text-align:center; color:#fff;">Conferences - Call For Papers - Meetups - Hackathons</h2>
 
 
         <div class="container">
-            @*<div class="input-group">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary">search</button>
-            </div>*@
+            
+            <form action="/Search/Search" method="post" onsubmit="search()">
 
-            @*<div class="input-group mb-3">
-            <input id="searchTerm" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-            <button class="btn btn-success" type="button" id="button-addon2" onclick="search()"><i class="fa fa-search">Go</i></button>
-            </div>*@
+                <div class="input-group mb-3 col-md-6 col-lg-6 offset-3 col-sm-8 offset-sm-2 offset-sm-3">
+                    <input id="searchTerm" name="SearchTerm" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                    <button class="btn btn-success" type="button" id="button-addon2" onclick="search()"><i class="fa fa-search">Go</i></button>
+                </div>
+            </form>
 
         </div>
 
@@ -70,7 +69,7 @@
             </div>
         </main>
     </div>
-    <br/>
+    <br />
     <footer class="border-top footer text-muted" style="clear:both;">
         <div class="container">
             <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar"><img src="~/images/avanade.png" alt="Avanade logo" style="width:150px;"></a>
@@ -82,5 +81,14 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+    <script>
+        function search() {
+
+            var searchTerm = document.getElementById('searchTerm').value;
+
+            document.location = "/search/" + searchTerm;
+        }
+    </script>
 </body>
 </html>
