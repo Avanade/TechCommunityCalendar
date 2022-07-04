@@ -70,10 +70,9 @@
         </main>
     </div>
     <br />
-    <footer class="border-top footer text-muted" style="clear:both;">
+    <footer class="border-top footer text-muted"
         <div class="container">
-            <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar"><img src="~/images/avanade.png" alt="Avanade logo" style="width:150px;"></a>
-
+            <p class="float-left"><a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar"><img src="~/images/avanade.png" alt="Avanade logo" style="width:150px;"></a></p>
             <p class="float-right">&copy; 2022 - TechCommunityCalendar.com. All rights reserved. Created by <a href="https://twitter.com/leeenglestone">Lee Englestone</a>. Supported by <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar">Avanade, Inc.</a></p>
         </div>
     </footer>
@@ -86,8 +85,9 @@
         function search() {
 
             var searchTerm = document.getElementById('searchTerm').value;
-
-            document.location = "/search/" + searchTerm;
+                     
+            if(searchTerm !== null && searchTerm !== '')
+                document.location = "/search/" + searchTerm;
         }
     </script>
 </body>
