@@ -44,7 +44,7 @@
 
 
         <div class="container">
-            
+
             <form action="/Search/Search" method="post" onsubmit="search()">
 
                 <div class="input-group mb-3 col-md-6 col-lg-6 offset-3 col-sm-8 offset-sm-2 offset-sm-3">
@@ -69,13 +69,28 @@
             </div>
         </main>
     </div>
-    <br />
-    <footer class="border-top footer text-muted"
-        <div class="container">
-            <p class="float-left"><a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar"><img src="~/images/avanade.png" alt="Avanade logo" style="width:150px;"></a></p>
-            <p class="float-right">&copy; 2022 - TechCommunityCalendar.com. All rights reserved. Created by <a href="https://twitter.com/leeenglestone">Lee Englestone</a>. Supported by <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar">Avanade, Inc.</a></p>
-        </div>
-    </footer>
+
+
+    <div class="container">
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+
+            <p class="col-md-6 mb-0 text-muted">
+                <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar"><img src="~/images/avanade.png" alt="Avanade logo" style="width:150px;"></a>
+            </p>
+
+            <ul class="nav nav col-md-5 justify-content-end">
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://www.avanade.com/en/utility/privacy-policy">Privacy policy</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://avanade.github.io/code-of-conduct/">Code of conduct</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://www.avanade.com/en/utility/terms-of-use">Terms of use</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://www.avanade.com/en/about-avanade/approach/trust-center/responsible-disclosure">Security</a></li>
+            </ul>
+
+        </footer>
+
+        <p class="text-muted col-md-12 text-center">&copy; 2022 - TechCommunityCalendar.com. All rights reserved. Created by <a href="https://twitter.com/leeenglestone">Lee Englestone</a>. Supported by <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar">Avanade, Inc.</a></p>
+
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -85,8 +100,8 @@
         function search() {
 
             var searchTerm = document.getElementById('searchTerm').value;
-                     
-            if(searchTerm !== null && searchTerm !== '')
+
+            if (searchTerm !== null && searchTerm !== '')
                 document.location = "/search/" + searchTerm;
         }
     </script>
