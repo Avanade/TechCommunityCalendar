@@ -1,0 +1,50 @@
+﻿@model TechCommunityCalendar.CoreWebApplication.Models.CityViewModel
+@{
+}
+
+<div class="text-center">
+
+    @await Html.PartialAsync("_EventTypesIcons")
+    <br />
+
+    @await Html.PartialAsync("_TopMonths", Model.Events)
+    <br />
+
+    <h3>Tech Events in @Model.City</h3>
+
+    <br />
+    <br />
+
+    <h4>@Model.CurrentEventsCount Current Events</h4>
+    @if (Model.CurrentEvents.Any())
+    {
+        @await Html.PartialAsync("_EventsTable", Model.CurrentEvents)
+    }
+    else
+    {
+        <p>No current events</p>
+    }
+    <br />
+
+    <h4>@Model.UpcomingEventsCount Upcoming Events</h4>
+    @if (Model.UpcomingEvents.Any())
+    {
+        @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
+    }
+    else
+    {
+        <p>No upcoming events</p>
+    }
+    <br />
+
+    <h4>@Model.RecentEventsCount Recent Events</h4>
+    @if (Model.RecentEvents.Any())
+    {
+        @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+    }
+    else
+    {
+        <p>No recent events</p>
+    }
+
+</div>

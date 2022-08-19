@@ -25,10 +25,10 @@ namespace TechCommunityCalendar.Concretions
                     .OrderBy(x => x.StartDate);
         }
 
-        public static IEnumerable<ITechEvent> GetRecentEvents(IEnumerable<ITechEvent> events)
+        public static IEnumerable<ITechEvent> GetRecentEvents(IEnumerable<ITechEvent> events, int totalDays = 30)
         {
             return events.Where(x => DateTime.Now.Date > x.EndDate
-                && DateTime.Now.Date.Subtract(x.EndDate).TotalDays <= 30)
+                && DateTime.Now.Date.Subtract(x.EndDate).TotalDays <= totalDays)
                     .OrderByDescending(x => x.StartDate);
         }
 

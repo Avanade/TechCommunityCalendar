@@ -1,0 +1,75 @@
+﻿@model TechCommunityCalendar.CoreWebApplication.Models.MapViewModel
+
+<div id="map"></div>
+
+@section Scripts
+{
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+	<link rel="stylesheet" href="/css/map/screen.css" />
+	<link rel="stylesheet" href="/css/map/MarkerCluster.css" />
+	<link rel="stylesheet" href="/css/map/MarkerCluster.Default.css" />
+	<script src="/js/map/leaflet.markercluster-src.js"></script>
+	<script src="/js/map/locations.js"></script>
+
+    <script type="text/javascript">
+
+		//let tileServer1 = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		let tileServer2 = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
+
+		var tiles = L.tileLayer(tileServer2, {
+				maxZoom: 18,
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			}),
+			latlng = new L.LatLng(48.5, 8.51);
+
+		var map = new L.Map('map', {center: latlng, zoom: 5, layers: [tiles]});
+		var markers = new L.MarkerClusterGroup();
+		var markersList = [];
+
+		function populate() {
+
+			var allCities = getAllCities();
+
+			@Html.Raw(Model.ArrayCode);
+
+			for(var i = 0; i < allCities.length; i++)
+			{
+				var city = allCities[i];
+				
+				if(!cities.includes(city.name))
+					continue;
+
+				var marker = new L.Marker(new L.LatLng(city.latitude, city.longitude),
+				{
+					cityName:city.name
+				});
+				
+				markersList.push(marker);
+				markers.addLayer(marker);
+			}
+		
+			return false;
+		}		
+
+		markers.on('clusterclick', function (a) {
+			//alert('cluster ' + a.layer.getAllChildMarkers().length);
+		});
+		markers.on('click', function (a) {
+			//alert('marker ' + a.layer);			
+			//alert('marker ' + a.latlng.lat + ',' + a.latlng.lng);
+			//alert(a.layer.options.cityName);
+			window.location = "/city/" + a.layer.options.cityName.toLowerCase();
+		});
+
+		populate();
+		map.addLayer(markers);
+
+		function City(name, latitude, longitude) {
+			this.name = name;
+			this.latitude = latitude;
+			this.longitude = longitude;
+		}
+
+	</script>
+}
