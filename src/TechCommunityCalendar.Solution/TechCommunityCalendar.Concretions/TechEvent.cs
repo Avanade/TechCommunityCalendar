@@ -21,6 +21,8 @@ namespace TechCommunityCalendar.Concretions
         public EventFormat EventFormat { get; set; }
         public bool Hidden { get; set; }
 
+        public string FriendlyName { get { return TechEventCleaner.MakeFriendlyBranchName(Name); } }
+
         public bool HappeningOnDate(DateTime dateTime)
         {
             if (dateTime.Date >= StartDate.Date && dateTime.Date <= EndDate.Date)

@@ -10,7 +10,7 @@
 
 @if (Model.Events.Any())
     {
-        @await Html.PartialAsync("_EventsTable", Model.Events)
+    @await Html.PartialAsync("_EventsImages", Model.Events)
     }
     else
     {

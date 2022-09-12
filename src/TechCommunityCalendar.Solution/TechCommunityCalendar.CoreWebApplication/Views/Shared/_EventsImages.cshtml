@@ -1,0 +1,90 @@
+﻿@model IEnumerable<TechCommunityCalendar.Interfaces.ITechEvent>
+
+<div class="row" id="events">
+    @foreach (var item in Model)
+    {
+        <div class="col col-md-4 event-card">
+            <a href="@item.Url">
+                <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center; margin:5px 0">
+                    <img src="https://techcommunitycalendar.blob.core.windows.net/images/@item.FriendlyName-300.png" alt="@item.Name" style="width:341px;height:192px;">
+                    <div class="" style="padding:10px;">
+
+                        <span class="name">@item.Name</span><br />
+                        @item.StartDate.ToString("dd/MM/yyyy")<br />
+                        @if (!string.IsNullOrEmpty(item.City))
+                        {
+                            @item.City
+                            <text>,</text>
+                        }
+                        @item.Country
+
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+@*<tr>
+            <td>
+                @TechCommunityCalendar.Concretions.TechEventCalendar.GetEventTypeIcon(item.EventType)
+            </td>
+            <td style="text-align:left">
+                @item.StartDate.ToString("dd/MM/yyyy") - <a href="@item.Url" class="event-name">@item.Name</a>
+                - @if (!string.IsNullOrEmpty(item.City))
+                {
+                    @item.City<text>,</text>
+                }
+                @item.Country
+            </td>
+            <td>
+                @{
+                    var onClickEvent = $"GenerateIcs('{item.Name}','{item.StartDate.ToString("yyyyMMddTHHmmssZ")}','{item.EndDate.ToString("yyyyMMddTHHmmssZ")}','{item.Country} {item.City}', '{item.Url}', '{Guid.NewGuid()}')";
+                }
+                <a href="javascript:return;" onclick="@onClickEvent" title="Add to calendar (.ics)">📅</a>
+            </td>
+            <td>
+                @if (item.EventType == TechCommunityCalendar.Enums.EventType.Call_For_Papers)
+                {
+                    <text>Call For Papers</text>
+
+                    var daysRemaining = item.EndDate.Subtract(DateTime.Now.Date).Days;
+                    if (daysRemaining > 0)
+                    {
+                        <text> (@daysRemaining days remaining)</text>
+                    }
+                }
+                else
+                {
+                    <span>@item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType.ToString().Replace("_", " ")</span>
+                }
+
+                @if (item.HappeningOnDate(DateTime.Now.Date))
+                {
+                    <span class="badge badge-danger">Today</span>
+                }
+                else if (item.HappeningOnDate(DateTime.Now.Date.AddDays(1)))
+                {
+                    <span class="badge badge-warning">Tomorrow</span>
+                }
+                else if (item.HapenningNextXDays(7))
+                {
+                    <span class="badge badge-success">Next 7 days</span>
+                }
+            </td>
+        </tr>*@
+
+
+
+
+<script>
+
+    function GenerateIcs(name, start, end, location, url, uid) {
+
+        var description = "Event Url: " + url + "\\n\\nNote: Please check the event details with event organisers.\\n\\n" + "Make sure to check out other events at https://TechCommunityCalendar.com";
+        var icsMSG = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Avanade DevRel//NONSGML v1.0//EN\nBEGIN:VEVENT\nUID:" + uid + "\nDTSTAMP:20120315T170000Z\nDTSTART:" + start + "\nDTEND:" + end + "\nLOCATION:" + location + "\nSUMMARY:" + name + "\nDESCRIPTION:" + description + "\nEND:VEVENT\nEND:VCALENDAR";
+
+        window.open("data:text/calendar;charset=utf8," + escape(icsMSG));
+    }
+
+</script>
