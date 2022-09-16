@@ -7,6 +7,8 @@ namespace TechCommunityCalendar.Interfaces
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; }
+        public string FriendlyName { get; }
         public string City { get; set; }
         public string Country { get; set; }
         public string Url { get; set; }

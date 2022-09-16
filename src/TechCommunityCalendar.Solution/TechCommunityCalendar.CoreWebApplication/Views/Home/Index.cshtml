@@ -13,21 +13,21 @@
     @if (Model.CurrentEvents.Any())
     {
         <h3>@Model.CurrentEventsCount Current Events</h3>
-        @await Html.PartialAsync("_EventsTable", Model.CurrentEvents)
+        @await Html.PartialAsync("_EventsImages", Model.CurrentEvents)
         <br />
     }
 
     @if (Model.UpcomingEvents.Any())
     {
         <h3>@Model.UpcomingEventsCount Upcoming Events</h3>
-        @await Html.PartialAsync("_EventsTable", Model.UpcomingEvents)
+        @await Html.PartialAsync("_EventsImages", Model.UpcomingEvents)
         <br />
     }
 
     @if (Model.RecentEvents.Any())
     {
         <h3>@Model.RecentEventsCount Recent Events</h3>
-        @await Html.PartialAsync("_EventsTable", Model.RecentEvents)
+        @await Html.PartialAsync("_EventsImages", Model.RecentEvents)
         <br />
     }
 

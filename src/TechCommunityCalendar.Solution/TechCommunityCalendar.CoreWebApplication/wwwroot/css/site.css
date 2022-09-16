@@ -91,6 +91,18 @@ body {
     font-weight: bold;
 }
 
+.event-card {
+    color: black !important;
+}
+
+    .event-card .name {
+        font-weight: bold;
+    }
+
+    .event-card a {
+        color: black !important;
+    }
+
 img#logo {
     max-width: 100%;
 }
