@@ -22,11 +22,14 @@ internal class Program
 
         // To to url, get screenshot, save locally
         ChromeOptions options = new ChromeOptions();
-        options.AddArgument("headless");//Comment if we want to see the window. 
+        //options.AddArgument("headless");//Comment if we want to see the window. 
         var driver = new ChromeDriver("C:\\Development\\TechCommunityCalendar\\src\\TechCommunityCalendar.Solution\\ScreenshotThubmnailGenerator\\bin\\Debug\\net6.0\\", options);
         //var driver = new ChromeDriver(options);
         //driver.Manage().Window.Size = new Size(1920, 1080);
         driver.Manage().Window.Size = new Size(1366, 768);
+        var userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36";
+        options.AddArgument("user-agent=" + userAgent);
+        
 
         foreach (var _event in events.OrderByDescending(x=>x.StartDate))
         {

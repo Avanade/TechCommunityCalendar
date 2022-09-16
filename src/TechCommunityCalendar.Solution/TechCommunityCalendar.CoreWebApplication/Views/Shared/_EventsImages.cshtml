@@ -6,8 +6,13 @@
         <div class="col col-md-4 event-card">
             <a href="@item.Url">
                 <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center; margin:5px 0">
-                    <img src="https://techcommunitycalendar.blob.core.windows.net/images/@item.FriendlyName-300.png" alt="@item.Name" style="width:341px;height:192px;">
-                    <div class="" style="padding:10px;">
+                    <div style="position:absolute; left:60%; top:10px;">
+                        <span class="badge badge-success">Tag1</span>
+                        <span class="badge badge-success">Tag2</span>
+                    </div>
+                    
+                    <img src="https://techcommunitycalendar.blob.core.windows.net/images/@item.FriendlyName-300.png" alt="@item.Name" style="width:100%;">
+                    <div class="" style="padding:10px;background-color: #fefefe">
 
                         <span class="name">@item.Name</span><br />
                         @item.StartDate.ToString("dd/MM/yyyy")<br />
@@ -17,10 +22,16 @@
                             <text>,</text>
                         }
                         @item.Country
+                                               
+                        <br/>@item.Description
 
                     </div>
                 </div>
             </a>
+            @*@{
+                var onClickEvent = $"GenerateIcs('{item.Name}','{item.StartDate.ToString("yyyyMMddTHHmmssZ")}','{item.EndDate.ToString("yyyyMMddTHHmmssZ")}','{item.Country} {item.City}', '{item.Url}', '{Guid.NewGuid()}')";
+            }
+            <span onclick="@onClickEvent" title="Add to calendar (.ics)">📅</span>*@
         </div>
     }
 </div>
