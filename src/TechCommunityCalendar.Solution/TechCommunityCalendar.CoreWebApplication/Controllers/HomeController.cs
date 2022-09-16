@@ -42,7 +42,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
 
             model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
             model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
-            model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
+            model.RecentEvents = TechEventCalendar.GetRecentEvents(events, 15);
 
             return View(model);
         }

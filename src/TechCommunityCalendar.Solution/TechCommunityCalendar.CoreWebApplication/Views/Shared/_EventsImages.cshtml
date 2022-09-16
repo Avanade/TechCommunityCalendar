@@ -7,8 +7,20 @@
             <a href="@item.Url">
                 <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align: center; margin:5px 0">
                     <div style="position:absolute; left:60%; top:10px;">
-                        <span class="badge badge-success">Tag1</span>
-                        <span class="badge badge-success">Tag2</span>
+                        @*<span class="badge badge-success">Tag1</span>
+                        <span class="badge badge-success">Tag2</span>*@
+                        @if (item.HappeningOnDate(DateTime.Now.Date))
+                        {
+                            <span class="badge badge-danger">Today</span>
+                        }
+                        else if (item.HappeningOnDate(DateTime.Now.Date.AddDays(1)))
+                        {
+                            <span class="badge badge-warning">Tomorrow</span>
+                        }
+                        else if (item.HapenningNextXDays(7))
+                        {
+                            <span class="badge badge-success">Next 7 days</span>
+                        }
                     </div>
 
                     <img src="https://techcommunitycalendar.blob.core.windows.net/images/@item.FriendlyName-300.png" alt="@item.Name" style="width:100%;" onerror="this.onerror=null; this.src='images/not-found.png'">
@@ -22,16 +34,17 @@
                             <text>,</text>
                         }
                         @item.Country
-                                               
-                        <br/>@item.Description
+
+                        <br />@item.Description 
+                        @{
+                        var onClickEvent = $"GenerateIcs('{item.Name}','{item.StartDate.ToString("yyyyMMddTHHmmssZ")}','{item.EndDate.ToString("yyyyMMddTHHmmssZ")}','{item.Country} {item.City}', '{item.Url}', '{Guid.NewGuid()}')";
+                        }
+                        <span onclick="@onClickEvent" title="Add to calendar (.ics)">📅</span>
 
                     </div>
                 </div>
             </a>
-            @*@{
-                var onClickEvent = $"GenerateIcs('{item.Name}','{item.StartDate.ToString("yyyyMMddTHHmmssZ")}','{item.EndDate.ToString("yyyyMMddTHHmmssZ")}','{item.Country} {item.City}', '{item.Url}', '{Guid.NewGuid()}')";
-            }
-            <span onclick="@onClickEvent" title="Add to calendar (.ics)">📅</span>*@
+            
         </div>
     }
 </div>
