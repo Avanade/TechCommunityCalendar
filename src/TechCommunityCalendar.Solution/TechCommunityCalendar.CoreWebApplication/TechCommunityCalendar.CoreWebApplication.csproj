@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap-icons.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TechCommunityCalendar.Concretions\TechCommunityCalendar.Concretions.csproj" />
     <ProjectReference Include="..\TechCommunityCalendar.Interfaces\TechCommunityCalendar.Interfaces.csproj" />
   </ItemGroup>
