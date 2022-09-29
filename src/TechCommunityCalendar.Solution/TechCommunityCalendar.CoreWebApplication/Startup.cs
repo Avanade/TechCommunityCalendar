@@ -48,6 +48,20 @@ namespace TechCommunityCalendar.CoreWebApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use(async (context, next) =>
+            {
+                // Accenture required headings
+                context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
+                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+
+                context.Response.Headers.Add("X-Frame-Options", "DENY");
+                context.Response.Headers.Add("Cache-Control", "public, max-age=31536000");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self' 'unsafe-eval' 'unsafe-inline' *.techcommunitycalendar.com; upgrade-insecure-requests; block-all-mixed-content");
+
+                await next.Invoke();
+            });
+
             const string gbCultureCode = "en-GB";
 
             var supportedCultures = new[] {
@@ -73,12 +87,12 @@ namespace TechCommunityCalendar.CoreWebApplication
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
+          
 
             app.UseEndpoints(endpoints =>
             {
