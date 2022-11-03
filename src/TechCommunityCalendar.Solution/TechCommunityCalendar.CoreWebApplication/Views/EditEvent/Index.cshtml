@@ -2,7 +2,7 @@
 @{
 
 }
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
 
 <br/><br/>
 <div>
@@ -34,14 +34,14 @@
             </div>
         </div>
 
-        <div class="form-group row" id="rowCity" style="display:none;">
+        <div class="form-group row" id="rowCity">
             <label for="City" class="col-sm-2 col-form-label">Admin Password</label>
             <div class="col">
                 @Html.PasswordFor(x => x.AdminPassword, new { @class = "form-control", placeholder = "", aria_label = "" })
             </div>
         </div>
 
-        <div class="g-recaptcha" data-sitekey="6Lcu15wdAAAAAGO0qet7WwE8L-3dbbpqgcANeTRm"></div>
+        @*<div class="g-recaptcha" data-sitekey="6Lcu15wdAAAAAGO0qet7WwE8L-3dbbpqgcANeTRm"></div>*@
 
         <br />
         <br />
