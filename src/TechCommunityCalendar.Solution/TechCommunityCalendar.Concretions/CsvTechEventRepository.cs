@@ -28,7 +28,7 @@ namespace TechCommunityCalendar.Concretions
             csvPath = path;
         }
 
-        public Task<ITechEvent> Get(int year, int month, Guid id)
+        public Task<ITechEvent> Get(string id)
         {
             throw new NotImplementedException();
         }

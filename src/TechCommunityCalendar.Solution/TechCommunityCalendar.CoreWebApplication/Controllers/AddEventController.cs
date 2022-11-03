@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
+using TechCommunityCalendar.Enums;
+using TechCommunityCalendar.Interfaces;
 
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
 {
@@ -13,9 +15,13 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
     {
         readonly IWebHostEnvironment currentEnvironment;
 
-        public AddEventController(IWebHostEnvironment env)
+        static ITechEventAdminRepository _techEventAdminRepository;
+
+        public AddEventController(IWebHostEnvironment env,
+            ITechEventAdminRepository techEventAdminRepository)
         {
             currentEnvironment = env;
+            _techEventAdminRepository = techEventAdminRepository;
         }
 
         public IActionResult Index()
@@ -57,11 +63,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }
 
             // Calculate Duration
-            if(model.StartDate == model.EndDate)
+            if (model.StartDate == model.EndDate)
             {
                 model.Duration = "1 day";
             }
-            else if(model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
+            else if (model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
             {
                 model.Duration = model.EndDate.Subtract(model.StartDate).TotalHours + " hour";
             }
@@ -83,6 +89,35 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            // Add to Database
+            await AddToDatabase(model);
+
+            // To add to csv in git repository
+            //await CreatePullRequest(model);
+
+            return View("Success", model);
+        }
+
+        private static async Task AddToDatabase(AddEventViewModel model)
+        {
+            var techEvent = new TechEvent();
+            techEvent.Name = model.Name;
+            techEvent.City = model.City;
+            techEvent.Country = model.Country;
+            techEvent.Duration = model.Duration;
+            techEvent.StartDate = model.StartDate;
+            techEvent.EndDate = model.EndDate;
+            techEvent.EventFormat = (EventFormat)Enum.Parse(typeof(EventFormat),model.EventFormat);
+            techEvent.EventType = (EventType)Enum.Parse(typeof(EventType),model.EventType);
+            techEvent.TwitterHandle = model.TwitterHandle;
+            techEvent.Url = model.Url;
+            techEvent.Hidden = true;
+
+            await _techEventAdminRepository.Add(techEvent);
+        }
+
+        private static async Task CreatePullRequest(AddEventViewModel model)
+        {
             // Create file with details..
             var row = $"{model.Name},{model.EventType},{model.StartDate},{model.EndDate},{model.Duration},{model.Url},{model.EventFormat},{model.City},{model.Country},{model.TwitterHandle}";
             var gitHubClient = new GitHubClient(new ProductHeaderValue("TechCommunityCalendarApp"));
@@ -123,10 +158,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var pullRequestResult = await gitHubClient.Repository.PullRequest.Create(ownerName, repositoryName, pullRequest);
 
             model.NewPullRequestUrl = pullRequestResult.HtmlUrl;
-
-            return View("Success", model);
         }
 
-        
     }
 }

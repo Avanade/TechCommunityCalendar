@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Globalization;
 using System.IO;
 using TechCommunityCalendar.Concretions;
@@ -27,13 +28,18 @@ namespace TechCommunityCalendar.CoreWebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string csvPath = Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv");
+            //string csvPath = Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv");
 
             services.AddMemoryCache();
             services.AddControllersWithViews();
             //services.AddScoped<ITechEventQueryRepository, FakeTechEventRepository>();
-            services.AddScoped<ITechEventQueryRepository>(x => new CsvTechEventRepository(csvPath));
-            //services.AddScoped<ITechEventQueryRepository>(x => new AzureTechEventRepository(azureConnectionString));
+            //services.AddScoped<ITechEventQueryRepository>(x => new CsvTechEventRepository(csvPath));
+
+            // Will probably have to pass connection string in..
+            string connectionString = Environment.GetEnvironmentVariable("SqlConnectionString");
+
+            services.AddScoped<ITechEventQueryRepository>(x => new SqlTechEventRepository(connectionString));
+            services.AddScoped<ITechEventAdminRepository>(x => new SqlTechEventRepository(connectionString));
 
             services.AddLocalization();
             //services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);

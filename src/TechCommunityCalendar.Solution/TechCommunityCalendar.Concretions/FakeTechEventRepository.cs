@@ -8,7 +8,7 @@ namespace TechCommunityCalendar.Concretions
 {
     public class FakeTechEventRepository : ITechEventQueryRepository
     {
-        public async Task<ITechEvent> Get(int yeat, int month, Guid id)
+        public async Task<ITechEvent> Get(string id)
         {
             var events = await GetAll();
             return events.FirstOrDefault(x => x.Id == id);
@@ -18,10 +18,10 @@ namespace TechCommunityCalendar.Concretions
         {
             var events = new ITechEvent[]
             {
-                new TechEvent() { Name= "DevRelCon", EventType = EventType.Conference, EventFormat= EventFormat.Virtual, Country="Worldwide", City="", Id=Guid.NewGuid(), Url = "https://2021.devrel.net/", StartDate = new DateTime(2021, 11, 8) },
-                new TechEvent() { Name= ".NET Conf", EventType = EventType.Conference, EventFormat= EventFormat.Virtual, Country="Worldwide", City="", Id=Guid.NewGuid(), Url = "https://www.dotnetconf.net/", StartDate = new DateTime(2021, 11, 9) },
-                new TechEvent() { Name= "Introduction to .NET 6 (with Scott H)", EventType = EventType.Meetup, EventFormat= EventFormat.Virtual, Country="Worldwide", City="", Id=Guid.NewGuid(), Url = "https://www.meetup.com/Nottingham-IoT-Meetup/events/281658143/", StartDate = new DateTime(2021, 11, 17) },
-                new TechEvent() { Name= "NDC Oslo", EventType = EventType.Conference, EventFormat= EventFormat.In_Person, Country="Norway", City="Oslo", Id=Guid.NewGuid(), Url = "https://ndcoslo.com/", StartDate = new DateTime(2021, 11, 29) },
+                new TechEvent() { Name= "DevRelCon", EventType = EventType.Conference, EventFormat= EventFormat.Virtual, Country="Worldwide", City="", Id=Guid.NewGuid().ToString(), Url = "https://2021.devrel.net/", StartDate = new DateTime(2021, 11, 8) },
+                new TechEvent() { Name= ".NET Conf", EventType = EventType.Conference, EventFormat= EventFormat.Virtual, Country="Worldwide", City="", Id=Guid.NewGuid().ToString(), Url = "https://www.dotnetconf.net/", StartDate = new DateTime(2021, 11, 9) },
+                new TechEvent() { Name= "Introduction to .NET 6 (with Scott H)", EventType = EventType.Meetup, EventFormat= EventFormat.Virtual, Country="Worldwide", City="", Id=Guid.NewGuid().ToString(), Url = "https://www.meetup.com/Nottingham-IoT-Meetup/events/281658143/", StartDate = new DateTime(2021, 11, 17) },
+                new TechEvent() { Name= "NDC Oslo", EventType = EventType.Conference, EventFormat= EventFormat.In_Person, Country="Norway", City="Oslo", Id=Guid.NewGuid().ToString(), Url = "https://ndcoslo.com/", StartDate = new DateTime(2021, 11, 29) },
             };
 
             return Task.FromResult(events);

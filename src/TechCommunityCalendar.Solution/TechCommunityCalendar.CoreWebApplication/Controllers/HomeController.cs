@@ -25,6 +25,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ViewBag.Description = "A calendar list of upcoming Conferences, Meetups and Hackathons in the Tech Community";
 
             var events = await GetEventsFromCache();
+            events = events.Where(x => !x.Hidden).ToArray();
 
             var countries = events.Select(x => x.Country)
                 .Distinct()
