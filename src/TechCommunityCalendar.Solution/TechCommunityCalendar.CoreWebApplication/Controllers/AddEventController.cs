@@ -102,7 +102,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         {
             var techEvent = new TechEvent();
             techEvent.Name = model.Name;
-            techEvent.City = model.City;
+            techEvent.City = model.City ?? String.Empty;
             techEvent.Country = model.Country;
             techEvent.Duration = model.Duration;
             techEvent.StartDate = model.StartDate;
