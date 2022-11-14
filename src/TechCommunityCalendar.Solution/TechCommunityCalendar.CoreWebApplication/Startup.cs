@@ -65,7 +65,7 @@ namespace TechCommunityCalendar.CoreWebApplication
                 context.Response.Headers.Add("X-Frame-Options", "DENY");
                 context.Response.Headers.Add("Cache-Control", "public, max-age=31536000");
                 context.Response.Headers.Add("Content-Security-Policy",
-                    "default-src 'self' 'unsafe-eval' 'unsafe-inline' *.techcommunitycalendar.com *.google-analytics.com https://unpkg.com; " +
+                    "default-src 'self' 'unsafe-eval' 'unsafe-inline' *.techcommunitycalendar.com *.google-analytics.com https://unpkg.com cartocdn.com; " +
                     "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.google-analytics.com https://unpkg.com *.jsdelivr.net; " +
                     "connect-src 'self' *.google-analytics.com; " +
                     "style-src-elem 'self' 'unsafe-eval' *.jsdelivr.net https://unpkg.com; " +
