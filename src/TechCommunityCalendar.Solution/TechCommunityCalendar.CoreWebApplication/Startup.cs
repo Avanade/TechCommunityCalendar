@@ -66,7 +66,10 @@ namespace TechCommunityCalendar.CoreWebApplication
                 context.Response.Headers.Add("Cache-Control", "public, max-age=31536000");
                 context.Response.Headers.Add("Content-Security-Policy", 
                     "default-src 'self' 'unsafe-eval' 'unsafe-inline' *.techcommunitycalendar.com; " +
-                    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.google-analytics.com *.unpkg.com *.jsdelivr.net; upgrade-insecure-requests; block-all-mixed-content");
+                    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.google-analytics.com *.unpkg.com *.jsdelivr.net; " +
+                    "connect-src 'self' *.google-analytics.com; " + 
+                    "style-src-elem 'self' *.jsdelivr.net; " +
+                    "upgrade-insecure-requests; block-all-mixed-content");
 
                 await next.Invoke();
             });
