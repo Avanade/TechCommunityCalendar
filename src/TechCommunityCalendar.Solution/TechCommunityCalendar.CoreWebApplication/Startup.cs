@@ -69,7 +69,7 @@ namespace TechCommunityCalendar.CoreWebApplication
                     "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.google-analytics.com *.unpkg.com *.jsdelivr.net; " +
                     "connect-src 'self' *.google-analytics.com; " + 
                     "style-src-elem 'self' *.jsdelivr.net *.unpkg.com; " +
-                    "script-src-elem 'self' *.jsdelivr.net *.unpkg.com; " +
+                    "script-src-elem 'self' 'unsafe-inline' *.jsdelivr.net *.unpkg.com *.googletagmanager.com; " +
                     "font-src 'self' *.jsdelivr.net; " +
                     "upgrade-insecure-requests; block-all-mixed-content");
 
