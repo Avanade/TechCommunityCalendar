@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
@@ -81,6 +82,15 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }           
 
             return RedirectToAction("Index");
+        }
+
+        [Route("/admin/avanadecalendar")]
+        public async Task<IActionResult> Calendar()
+        {
+            var techEvents = await _techEventRepository.GetAll();
+            techEvents = techEvents.Where(x => x.StartDate.Year == 2023).ToArray();
+            
+            return View("/Views/Admin/Calendar.cshtml", techEvents.ToList());
         }
     }
 }

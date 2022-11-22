@@ -1,0 +1,6 @@
+﻿@model CountryListViewModel
+@foreach(var techEvent in Model.Events)
+{
+    <span><a href="@techEvent.Url">@techEvent.Name</a></span>
+    <br /><br/>
+}

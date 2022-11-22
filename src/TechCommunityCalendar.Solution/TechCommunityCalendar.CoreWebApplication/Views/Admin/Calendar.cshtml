@@ -1,0 +1,113 @@
+﻿@model List<TechCommunityCalendar.Interfaces.ITechEvent>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var months = new[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+    var countries = new[] { "UK", "Ireland", "Austria", "Switzerland", "Germany", "Belgium", "France", "Netherlands", "Spain",
+    "Portugal", "Italy", "Poland", "Denmark", "Norway", "Finland", "Sweden", "Australia", "Brazil", "Japan", "China", "Singapore",
+    "Malaysia", "UAE", "Canada" };
+
+}
+<h2 class="display-4">Avanade Country Calendar in 2023</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th></th>
+        <th colspan="16">Europe</th>        
+        <th colspan="7">Growth Markets</th>
+        <th colspan="5">North America</th>
+    </tr>
+    <tr>
+        <th></th>
+        <th colspan="2">UKI</th>
+        <th colspan="3">ASG</th>
+        <th colspan="3">Gallia</th>
+        <th colspan="2">Iberia</th>
+        <th colspan="2">ICEG</th>
+        <th colspan="4">Nordics</th>
+        <th colspan="7"></th>
+        <th colspan="5"></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th>UK</th>
+        <th>Ireland</th>
+        <th>Austria	</th>
+        <th>Switzerland</th>
+        <th>Germany</th>
+        <th>Belgium</th>
+        <th>France</th>
+        <th>Netherlands</th>
+        <th>Spain</th>
+        <th>Portugal</th>
+        <th>Italy</th>
+        <th>Poland</th>
+        <th>Denmark</th>
+        <th>Norway</th>
+        <th>Finland</th>
+        <th>Sweden</th>        
+        <th>Australia</th>
+        <th>Brazil</th>
+        <th>Japan</th>
+        <th>China</th>
+        <th>Singapore</th>
+        <th>Malaysia</th>
+        <th>UAE</th>
+        <th>Canada</th>
+
+        <th>US West</th>
+        <th>US Midwest</th>
+        <th>US Northeast</th>
+        <th>US South</th>
+    </tr>
+    @for(int x=0;x<months.Length;x++)
+    {
+        <tr>
+        <th>
+            @months[x]
+        </th>
+        @foreach(var country in countries)
+        {
+            <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel(country,x+1, Model))</td>
+        }
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+    }
+    @*//<tr>
+    //    <th>January</th>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("UK",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Ireland",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Austria",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Switzerland",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Germany",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Belgium",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("France",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Netherlands",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Spain",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Portugal",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Italy",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Poland",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Denmark",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Norway",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Finland",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Sweden",1, Model))</td>        
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Australia",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Brazil",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Japan",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("China",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Singapore",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Malaysia",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("UAE",1, Model))</td>
+    //    <td>@await Html.PartialAsync("_EventsInCountry", new CountryListViewModel("Canada",1, Model))</td>
+    //    <td></td>
+    //    <td></td>
+    //    <td></td>
+    //    <td></td>
+    //</tr>*@
+</table>
