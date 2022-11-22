@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="@ViewData["Description"]" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/bootstrap-icons.css" />*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="canonical" href="@ViewData["Canonical"]" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:url" content="@ViewData["Canonical"]" />
+    <meta property="og:image" content="https://techcommunitycalendar.com/images/tech-community-calendar-share.png" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+    <meta property="og:type" content="webpage" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="@ViewData["Description"]" />
+    <meta name="twitter:title" content="@ViewData["Title"]" />
+    <meta name="twitter:image" content="https://techcommunitycalendar.com/images/tech-community-calendar-share.png" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBDPEW68ZT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XBDPEW68ZT');
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-navy border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TechCommunityCalendar.com</a>
+                <a class="nav-link text-light" asp-area="" asp-controller="Map" asp-action="Index">Map</a>
+                <a class="nav-link text-dark btn-light btn-sm" asp-area="" asp-controller="AddEvent" asp-action="Index">Add Event <i class="bi bi-plus-circle-fill"></i></a>
+
+            </div>
+        </nav>
+    </header>
+
+    <div style="background-image:url('/images/header.jpeg'); background-position:right bottom; background-repeat: no-repeat; background-size: cover; height:248px; margin-bottom:20px">
+        <h1 class="display-5" style="text-align:center; color:#fff;">Tech Community Calendar</h1>
+        <h2 style="text-align:center; color:#fff;">Conferences - Call For Papers - Meetups - Hackathons</h2>
+
+
+        <div class="container">
+
+            <form action="/Search/Search" method="post" onsubmit="search()">
+
+                <div class="input-group col-auto">
+                    <input id="searchTerm" name="SearchTerm" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                    <button class="btn btn-success" type="button" id="button-addon2" onclick="search()"><i class="fa fa-search">Go</i></button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div class="container-fluid">
+        <main class="pb-3">
+
+            @RenderBody()
+
+            <div class="text-center">
+                <br /><br />
+                @await Html.PartialAsync("_EventTypesLinks")
+            </div>
+        </main>
+    </div>
+
+
+    <div class="container">
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+
+            <p class="col-md-6 mb-0 text-muted">
+                <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar"><img src="~/images/avanade.png" alt="Avanade logo" style="width:150px;"></a>
+            </p>
+
+            <ul class="nav nav col-md-5 justify-content-end">
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://www.avanade.com/en/utility/privacy-policy">Privacy policy</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://avanade.github.io/code-of-conduct/">Code of conduct</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://www.avanade.com/en/utility/terms-of-use">Terms of use</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-muted" href="https://www.avanade.com/en/about-avanade/approach/trust-center/responsible-disclosure">Security</a></li>
+            </ul>
+
+        </footer>
+
+        <p class="text-muted col-md-12 text-center">&copy; 2022 - TechCommunityCalendar.com. All rights reserved. Created by <a href="https://twitter.com/leeenglestone">Lee Englestone</a>. Supported by <a href="https://www.avanade.com/en?utm_source=techcommunitycalendar&utm_medium=support-link&utm_campaign=devrel-techcommunitycalendar">Avanade, Inc.</a></p>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        function search() {
+
+            var searchTerm = document.getElementById('searchTerm').value;
+
+            if (searchTerm !== null && searchTerm !== '')
+                document.location = "/search/" + searchTerm;
+        }
+    </script>
+</body>
+</html>
