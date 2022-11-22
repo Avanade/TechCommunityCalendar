@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Text;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;
@@ -182,9 +179,18 @@ namespace TechCommunityCalendar.Concretions
             }
         }
 
-        public Task Remove(Guid id)
+        public async Task Remove(string id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                string sql = "DELETE FROM [Events] " +
+                    "WHERE id = @id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("id", id);
+                connection.Open();
+                await command.ExecuteNonQueryAsync();
+            }
         }
     }
 }

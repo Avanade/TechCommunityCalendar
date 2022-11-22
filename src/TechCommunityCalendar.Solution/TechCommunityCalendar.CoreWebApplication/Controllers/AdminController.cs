@@ -34,7 +34,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             var techEvents = await _techEventRepository.GetAll();
 
             var model = new AdminEventsViewModel();
-            model.TechEvents = techEvents.OrderByDescending(x=>x.StartDate);
+            model.TechEvents = techEvents.OrderByDescending(x => x.StartDate);
 
             return View(model);
         }
@@ -55,7 +55,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.EndDate = techEvent.EndDate;
             model.Hidden = techEvent.Hidden;
 
-            return View("/Views/EditEvent/Index.cshtml",model);
+            return View("/Views/EditEvent/Index.cshtml", model);
         }
 
         [HttpPost]
@@ -67,16 +67,18 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             techEvent.Id = model.Id;
             techEvent.Hidden = model.Hidden;
 
-            if(model.AdminPassword == Environment.GetEnvironmentVariable("AdminPassword"))
+            if (model.AdminPassword == Environment.GetEnvironmentVariable("AdminPassword")
+                && !String.IsNullOrEmpty(model.AdminPassword))
             {
-                _techEventAdminRepository.Update(techEvent);
-            }
-            else
-            {
-                // Could show a message
-            }
-            
-            
+                if (model.Delete)
+                {
+                    _techEventAdminRepository.Remove(techEvent.Id);
+                }
+                else
+                {
+                    _techEventAdminRepository.Update(techEvent);
+                }
+            }           
 
             return RedirectToAction("Index");
         }

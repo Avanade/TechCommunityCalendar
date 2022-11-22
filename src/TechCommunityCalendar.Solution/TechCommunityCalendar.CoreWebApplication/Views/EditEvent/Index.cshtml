@@ -4,7 +4,8 @@
 }
 @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
 
-<br/><br/>
+<br />
+<br />
 <div>
 
     <div class="alert alert-info">
@@ -34,6 +35,13 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label for="Name" class="col-sm-2 col-form-label">Delete?</label>
+            <div class="col">
+                @Html.CheckBoxFor(x => x.Delete, new { @class = "form-control", placeholder = "Hidden", aria_label = "Delete" })
+            </div>
+        </div>
+
         <div class="form-group row" id="rowCity">
             <label for="City" class="col-sm-2 col-form-label">Admin Password</label>
             <div class="col">
@@ -45,7 +53,20 @@
 
         <br />
         <br />
-        <input type="submit" value="Update" />
+        <input type="submit" value="Update" onclick="return checkDelete();" />
     }
 
 </div>
+
+@section Scripts
+    {
+    <script>
+        function checkDelete() {
+            if ($('#Delete').is(':checked')) {
+                return confirm('Are you sure you want to delete?');
+            }
+
+            return false;
+        }
+    </script>
+    }

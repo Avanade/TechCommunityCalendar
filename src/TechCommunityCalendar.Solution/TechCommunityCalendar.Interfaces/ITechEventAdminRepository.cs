@@ -7,6 +7,6 @@ namespace TechCommunityCalendar.Interfaces
     {
         public Task Add(ITechEvent techEvent);
         public Task Update(ITechEvent techEvent);
-        public Task Remove(Guid id);
+        public Task Remove(string id);
     }
 }

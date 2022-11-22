@@ -6,6 +6,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Models
     {
         public string Id { get; set; }
         public bool Hidden { get; set; }
+        public bool Delete { get; set; }
 
         [DataType(DataType.Password)]
         [Required]
