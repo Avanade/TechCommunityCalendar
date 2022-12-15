@@ -48,6 +48,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.Name = techEvent.Name;
             model.City = techEvent.City;
             model.Country = techEvent.Country;
+            model.Url = techEvent.Url;
             model.EventFormat = techEvent.EventFormat.ToString();
             model.EventType = techEvent.EventType.ToString();
             model.Duration = techEvent.Duration;
@@ -67,6 +68,10 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             ITechEvent techEvent = new TechEvent();
             techEvent.Id = model.Id;
             techEvent.Hidden = model.Hidden;
+            techEvent.StartDate = model.StartDate;
+            techEvent.EndDate = model.EndDate;
+            techEvent.Url = model.Url;
+            
 
             if (model.AdminPassword == Environment.GetEnvironmentVariable("AdminPassword")
                 && !String.IsNullOrEmpty(model.AdminPassword))

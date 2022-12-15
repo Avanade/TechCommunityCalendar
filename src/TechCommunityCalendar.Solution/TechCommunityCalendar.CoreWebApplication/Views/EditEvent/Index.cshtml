@@ -9,7 +9,7 @@
 <div>
 
     <div class="alert alert-info">
-        Only used to update the hidden field at the moment.
+        Please be careful editing or deleting events
     </div>
 
     @using (Html.BeginForm())
@@ -24,26 +24,47 @@
         <div class="form-group row">
             <label for="Name" class="col-sm-2 col-form-label">Event Name</label>
             <div class="col">
-                @Model.Name
+                <a href="@Model.Url">@Model.Name</a>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="Name" class="col-sm-2 col-form-label">Hidden</label>
+            <label for="Url" class="col-sm-2 col-form-label">Url</label>
+            <div class="col">
+                @Html.TextBoxFor(x => x.Url, new { @class = "form-control", placeholder = "", aria_label = "" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="StartDate" class="col-sm-2 col-form-label">Start</label>
+            <div class="col">
+                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control", placeholder = "", aria_label = "" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="EndDate" class="col-sm-2 col-form-label">End</label>
+            <div class="col">
+                @Html.TextBoxFor(x => x.EndDate, new { @class = "form-control", placeholder = "", aria_label = "" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="Hidden" class="col-sm-2 col-form-label">Hidden</label>
             <div class="col">
                 @Html.CheckBoxFor(x => x.Hidden, new { @class = "form-control", placeholder = "Hidden", aria_label = "Hidden" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="Name" class="col-sm-2 col-form-label">Delete?</label>
+            <label for="Delete" class="col-sm-2 col-form-label">Delete?</label>
             <div class="col">
                 @Html.CheckBoxFor(x => x.Delete, new { @class = "form-control", placeholder = "Hidden", aria_label = "Delete" })
             </div>
         </div>
 
-        <div class="form-group row" id="rowCity">
-            <label for="City" class="col-sm-2 col-form-label">Admin Password</label>
+        <div class="form-group row">
+            <label for="AdminPassword" class="col-sm-2 col-form-label">Admin Password</label>
             <div class="col">
                 @Html.PasswordFor(x => x.AdminPassword, new { @class = "form-control", placeholder = "", aria_label = "" })
             </div>

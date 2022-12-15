@@ -168,12 +168,18 @@ namespace TechCommunityCalendar.Concretions
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 string sql = "UPDATE [Events] " +
-                    "SET Hidden = @hidden " +
+                    "SET Hidden = @hidden, " +
+                    "EndDate = @startDate, " +
+                    "StartDate = @endDate, " +
+                    "Url = @url, " +
                     "WHERE id = @id";
 
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("id", techEvent.Id);
                 command.Parameters.AddWithValue("hidden", techEvent.Hidden);
+                command.Parameters.AddWithValue("startDate", techEvent.StartDate);
+                command.Parameters.AddWithValue("endDate", techEvent.EndDate);
+                command.Parameters.AddWithValue("url", techEvent.Url);
                 connection.Open();
                 await command.ExecuteNonQueryAsync();
             }
