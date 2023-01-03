@@ -172,6 +172,7 @@ namespace TechCommunityCalendar.Concretions
                     "EndDate = @startDate, " +
                     "StartDate = @endDate, " +
                     "Url = @url, " +
+                    "Name = @name, " +
                     "WHERE id = @id";
 
                 SqlCommand command = new SqlCommand(sql, connection);
@@ -180,6 +181,7 @@ namespace TechCommunityCalendar.Concretions
                 command.Parameters.AddWithValue("startDate", techEvent.StartDate);
                 command.Parameters.AddWithValue("endDate", techEvent.EndDate);
                 command.Parameters.AddWithValue("url", techEvent.Url);
+                command.Parameters.AddWithValue("name", techEvent.Name);
                 connection.Open();
                 await command.ExecuteNonQueryAsync();
             }

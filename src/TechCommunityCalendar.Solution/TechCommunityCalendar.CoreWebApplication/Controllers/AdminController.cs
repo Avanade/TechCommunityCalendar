@@ -71,7 +71,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             techEvent.StartDate = model.StartDate;
             techEvent.EndDate = model.EndDate;
             techEvent.Url = model.Url;
-            
+            techEvent.Name = model.Name;
+
 
             if (model.AdminPassword == Environment.GetEnvironmentVariable("AdminPassword")
                 && !String.IsNullOrEmpty(model.AdminPassword))
