@@ -172,7 +172,7 @@ namespace TechCommunityCalendar.Concretions
                     "EndDate = @startDate, " +
                     "StartDate = @endDate, " +
                     "Url = @url, " +
-                    "Name = @name, " +
+                    "Name = @name " +
                     "WHERE id = @id";
 
                 SqlCommand command = new SqlCommand(sql, connection);
