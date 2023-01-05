@@ -169,8 +169,8 @@ namespace TechCommunityCalendar.Concretions
             {
                 string sql = "UPDATE [Events] " +
                     "SET Hidden = @hidden, " +
-                    "EndDate = @startDate, " +
-                    "StartDate = @endDate, " +
+                    "EndDate = @endDate, " +
+                    "StartDate = @startDate, " +
                     "Url = @url, " +
                     "Name = @name " +
                     "WHERE id = @id";
