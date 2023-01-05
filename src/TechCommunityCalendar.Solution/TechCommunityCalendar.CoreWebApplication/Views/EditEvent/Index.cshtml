@@ -57,6 +57,26 @@
         </div>
 
         <div class="form-group row">
+            <label for="EventType" class="col-sm-2 col-form-label">Event Type</label>
+            <div class="col">
+                <select name="EventType" class="form-control">
+
+                    @foreach (var item in new[] { "Call_For_Papers", "Conference", "Hackathon", "Meetup", "Website" })
+                    {
+                        if (Model.EventType == item)
+                        {
+                            <option selected value="@item">@item.Replace("_", " ")</option>
+                        }
+                        else
+                        {
+                            <option value="@item">@item.Replace("_", " ")</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="Hidden" class="col-sm-2 col-form-label">Hidden</label>
             <div class="col">
                 @Html.CheckBoxFor(x => x.Hidden, new { @class = "form-control", placeholder = "Hidden", aria_label = "Hidden" })

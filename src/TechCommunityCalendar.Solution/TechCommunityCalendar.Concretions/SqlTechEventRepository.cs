@@ -172,6 +172,7 @@ namespace TechCommunityCalendar.Concretions
                     "EndDate = @endDate, " +
                     "StartDate = @startDate, " +
                     "Url = @url, " +
+                    "EventType = @eventType, " +
                     "Name = @name " +
                     "WHERE id = @id";
 
@@ -182,6 +183,7 @@ namespace TechCommunityCalendar.Concretions
                 command.Parameters.AddWithValue("endDate", techEvent.EndDate);
                 command.Parameters.AddWithValue("url", techEvent.Url);
                 command.Parameters.AddWithValue("name", techEvent.Name);
+                command.Parameters.AddWithValue("eventType", techEvent.EventType);
                 connection.Open();
                 await command.ExecuteNonQueryAsync();
             }

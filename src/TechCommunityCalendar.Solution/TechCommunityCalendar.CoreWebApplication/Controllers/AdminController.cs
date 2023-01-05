@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
+using TechCommunityCalendar.Enums;
 using TechCommunityCalendar.Interfaces;
 
 namespace TechCommunityCalendar.CoreWebApplication.Controllers
@@ -70,6 +71,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             techEvent.Hidden = model.Hidden;
             techEvent.StartDate = model.StartDate;
             techEvent.EndDate = model.EndDate;
+            techEvent.EventType = (EventType)Enum.Parse(typeof(EventType), model.EventType);
             techEvent.Url = model.Url;
             techEvent.Name = model.Name;
 
