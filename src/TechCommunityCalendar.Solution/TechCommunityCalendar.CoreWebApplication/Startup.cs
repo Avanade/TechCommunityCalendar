@@ -50,6 +50,12 @@ namespace TechCommunityCalendar.CoreWebApplication
                 options.LowercaseUrls = true;
                 options.AppendTrailingSlash = true;
             });
+
+            services.AddHsts(options =>
+            {
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(365);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +64,8 @@ namespace TechCommunityCalendar.CoreWebApplication
             app.Use(async (context, next) =>
             {
                 // Accenture required headings
-                context.Response.Headers.Remove("Strict-Transport-Security");
-                context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
+                //context.Response.Headers.Remove("Strict-Transport-Security");
+                //context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
                 context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                 context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
 
