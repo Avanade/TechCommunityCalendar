@@ -63,9 +63,8 @@ namespace TechCommunityCalendar.CoreWebApplication
         {
             app.Use(async (context, next) =>
             {
-                // Accenture required headings
-                //context.Response.Headers.Remove("Strict-Transport-Security");
-                //context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
+                // Accenture required headings                
+                context.Response.Headers.Add("Strict-Transport-Security", "max-age=31536000; includeSubdomains");
                 context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                 context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
 
