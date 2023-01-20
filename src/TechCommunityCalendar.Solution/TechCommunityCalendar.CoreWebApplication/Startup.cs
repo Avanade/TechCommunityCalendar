@@ -28,22 +28,16 @@ namespace TechCommunityCalendar.CoreWebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //string csvPath = Path.Combine(currentEnvironment.WebRootPath, "Data", "TechEvents.csv");
-
             services.AddMemoryCache();
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
             services.AddControllersWithViews();
-            //services.AddScoped<ITechEventQueryRepository, FakeTechEventRepository>();
-            //services.AddScoped<ITechEventQueryRepository>(x => new CsvTechEventRepository(csvPath));
 
-            // Will probably have to pass connection string in..
             string connectionString = Environment.GetEnvironmentVariable("SqlConnectionString");
-            
 
             services.AddScoped<ITechEventQueryRepository>(x => new SqlTechEventRepository(connectionString));
             services.AddScoped<ITechEventAdminRepository>(x => new SqlTechEventRepository(connectionString));
 
             services.AddLocalization();
-            //services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 
             services.Configure<RouteOptions>(options =>
             {
@@ -107,12 +101,12 @@ namespace TechCommunityCalendar.CoreWebApplication
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-          
+
 
             app.UseEndpoints(endpoints =>
             {
