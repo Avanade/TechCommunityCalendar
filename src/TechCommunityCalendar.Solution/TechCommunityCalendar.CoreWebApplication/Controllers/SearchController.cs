@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System.Linq;
 using System.Threading.Tasks;
 using TechCommunityCalendar.Concretions;
 using TechCommunityCalendar.CoreWebApplication.Models;
@@ -23,6 +24,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         public async Task<IActionResult> Search(SearchModel searchModel)
         {
             var events = await GetEventsFromCache();
+            events = events.Where(x => !x.Hidden).ToArray();
             var searchResults = TechEventCalendar.Search(searchModel.SearchTerm, events);
             
             var model = new SearchResultsViewModel(searchResults, searchModel.SearchTerm);
