@@ -75,6 +75,19 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             techEvent.Url = model.Url;
             techEvent.Name = model.Name;
 
+            // Calculate new duration
+            if (model.StartDate == model.EndDate)
+            {
+                model.Duration = "1 day";
+            }
+            else if (model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
+            {
+                model.Duration = (model.EndDate.Subtract(model.StartDate).TotalHours).ToString("0.0") + " hour";
+            }
+            else
+            {
+                model.Duration = (model.EndDate.Subtract(model.StartDate).TotalDays + 1).ToString("0.0") + " day";
+            }
 
             if (model.AdminPassword == Environment.GetEnvironmentVariable("AdminPassword")
                 && !String.IsNullOrEmpty(model.AdminPassword))

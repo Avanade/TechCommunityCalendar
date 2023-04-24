@@ -17,7 +17,7 @@
                         {
                             <span class="badge badge-warning">Tomorrow</span>
                         }
-                        else if (item.HapenningNextXDays(7))
+                        else if (item.HappenningNextXDays(7))
                         {
                             <span class="badge badge-success">Next 7 days</span>
                         }
@@ -49,58 +49,6 @@
         </div>
     }
 </div>
-
-@*<tr>
-            <td>
-                @TechCommunityCalendar.Concretions.TechEventCalendar.GetEventTypeIcon(item.EventType)
-            </td>
-            <td style="text-align:left">
-                @item.StartDate.ToString("dd/MM/yyyy") - <a href="@item.Url" class="event-name">@item.Name</a>
-                - @if (!string.IsNullOrEmpty(item.City))
-                {
-                    @item.City<text>,</text>
-                }
-                @item.Country
-            </td>
-            <td>
-                @{
-                    var onClickEvent = $"GenerateIcs('{item.Name}','{item.StartDate.ToString("yyyyMMddTHHmmssZ")}','{item.EndDate.ToString("yyyyMMddTHHmmssZ")}','{item.Country} {item.City}', '{item.Url}', '{Guid.NewGuid()}')";
-                }
-                <a href="javascript:return;" onclick="@onClickEvent" title="Add to calendar (.ics)">📅</a>
-            </td>
-            <td>
-                @if (item.EventType == TechCommunityCalendar.Enums.EventType.Call_For_Papers)
-                {
-                    <text>Call For Papers</text>
-
-                    var daysRemaining = item.EndDate.Subtract(DateTime.Now.Date).Days;
-                    if (daysRemaining > 0)
-                    {
-                        <text> (@daysRemaining days remaining)</text>
-                    }
-                }
-                else
-                {
-                    <span>@item.Duration @item.EventFormat.ToString().Replace("_", " ") @item.EventType.ToString().Replace("_", " ")</span>
-                }
-
-                @if (item.HappeningOnDate(DateTime.Now.Date))
-                {
-                    <span class="badge badge-danger">Today</span>
-                }
-                else if (item.HappeningOnDate(DateTime.Now.Date.AddDays(1)))
-                {
-                    <span class="badge badge-warning">Tomorrow</span>
-                }
-                else if (item.HapenningNextXDays(7))
-                {
-                    <span class="badge badge-success">Next 7 days</span>
-                }
-            </td>
-        </tr>*@
-
-
-
 
 <script>
 

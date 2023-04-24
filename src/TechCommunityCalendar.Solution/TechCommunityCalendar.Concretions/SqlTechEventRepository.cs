@@ -171,6 +171,7 @@ namespace TechCommunityCalendar.Concretions
                     "SET Hidden = @hidden, " +
                     "EndDate = @endDate, " +
                     "StartDate = @startDate, " +
+                    "Duration = @duration, " +
                     "Url = @url, " +
                     "EventType = @eventType, " +
                     "Name = @name " +
@@ -181,6 +182,7 @@ namespace TechCommunityCalendar.Concretions
                 command.Parameters.AddWithValue("hidden", techEvent.Hidden);
                 command.Parameters.AddWithValue("startDate", techEvent.StartDate);
                 command.Parameters.AddWithValue("endDate", techEvent.EndDate);
+                command.Parameters.AddWithValue("duration", techEvent.Duration);
                 command.Parameters.AddWithValue("url", techEvent.Url);
                 command.Parameters.AddWithValue("name", techEvent.Name);
                 command.Parameters.AddWithValue("eventType", techEvent.EventType);

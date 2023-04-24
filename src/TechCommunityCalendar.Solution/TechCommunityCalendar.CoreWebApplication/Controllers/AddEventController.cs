@@ -69,11 +69,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }
             else if (model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
             {
-                model.Duration = model.EndDate.Subtract(model.StartDate).TotalHours + " hour";
+                model.Duration = (model.EndDate.Subtract(model.StartDate).TotalHours).ToString("0.0") + " hour";
             }
             else
             {
-                model.Duration = model.EndDate.Subtract(model.StartDate).TotalDays + 1 + " day";
+                model.Duration = (model.EndDate.Subtract(model.StartDate).TotalDays + 1).ToString("0.0") + " day";
             }
 
             // Twitter Handle?
@@ -107,8 +107,8 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             techEvent.Duration = model.Duration;
             techEvent.StartDate = model.StartDate;
             techEvent.EndDate = model.EndDate;
-            techEvent.EventFormat = (EventFormat)Enum.Parse(typeof(EventFormat),model.EventFormat);
-            techEvent.EventType = (EventType)Enum.Parse(typeof(EventType),model.EventType);
+            techEvent.EventFormat = (EventFormat)Enum.Parse(typeof(EventFormat), model.EventFormat);
+            techEvent.EventType = (EventType)Enum.Parse(typeof(EventType), model.EventType);
             techEvent.TwitterHandle = model.TwitterHandle;
             techEvent.Url = model.Url;
             techEvent.Hidden = true;

@@ -58,7 +58,7 @@ namespace TechCommunityCalendar.Concretions
             return false;
         }
 
-        public bool HapenningNextXDays(int days)
+        public bool HappenningNextXDays(int days)
         {
             var periodEnd = DateTime.Now.AddDays(days);
 
