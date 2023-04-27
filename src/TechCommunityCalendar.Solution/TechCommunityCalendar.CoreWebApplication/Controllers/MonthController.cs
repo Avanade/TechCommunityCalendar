@@ -20,6 +20,9 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
         [Route("{month}/{year}")]
         public async Task<IActionResult> Month(int year, int month)
         {
+            if (month > 12)
+                month = 12;
+
             var monthDate = new DateTime(year, month, 1);
 
             var allEvents = await GetEventsFromCache();
