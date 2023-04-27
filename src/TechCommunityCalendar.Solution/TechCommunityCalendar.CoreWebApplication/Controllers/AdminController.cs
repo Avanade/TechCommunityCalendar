@@ -82,12 +82,17 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             }
             else if (model.EndDate.Subtract(model.StartDate).TotalHours <= 7)
             {
-                model.Duration = (model.EndDate.Subtract(model.StartDate).TotalHours).ToString("0.0") + " hour";
+                model.Duration = (model.EndDate.Subtract(model.StartDate).TotalHours).ToString("0.0") + " hour";                
             }
             else
             {
                 model.Duration = (model.EndDate.Subtract(model.StartDate).TotalDays + 1).ToString("0.0") + " day";
             }
+
+            if (model.Duration.Contains(".0"))
+                model.Duration = model.Duration.Replace(".0", "");
+
+            techEvent.Duration = model.Duration;
 
             if (model.AdminPassword == Environment.GetEnvironmentVariable("AdminPassword")
                 && !String.IsNullOrEmpty(model.AdminPassword))
