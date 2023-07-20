@@ -45,6 +45,11 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 {
                     ModelState.AddModelError("Name", "Event Name cannot contain a comma (,)");
                 }
+
+                if(model.Name.Contains("#"))
+                {
+                    ModelState.AddModelError("Name", "Event Name cannot contain a hash sign (#)");
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(model.City))
