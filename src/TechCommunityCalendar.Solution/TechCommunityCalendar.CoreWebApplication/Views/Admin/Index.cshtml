@@ -1,15 +1,17 @@
-﻿@model AdminEventsViewModel
+﻿@using System.Web;
+@model AdminEventsViewModel
 
 <h3>Hidden</h3>
 <table class="table table-bordered">
-    @foreach (var techEvent in Model.TechEvents.Where(x=>x.Hidden))
+    @foreach (var techEvent in Model.TechEvents.Where(x => x.Hidden))
     {
         <tr>
             <td><a href="@techEvent.Url">@techEvent.Name</a></td>
             <td>@techEvent.EventType</td>
             <td>@techEvent.Duration</td>
             <td>@techEvent.StartDate.ToShortDateString()</td>
-            <td><a href="/Admin/Edit/@techEvent.FriendlyName">Edit</a></td>
+            @*<td><a href="/Admin/Edit/@techEvent.FriendlyName">Edit</a></td>*@
+            <td><a href="/Admin/Edit/@HttpUtility.UrlEncode(techEvent.FriendlyName)">Edit</a></td>
         </tr>
     }
 </table>
@@ -17,14 +19,14 @@
 <br />
 <h3>Visible</h3>
 <table class="table table-bordered">
-    @foreach (var techEvent in Model.TechEvents.Where(x=>!x.Hidden))
+    @foreach (var techEvent in Model.TechEvents.Where(x => !x.Hidden))
     {
         <tr>
             <td><a href="@techEvent.Url">@techEvent.Name</a></td>
             <td>@techEvent.EventType</td>
             <td>@techEvent.Duration</td>
             <td>@techEvent.StartDate.ToShortDateString()</td>
-            <td><a href="/Admin/Edit/@techEvent.FriendlyName">Edit</a></td>
+            <td><a href="/Admin/Edit/@HttpUtility.UrlEncode(techEvent.FriendlyName)">Edit</a></td>
         </tr>
     }
 </table>
