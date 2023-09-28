@@ -4,26 +4,22 @@ The Tech Community Calendar is THE place to check for upcoming events in the tec
 Eventually we want the site to be managed by the tech community itself so that it is ran *by* the community, *for* the commmunity.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![GitHub issues](https://img.shields.io/github/issues/Avanade/avanade-template)
-![GitHub](https://img.shields.io/github/license/Avanade/avanade-template)
+![GitHub issues](https://img.shields.io/github/issues/Avanade/TechCommunityCalendar/issues)
+![GitHub](https://img.shields.io/github/license/Avanade/TechCommunityCalendar)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Avanade/avanade-template?style=social)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://avanade.github.io/code-of-conduct/)
 [![Incubating InnerSource](https://img.shields.io/badge/Incubating-Ava--Maturity-%23FF5800?labelColor=yellow)](https://avanade.github.io/code-of-conduct/)
 
 
 ```
-Update the repo URL addresses for the shield templates.
-LE: These may require the repo to be public?
-DELETE THIS COMMENT
+Update the repo URL addresses for the shield templates. :P
 ```
 
 ## Overview
 The Tech Community Calendar will show events of interest to the tech community from around the world and will be filterable by event type and country.
 
 
-[Screenshot imminent]
-
-
+![Alt text](image.png)
 
 ## Licensing
 Tech Community Calendar is available under the [MIT Licence](./LICENCE).
