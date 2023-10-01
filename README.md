@@ -11,18 +11,11 @@ Eventually we want the site to be managed by the tech community itself so that i
 [![Incubating InnerSource](https://img.shields.io/badge/Incubating-Ava--Maturity-%23FF5800?labelColor=yellow)](https://avanade.github.io/code-of-conduct/)
 
 
-```
-Update the repo URL addresses for the shield templates.
-LE: These may require the repo to be public?
-DELETE THIS COMMENT
-```
-
 ## Overview
 The Tech Community Calendar will show events of interest to the tech community from around the world and will be filterable by event type and country.
 
 
-[Screenshot imminent]
-
+![Alt text](image.png)
 
 
 ## Licensing
