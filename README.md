@@ -21,7 +21,8 @@ DELETE THIS COMMENT
 The Tech Community Calendar will show events of interest to the tech community from around the world and will be filterable by event type and country.
 
 
-![Alt text](image.png)
+[Screenshot imminent]
+
 
 ## Licensing
 Tech Community Calendar is available under the [MIT Licence](./LICENCE).
