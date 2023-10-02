@@ -17,7 +17,6 @@ The Tech Community Calendar will show events of interest to the tech community f
 
 ![Alt text](image.png)
 
-
 ## Licensing
 Tech Community Calendar is available under the [MIT Licence](./LICENCE).
 
