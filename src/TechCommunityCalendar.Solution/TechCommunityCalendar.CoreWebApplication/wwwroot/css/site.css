@@ -114,9 +114,117 @@ img#logo {
     align-items: center;
 }
 
+
     .flex-container > div.event-type {
         margin: 0 15px 0px 15px;
     }
+
+
+/*Toggle switch styling*/
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 70px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+    .theme-switch input {
+        display: none;
+    }
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+    .slider:before {
+        background-color: #fff;
+        bottom: 4px;
+        content: "";
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        transition: .4s;
+        width: 26px;
+    }
+
+input:checked + .slider {
+    background-color: #66bb6a;
+}
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+/* Adding theme support */
+:root {
+    --primary-color: #424242;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+    --nav-toggle-icon: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-theme="dark"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+    --nav-toggle-icon: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body {
+    color: var(--font-color);
+    background-color: var(--bg-color);
+}
+
+.navbar {
+    color: var(--font-color) !important;
+    background-color: var(--bg-color) !important;
+}
+
+a.navbar-brand {
+    color: var(--font-color) !important;
+    background-color: var(--bg-color) !important;
+}
+
+.nav-link {
+    color: var(--font-color) !important;
+    background-color: var(--bg-color) !important;
+}
+
+.navbar-toggler-icon {
+    background-image: var(--nav-toggle-icon);
+}
+
+.navPadding {
+    padding-right: 8px;
+}
+
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
