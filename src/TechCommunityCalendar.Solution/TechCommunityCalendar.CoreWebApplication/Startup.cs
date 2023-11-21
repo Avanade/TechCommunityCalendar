@@ -34,7 +34,13 @@ namespace TechCommunityCalendar.CoreWebApplication
 
             string connectionString = Environment.GetEnvironmentVariable("SqlConnectionString");
 
+#if DEBUG
+            services.AddScoped<ITechEventQueryRepository>(x => new FakeTechEventRepository());
+#endif
+
+#if !DEBUG
             services.AddScoped<ITechEventQueryRepository>(x => new SqlTechEventRepository(connectionString));
+#endif
             services.AddScoped<ITechEventAdminRepository>(x => new SqlTechEventRepository(connectionString));
 
             services.AddLocalization();
