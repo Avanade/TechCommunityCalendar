@@ -4,9 +4,9 @@ The Tech Community Calendar is THE place to check for upcoming events in the tec
 Eventually we want the site to be managed by the tech community itself so that it is ran *by* the community, *for* the commmunity.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![GitHub issues](https://img.shields.io/github/issues/Avanade/avanade-template)
-![GitHub](https://img.shields.io/github/license/Avanade/avanade-template)
-![GitHub Repo stars](https://img.shields.io/github/stars/Avanade/avanade-template?style=social)
+![GitHub issues](https://img.shields.io/github/issues/Avanade/TechCommunityCalendar)
+![GitHub License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![GitHub Repo stars](https://img.shields.io/github/stars/Avanade/TechCommunityCalendar)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://avanade.github.io/code-of-conduct/)
 [![Incubating InnerSource](https://img.shields.io/badge/Incubating-Ava--Maturity-%23FF5800?labelColor=yellow)](https://avanade.github.io/code-of-conduct/)
 
