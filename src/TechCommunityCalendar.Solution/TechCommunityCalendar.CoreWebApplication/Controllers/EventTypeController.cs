@@ -25,7 +25,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             Enums.EventType eventTypeEnum = EnumParser.ParseEventType(eventType);
 
             var allEvents = await GetEventsFromCache();
-            var events = allEvents.Where(x => x.EventType.Equals(eventTypeEnum)).ToArray();
+            var events = allEvents.Where(x => x.EventType.Equals(eventTypeEnum) && !x.Hidden).ToArray();
 
             model.Events = events;
             model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
