@@ -26,7 +26,7 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
             model.Country = ToTitleCase(country);
             model.Events = events;
             model.CurrentEvents = TechEventCalendar.GetCurrentEvents(events);
-            model.UpcomingEvents = TechEventCalendar.GetUpcomingEvents(events);
+            model.UpcomingEvents = TechEventCalendar.GetFutureEvents(events);
             model.RecentEvents = TechEventCalendar.GetRecentEvents(events);
 
             ViewBag.Title = $"Tech Community Events in {model.Country}";
