@@ -96,6 +96,20 @@ namespace TechCommunityCalendar.CoreWebApplication.Controllers
                 }
             }
 
+            
+            // Check if model.Url is a valid URL
+            if (!string.IsNullOrWhiteSpace(model.Url))
+            {
+                if (!model.Url.StartsWith("http://") && !model.Url.StartsWith("https://"))
+                {
+                    model.Url = "https://" + model.Url;
+                }
+                if (!Uri.IsWellFormedUriString(model.Url, UriKind.Absolute))
+                {
+                    ModelState.AddModelError("Url", "Invalid URL");
+                }
+            }
+
             if (!ModelState.IsValid)
                 return View(model);
 
