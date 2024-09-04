@@ -1,12 +1,20 @@
 ﻿@using System.Web;
+@using System.Text.Unicode
 @model AdminEventsViewModel
+
+@functions {
+    public static string EncodeUrl(string value)
+    {
+        return HttpUtility.UrlEncode(value);
+    }
+}
 
 <h3>Hidden</h3>
 <table class="table table-bordered">
     @foreach (var techEvent in Model.TechEvents.Where(x => x.Hidden))
     {
         <tr>
-            <td><a href="@techEvent.Url">@techEvent.Name</a></td>
+            <td><a href="@EncodeUrl(techEvent.Url)" target="_blank">@techEvent.Name</a></td>
             <td>@techEvent.EventType</td>
             <td>@techEvent.Duration</td>
             <td>@techEvent.StartDate.ToShortDateString()</td>
@@ -22,7 +30,7 @@
     @foreach (var techEvent in Model.TechEvents.Where(x => !x.Hidden))
     {
         <tr>
-            <td><a href="@techEvent.Url">@techEvent.Name</a></td>
+            <td><a href="@EncodeUrl(techEvent.Url)" target="_blank">@techEvent.Name</a></td>
             <td>@techEvent.EventType</td>
             <td>@techEvent.Duration</td>
             <td>@techEvent.StartDate.ToShortDateString()</td>
